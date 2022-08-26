@@ -1,0 +1,38 @@
+namespace Models;
+
+enum InstallationPlatform {
+  Adm: "adm",
+  Apns: "apns",
+  Baidu: "baidu",
+  Browser: "browser",
+  FcmLegacy: "gcm",
+  Wns: "wns",
+}
+
+model Installation {
+  installationId: string;
+  userId?: string;
+  readonly expirationTime?: string;
+  readonly lastUpdate?: string;
+  platform: InstallationPlatform;
+  tags: string[];
+  templates: Record<string>;
+}
+
+model InstallationTemplate {
+  body: string;
+  headers: Record<string>;
+  tags?: string[];
+}
+
+enum JsonPatchOperation {
+  add: "add",
+  remove: "remove",
+  replace: "replace",
+}
+
+model JsonPatch {
+  op: JsonPatchOperation;
+  path: string;
+  value?: string;
+}
