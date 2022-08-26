@@ -1,0 +1,17 @@
+{
+  "name": "azure-notificationhubs-cadl",
+  "version": "1.0.0",
+  "description": "Azure Notification Hubs CADL Generator",
+  "main": "index.js",
+  "cadlMain": "main.cadl",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Matthew Podwysocki",
+  "license": "MIT",
+  "devDependencies": {
+    "@cadl-lang/openapi3": "^0.14.0",
+    "@cadl-lang/rest": "^0.16.0"
+  }
+}
