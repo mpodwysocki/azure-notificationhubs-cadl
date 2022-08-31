@@ -1,1 +1,17 @@
 namespace Models;
+
+enum NotificationPlatform {
+  Adm "adm",
+  Apple: "apple",
+  Baidu: "baidu",
+  Browser: "browser",
+  FcmLegacy: "gcm",
+  Template: "template",
+  Wns: "wns",
+}
+
+model Notification {
+  body: string;
+  headers?: Record<string>;
+  contentType: string;
+}

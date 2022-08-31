@@ -1,1 +1,82 @@
 namespace Models;
+
+model RegistrationDescription {
+  registrationId?: string;
+  tags?: string;
+  etag?: string;
+  pushVariables?: Record<string>;
+  expirationTime?: plainDate;
+}
+
+model TemplateRegistrationDescription {
+  bodyTemplate: string;
+  templateName?: string;
+}
+
+model AdmRegistrationDescription extends RegistrationDescription {
+  admRegistrationId: string;
+}
+
+model AdmTemplateRegistrationDescription extends AdmRegistrationDescription {
+  bodyTemplate: string;
+  templateName?: string;
+}
+
+model AppleRegistrationDescription extends RegistrationDescription {
+  deviceToken: string;
+}
+
+model AppleTemplateRegistrationDescription extends AppleRegistrationDescription {
+  bodyTemplate: string;
+  templateName?: string;
+  apnsHeaders?: Record<string>;
+  priority?: number;
+}
+
+model BaiduRegistrationDescription extends RegistrationDescription {
+  baiduChannelId: string;
+  baiduUserId: string;
+}
+
+model BaiduTemplateRegistrationDescription {
+  bodyTemplate: string;
+  templateName?: string;
+}
+
+model GcmRegistrationDescription extends RegistrationDescription {
+  gcmRegistrationId: string;
+}
+
+model GcmTemplateRegistrationDescription {
+  bodyTemplate: string;
+  templateName?: string;
+}
+
+model FcmRegistrationDescription extends RegistrationDescription {
+  fcmRegistrationId: string;
+}
+
+model FcmTemplateRegistrationDescription {
+  bodyTemplate: string;
+  templateName?: string;
+}
+
+model MpnsRegistrationDescription extends RegistrationDescription {
+  channelUri: string;
+}
+
+model MpnsTemplateRegistrationDescription {
+  bodyTemplate: string;
+  templateName?: string;
+  mpnsHeaders?: Record<string>;
+}
+
+model WindowsRegistrationDescription extends RegistrationDescription {
+  channelUri: string;
+}
+
+model WindowsTemplateRegistrationDescription {
+  bodyTemplate: string;
+  templateName?: string;
+  wnsHeaders?: Record<string>;
+}
