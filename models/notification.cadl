@@ -14,4 +14,41 @@ model Notification {
   body: string;
   headers?: Record<string>;
   contentType: string;
+  platform: NotificationPlatform;
+}
+
+model JsonNotification extends Notification {
+  contentType: "application/json;charset=utf-8";
+}
+
+model AdmNotification extends JsonNotification {
+  platform: NotificationPlatform.Adm;
+}
+
+model AppleNotification extends JsonNotification {
+  platform: NotificationPlatform.Apple;
+}
+
+model BaiduNotification extends JsonNotification {
+  platform: NotificationPlatform.Baidu;
+}
+
+model BrowserNotification extends JsonNotification {
+  platform: NotificationPlatform.Browser;
+}
+
+model FirebaseLegacyNotification extends JsonNotification {
+  platform: NotificationPlatform.FcmLegacy;
+}
+
+model WindowsNotification extends Notification {
+  platform: NotificationPlatform.Wns;
+}
+
+model WindowsXmlNotification extends WindowsNotification {
+  contentType: "application/xml;charset=utf-8";
+}
+
+model WindowsRawNotification extends WindowsNotification {
+  contentType: "application/octet-stream";
 }

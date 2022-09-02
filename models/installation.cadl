@@ -26,13 +26,48 @@ model InstallationTemplate {
 }
 
 enum JsonPatchOperation {
-  add: "add",
-  remove: "remove",
-  replace: "replace",
+  Add: "add",
+  Remove: "remove",
+  Replace: "replace",
 }
 
 model JsonPatch {
   op: JsonPatchOperation;
   path: string;
   value?: string;
+}
+
+model SimpleInstallation {
+  pushHandle: string;
+}
+
+model BrowserPushHandle {
+  endpoint: string;
+  p256dh: string;
+  auth: string;
+}
+
+model AdmInstallation extends SimpleInstallation {
+  platform: InstallationPlatform.Adm;
+}
+
+model AppleInstallation extends SimpleInstallation {
+  platform: InstallationPlatform.Apple;
+}
+
+model BaiduInstallation extends SimpleInstallation {
+  platform: InstallationPlatform.Baidu;
+}
+
+model BrowserInstallation extends Installation {
+  platform: InstallationPlatform.Browser;
+  pushHandle: BrowserPushHandle;
+}
+
+model FirebaseLegacyInstallation extends Installation {
+  platform: InstallationPlatform.FcmLegacy;
+}
+
+model WindowsInstallation extends SimpleInstallation {
+  platform: InstallationPlatform.Wns;
 }
