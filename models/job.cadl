@@ -1,1 +1,32 @@
 namespace Models;
+
+enum NotificationHubJobType {
+  ExportRegistrations: "ExportRegistrations",
+  ImportCreateRegistrations: "ImportCreateRegistrations",
+  ImportUpdateRegistrations: "ImportUpdateRegistrations",
+  ImportDeleteRegistrations: "ImportDeleteRegistrations",
+  ImportUpsertRegistrations: "ImportUpsertRegistrations",
+}
+
+enum NotificationHubJobStatus {
+  Started: "Started",
+  Running: "Running",
+  Completed: "Completed",
+  Failed: "Failed",
+}
+
+model NotificationHubJob {
+  jobId?: string;
+  outputFileName?: string;
+  failuresFileName?: string;
+  progress?: number;
+  type: NotificationHubJobType;
+  status?: NotificationHubJobStatus;
+  outputContainerUrl: string;
+  importFileUrl?: string;
+  inputProperties?: Record<string>;
+  failure?: string;
+  outputProperties?: Record<string>;
+  createdAt?: plainDate;
+  updatedAt?: plainDate;
+}
