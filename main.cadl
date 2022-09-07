@@ -1,0 +1,18 @@
+
+import "./models/installation";
+import "./models/job";
+import "./models/notification";
+import "./models/registration";
+
+@serviceTitle("Azure Notification Hubs Service")
+@serviceVersion("2020-06")
+@server("https://{namespaceName}.servicebus.windows.net/{hubName}", "Notification Hubs Namespace", {
+  @doc("Notification Hubs Namespace")
+  namespaceName?: string,
+  @doc("Notification Hub Name")
+  hubName?: string,
+})
+@doc("This is the entry point for an Azure Notification Hub")
+namespace NotificationHubs {
+
+}
