@@ -33,10 +33,28 @@ namespace NotificationHubs {
   @route("/messages")
   namespace Notifications {
     @post
-    op sendDirectNotification(@query direct: boolean, @body notification: Notification): NotificationResult;
+    op sendDirectNotification(
+      @query direct: boolean,
+      @body notification: Notification,
+      @header platform: string,
+    ): {
+      @header location: string;
+      @header trackingId: string;
+      @header correlationId: string;
+    }
 
     @post
-    op sendNotification(@body notification: Notification): NotificationResult;
+    op sendNotification(
+      @body notification: Notification,
+      @header platform: string,
+      @header test: boolean,
+      @header tags: string,
+    ): {
+      @header location: string;
+      @header trackingId: string;
+      @header correlationId: string;
+      @body notificationOutcome: NotificationOutcome;
+    }
   }
 
 }
