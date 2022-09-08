@@ -1,3 +1,4 @@
+using Cadl.Http;
 
 import "./models/installation";
 import "./models/job";
@@ -14,5 +15,28 @@ import "./models/registration";
 })
 @doc("This is the entry point for an Azure Notification Hub")
 namespace NotificationHubs {
+
+  @route("/installations")
+  namespace Installations {
+
+  }
+
+  @route("/registrations")
+  namespace Registrations {
+    @put
+    op create(@path registrationId: string): RegistrationDescription;
+
+    @get
+    op get(@path registrationId: string): RegistrationDescription;
+  }
+
+  @route("/messages")
+  namespace Notifications {
+    @post
+    op sendDirectNotification(@query direct: boolean, @body notification: Notification): NotificationResult;
+
+    @post
+    op sendNotification(@body notification: Notification): NotificationResult;
+  }
 
 }
