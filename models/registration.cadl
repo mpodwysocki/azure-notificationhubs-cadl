@@ -8,11 +8,6 @@ model RegistrationDescriptionCommon {
   expirationTime?: plainDate;
 }
 
-model TemplateRegistrationDescription {
-  bodyTemplate: string;
-  templateName?: string;
-}
-
 model AdmRegistrationDescription extends RegistrationDescriptionCommon {
   admRegistrationId: string;
 }

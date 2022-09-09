@@ -50,3 +50,16 @@ model WindowsXmlNotification extends WindowsNotification {
 model WindowsRawNotification extends WindowsNotification {
   contentType: "application/octet-stream";
 }
+
+model NotificationOutcome {
+  success: int32;
+  failure: int32;
+  results: RegistrationResult[];
+}
+
+model RegistrationResult {
+  applicationPlatform: string;
+  pnsHandle: string;
+  registrationId: string;
+  outcome: string;
+}

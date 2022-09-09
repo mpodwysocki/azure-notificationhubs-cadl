@@ -21,22 +21,99 @@ namespace NotificationHubs;
 @route("/installations")
 namespace Installations {
   @get
-  op get(@path installationId: string): InstallationCommon;
+  op get(@path installationId: string): {
+    @statusCode statusCode: 200,
+    @body installation: Installation,
+  };
+
+  @delete
+  op delete(@path installationId: string): {
+    @statusCode statusCode: 204,
+    @header trackingId: string;
+    @header("x-ms-correlation-request-id") correlationId: string;
+  };
+
+  @put
+  op createOrUpdate(
+    @path installationId: string,
+    @body installation: Installation
+  ): {
+    @statusCode statusCode: 200,
+    @header trackingId: string;
+    @header("x-ms-correlation-request-id") correlationId: string;
+  };
+
+  @patch
+  op update(
+    @path installationId: string,
+    @body updates: JsonPatch[]
+  ): {
+    @statusCode statusCode: 200,
+    @header trackingId: string;
+    @header("x-ms-correlation-request-id") correlationId: string;
+  };
 }
 
 @route("/registrations")
 namespace Registrations {
-  @put
+  @post
   op create(
-    @path registrationId: string,
-    @header contentType: "application/atom+xml;type=entry;charset=utf-8"
+    @body body: RegistrationDescription,
+    @header("Content-Type") contentType: "application/atom+xml;type=entry;charset=utf-8"
   ): {
-    @body body: RegistrationDescription
+    @statusCode statusCode: 201,
+    @body body: RegistrationDescription,
+  };
+
+  @put
+  op createOrUpdate(
+    @path registrationId: string,
+    @body body: RegistrationDescription,
+    @header("Content-Type") contentType: "application/atom+xml;type=entry;charset=utf-8",
+    @header("If-Match") eTag?: string,
+  ): {
+    @statusCode statusCode: 201,
+    @body body: RegistrationDescription,
+  };
+
+  @delete
+  op delete(
+    @path registrationId: string,
+    @header("If-Match") eTag?: string,
+  ): {
+    @statusCode statusCode: 200,
+    @header trackingId: string;
+    @header("x-ms-correlation-request-id") correlationId: string;
   };
 
   @get
   op get(@path registrationId: string): {
-    @body body: RegistrationDescription
+    @statusCode statusCode: 200,
+    @body body: RegistrationDescription,
+  };
+
+  @get
+  op list(
+    @query("$top") top?: string,
+    @query("$fitler") filter?: string,
+    @query continuationToken?: string,
+  ): {
+    @statusCode statusCode: 200,
+    @header("X-MS-ContinuationToken") continuationToken?: string;
+    @body body: RegistrationDescription[],
+  };
+}
+
+@route("/tags/{tag}/registrations")
+namespace ListRegistrationsByTag {
+  op list(
+    @path tag: string,
+    @query("$top") top?: string,
+    @query continuationToken?: string,
+  ): {
+    @statusCode statusCode: 200,
+    @header("X-MS-ContinuationToken") continuationToken?: string;
+    @body body: RegistrationDescription[],
   };
 }
 
@@ -45,13 +122,67 @@ namespace Notifications {
   @post
   op sendNotification(
     @query direct?: boolean,
+    @query test: boolean,
     @body notification: Notification,
     @header("ServiceBusNotification-Format") platform: string,
-    @header test: boolean,
-    @header("ServiceBusNotification-Tags") tags: string,
+    @header("ServiceBusNotification-DeviceHandle") deviceHandle?: string;
+    @header("ServiceBusNotification-Tags") tags?: string,
   ): {
+    @statusCode statusCode: 201,
+    @header location?: string;
+    @header trackingId: string;
+    @header("x-ms-correlation-request-id") correlationId: string;
+    @body outcome?: NotificationOutcome;
+  };
+}
+
+@route("/schedulednotifications")
+namespace ScheduledNotifications {
+  @delete
+  op cancelNotification(
+    @path notificationId: string,
+  ): {
+    @statusCode statusCode: 200,
+    @header trackingId: string;
+    @header("x-ms-correlation-request-id") correlationId: string;
+  };
+
+  @post
+  op scheduleNotification(
+    @body notification: Notification,
+    @header("ServiceBusNotification-ScheduleTime") scheduleTime: string,
+    @header("ServiceBusNotification-Format") platform: string,
+    @header("ServiceBusNotification-Tags") tags?: string,
+  ): {
+    @statusCode statusCode: 201,
     @header location: string;
     @header trackingId: string;
     @header("x-ms-correlation-request-id") correlationId: string;
+  };
+}
+
+@route("/jobs")
+namespace NotificationHubJobs {
+  @post
+  op create(
+    @header("Content-Type") contentType: "application/atom+xml;type=entry;charset=utf-8",
+    @body notificationHubJob: NotificationHubJob,
+  ): {
+    @statusCode statusCode: 201,
+    @body notificationHubJob: NotificationHubJob,
+  };
+
+  @get
+  op get(
+    @path jobId: string,
+  ): {
+    @statusCode statusCode: 200,
+    @body notificationHubJob: NotificationHubJob,
+  };
+
+  @get
+  op list(): {
+    @statusCode statusCode: 200,
+    @body notificationHubJobs: NotificationHubJob[],
   };
 }

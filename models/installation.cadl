@@ -63,10 +63,19 @@ model BrowserInstallation extends InstallationCommon {
   pushHandle: BrowserPushHandle;
 }
 
-model FirebaseLegacyInstallation extends InstallationCommon {
+model FcmLegacyInstallation extends InstallationCommon {
   platform: InstallationPlatform.FcmLegacy;
 }
 
 model WindowsInstallation extends SimpleInstallation {
   platform: InstallationPlatform.Wns;
+}
+
+union Installation {
+  adm: AdmInstallation,
+  apple: AppleInstallation,
+  baidu: BaiduInstallation,
+  browser: BrowserInstallation,
+  fcmLegacy: FcmLegacyInstallation,
+  windows: WindowsInstallation,
 }
