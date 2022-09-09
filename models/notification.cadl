@@ -1,7 +1,7 @@
-namespace Models;
+namespace NotificationHubs.Models;
 
 enum NotificationPlatform {
-  Adm "adm",
+  Adm: "adm",
   Apple: "apple",
   Baidu: "baidu",
   Browser: "browser",
@@ -13,8 +13,6 @@ enum NotificationPlatform {
 model Notification {
   body: string;
   headers?: Record<string>;
-  contentType: string;
-  platform: NotificationPlatform;
 }
 
 model JsonNotification extends Notification {

@@ -1,4 +1,4 @@
-namespace Models;
+namespace NotificationHubs.Models;
 
 enum InstallationPlatform {
   Adm: "adm",
@@ -9,12 +9,11 @@ enum InstallationPlatform {
   Wns: "wns",
 }
 
-model Installation {
+model InstallationCommon {
   installationId: string;
   userId?: string;
-  readonly expirationTime?: string;
-  readonly lastUpdate?: string;
-  platform: InstallationPlatform;
+  @visibility("read") expirationTime?: string;
+  @visibility("read") lastUpdate?: string;
   tags: string[];
   templates: Record<string>;
 }
@@ -32,7 +31,7 @@ enum JsonPatchOperation {
 }
 
 model JsonPatch {
-  op: JsonPatchOperation;
+  "op": JsonPatchOperation;
   path: string;
   value?: string;
 }
@@ -52,19 +51,19 @@ model AdmInstallation extends SimpleInstallation {
 }
 
 model AppleInstallation extends SimpleInstallation {
-  platform: InstallationPlatform.Apple;
+  platform: InstallationPlatform.Apns;
 }
 
 model BaiduInstallation extends SimpleInstallation {
   platform: InstallationPlatform.Baidu;
 }
 
-model BrowserInstallation extends Installation {
+model BrowserInstallation extends InstallationCommon {
   platform: InstallationPlatform.Browser;
   pushHandle: BrowserPushHandle;
 }
 
-model FirebaseLegacyInstallation extends Installation {
+model FirebaseLegacyInstallation extends InstallationCommon {
   platform: InstallationPlatform.FcmLegacy;
 }
 

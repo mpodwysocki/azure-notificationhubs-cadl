@@ -1,6 +1,6 @@
-namespace Models;
+namespace NotificationHubs.Models;
 
-model RegistrationDescription {
+model RegistrationDescriptionCommon {
   registrationId?: string;
   tags?: string;
   etag?: string;
@@ -13,7 +13,7 @@ model TemplateRegistrationDescription {
   templateName?: string;
 }
 
-model AdmRegistrationDescription extends RegistrationDescription {
+model AdmRegistrationDescription extends RegistrationDescriptionCommon {
   admRegistrationId: string;
 }
 
@@ -22,7 +22,7 @@ model AdmTemplateRegistrationDescription extends AdmRegistrationDescription {
   templateName?: string;
 }
 
-model AppleRegistrationDescription extends RegistrationDescription {
+model AppleRegistrationDescription extends RegistrationDescriptionCommon {
   deviceToken: string;
 }
 
@@ -30,20 +30,31 @@ model AppleTemplateRegistrationDescription extends AppleRegistrationDescription 
   bodyTemplate: string;
   templateName?: string;
   apnsHeaders?: Record<string>;
-  priority?: number;
+  priority?: int32;
 }
 
-model BaiduRegistrationDescription extends RegistrationDescription {
+model BaiduRegistrationDescription extends RegistrationDescriptionCommon {
   baiduChannelId: string;
   baiduUserId: string;
 }
 
-model BaiduTemplateRegistrationDescription {
+model BaiduTemplateRegistrationDescription extends BaiduRegistrationDescription {
   bodyTemplate: string;
   templateName?: string;
 }
 
-model GcmRegistrationDescription extends RegistrationDescription {
+model BrowserRegistrationDescription extends RegistrationDescriptionCommon {
+  endpoint: string;
+  auth: string;
+  p256dh: string;
+}
+
+model BrowserTemplateRegistrationDescription extends BrowserRegistrationDescription {
+  bodyTemplate: string;
+  templateName?: string;
+}
+
+model GcmRegistrationDescription extends RegistrationDescriptionCommon {
   gcmRegistrationId: string;
 }
 
@@ -52,16 +63,7 @@ model GcmTemplateRegistrationDescription {
   templateName?: string;
 }
 
-model FcmRegistrationDescription extends RegistrationDescription {
-  fcmRegistrationId: string;
-}
-
-model FcmTemplateRegistrationDescription {
-  bodyTemplate: string;
-  templateName?: string;
-}
-
-model MpnsRegistrationDescription extends RegistrationDescription {
+model MpnsRegistrationDescription extends RegistrationDescriptionCommon {
   channelUri: string;
 }
 
@@ -71,7 +73,7 @@ model MpnsTemplateRegistrationDescription {
   mpnsHeaders?: Record<string>;
 }
 
-model WindowsRegistrationDescription extends RegistrationDescription {
+model WindowsRegistrationDescription extends RegistrationDescriptionCommon {
   channelUri: string;
 }
 
@@ -79,4 +81,19 @@ model WindowsTemplateRegistrationDescription {
   bodyTemplate: string;
   templateName?: string;
   wnsHeaders?: Record<string>;
+}
+
+union RegistrationDescription {
+  adm: AdmRegistrationDescription,
+  admTemplate: AdmTemplateRegistrationDescription,
+  apple: AppleRegistrationDescription,
+  appleTemplate: AppleTemplateRegistrationDescription,
+  baidu: BaiduRegistrationDescription,
+  baiduTemplate: BaiduTemplateRegistrationDescription,
+  browser: BrowserRegistrationDescription,
+  browserTemplate: BrowserTemplateRegistrationDescription,
+  gcm: GcmRegistrationDescription,
+  gcmTemplate: GcmTemplateRegistrationDescription,
+  windows: WindowsRegistrationDescription,
+  windowsTemplate: WindowsTemplateRegistrationDescription,
 }

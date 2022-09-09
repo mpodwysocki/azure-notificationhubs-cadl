@@ -1,9 +1,11 @@
-using Cadl.Http;
+import "@cadl-lang/rest";
+import "./models/installation.cadl";
+import "./models/job.cadl";
+import "./models/notification.cadl";
+import "./models/registration.cadl";
 
-import "./models/installation";
-import "./models/job";
-import "./models/notification";
-import "./models/registration";
+using Cadl.Http;
+using NotificationHubs.Models;
 
 @serviceTitle("Azure Notification Hubs Service")
 @serviceVersion("2020-06")
@@ -14,47 +16,42 @@ import "./models/registration";
   hubName?: string,
 })
 @doc("This is the entry point for an Azure Notification Hub")
-namespace NotificationHubs {
+namespace NotificationHubs;
 
-  @route("/installations")
-  namespace Installations {
+@route("/installations")
+namespace Installations {
+  @get
+  op get(@path installationId: string): InstallationCommon;
+}
 
-  }
+@route("/registrations")
+namespace Registrations {
+  @put
+  op create(
+    @path registrationId: string,
+    @header contentType: "application/atom+xml;type=entry;charset=utf-8"
+  ): {
+    @body body: RegistrationDescription
+  };
 
-  @route("/registrations")
-  namespace Registrations {
-    @put
-    op create(@path registrationId: string): RegistrationDescription;
+  @get
+  op get(@path registrationId: string): {
+    @body body: RegistrationDescription
+  };
+}
 
-    @get
-    op get(@path registrationId: string): RegistrationDescription;
-  }
-
-  @route("/messages")
-  namespace Notifications {
-    @post
-    op sendDirectNotification(
-      @query direct: boolean,
-      @body notification: Notification,
-      @header platform: string,
-    ): {
-      @header location: string;
-      @header trackingId: string;
-      @header correlationId: string;
-    }
-
-    @post
-    op sendNotification(
-      @body notification: Notification,
-      @header platform: string,
-      @header test: boolean,
-      @header tags: string,
-    ): {
-      @header location: string;
-      @header trackingId: string;
-      @header correlationId: string;
-      @body notificationOutcome: NotificationOutcome;
-    }
-  }
-
+@route("/messages")
+namespace Notifications {
+  @post
+  op sendNotification(
+    @query direct?: boolean,
+    @body notification: Notification,
+    @header("ServiceBusNotification-Format") platform: string,
+    @header test: boolean,
+    @header("ServiceBusNotification-Tags") tags: string,
+  ): {
+    @header location: string;
+    @header trackingId: string;
+    @header("x-ms-correlation-request-id") correlationId: string;
+  };
 }

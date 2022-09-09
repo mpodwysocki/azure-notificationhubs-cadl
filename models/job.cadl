@@ -1,4 +1,4 @@
-namespace Models;
+namespace NotificationHubs.Models;
 
 enum NotificationHubJobType {
   ExportRegistrations: "ExportRegistrations",
@@ -19,7 +19,7 @@ model NotificationHubJob {
   jobId?: string;
   outputFileName?: string;
   failuresFileName?: string;
-  progress?: number;
+  progress?: float64;
   type: NotificationHubJobType;
   status?: NotificationHubJobStatus;
   outputContainerUrl: string;
