@@ -1,0 +1,1436 @@
+client:
+  name: AzureNotificationHubsService
+  description: Service client
+  moduleName: azure_notification_hubs_service
+  parameters:
+    - optional: true
+      description: Notification Hubs Namespace
+      clientName: namespace_name
+      inOverload: false
+      restApiName: namespaceName
+      location: endpointPath
+      type: &ref_0
+        type: string
+      implementation: Client
+    - optional: true
+      description: Notification Hub Name
+      clientName: hub_name
+      inOverload: false
+      restApiName: hubName
+      location: endpointPath
+      type: *ref_0
+      implementation: Client
+  security: {}
+  namespace: NotificationHubs
+  url: https://{namespaceName}.servicebus.windows.net/{hubName}
+  apiVersions: []
+operationGroups:
+  - propertyName: Installations
+    className: Installations
+    operations:
+      - name: get
+        description: ''
+        url: /installations/{installationId}
+        method: GET
+        parameters:
+          - &ref_1
+            optional: true
+            description: Notification Hubs Namespace
+            clientName: namespace_name
+            inOverload: false
+            restApiName: namespaceName
+            location: endpointPath
+            type: *ref_0
+            implementation: Client
+          - &ref_2
+            optional: true
+            description: Notification Hub Name
+            clientName: hub_name
+            inOverload: false
+            restApiName: hubName
+            location: endpointPath
+            type: *ref_0
+            implementation: Client
+          - optional: false
+            description: ''
+            clientName: installation_id
+            inOverload: false
+            restApiName: installationId
+            location: path
+            type: *ref_0
+            implementation: Method
+          - checkClientInput: false
+            clientDefaultValue: application/json
+            clientName: accept
+            delimiter: null
+            description: Accept header.
+            explode: false
+            groupedBy: null
+            implementation: Method
+            inDocstring: true
+            inOverload: false
+            inOverriden: false
+            location: header
+            optional: false
+            restApiName: Accept
+            skipUrlEncoding: false
+            type: &ref_4
+              apiVersions: []
+              clientDefaultValue: null
+              type: constant
+              value: application/json
+              valueType: *ref_0
+              xmlMetadata: {}
+        responses:
+          - headers: []
+            statusCodes:
+              - 200
+            discriminator: basic
+            type: &ref_3
+              name: MyEnum
+              snakeCaseName: my_enum
+              description: n/a
+              isPublic: false
+              type: enum
+              values:
+                - description: ''
+                  name: n/a
+                - description: ''
+                  name: n/a
+                - description: ''
+                  name: n/a
+                - description: ''
+                  name: n/a
+                - description: ''
+                  name: n/a
+                - description: ''
+                  name: n/a
+              xmlMetadata: {}
+        exceptions: []
+        groupName: Installations
+        discriminator: basic
+        isOverload: false
+        overloads: []
+        apiVersions:
+          - null
+      - name: delete
+        description: ''
+        url: /installations/{installationId}
+        method: DELETE
+        parameters:
+          - *ref_1
+          - *ref_2
+          - optional: false
+            description: ''
+            clientName: installation_id
+            inOverload: false
+            restApiName: installationId
+            location: path
+            type: *ref_0
+            implementation: Method
+        responses:
+          - headers:
+              - type: *ref_0
+                restApiName: tracking-id
+              - type: *ref_0
+                restApiName: x-ms-correlation-request-id
+            statusCodes:
+              - 204
+            discriminator: basic
+        exceptions: []
+        groupName: Installations
+        discriminator: basic
+        isOverload: false
+        overloads: []
+        apiVersions:
+          - null
+      - name: create_or_update
+        description: ''
+        url: /installations/{installationId}
+        method: PUT
+        parameters:
+          - *ref_1
+          - *ref_2
+          - optional: false
+            description: ''
+            clientName: installation_id
+            inOverload: false
+            restApiName: installationId
+            location: path
+            type: *ref_0
+            implementation: Method
+          - checkClientInput: false
+            clientDefaultValue: application/json
+            clientName: content_type
+            delimiter: null
+            description: 'Body parameter Content-Type. Known values are: application/json.'
+            implementation: Method
+            inDocstring: true
+            inOverload: false
+            inOverriden: false
+            location: header
+            optional: true
+            restApiName: Content-Type
+            type: *ref_0
+        bodyParameter:
+          contentTypes:
+            - application/json
+          type: *ref_3
+          restApiName: installation
+          location: body
+          optional: false
+          description: ''
+          clientName: installation
+          inOverload: false
+          defaultContentType: application/json
+        responses:
+          - headers:
+              - type: *ref_0
+                restApiName: tracking-id
+              - type: *ref_0
+                restApiName: x-ms-correlation-request-id
+            statusCodes:
+              - 200
+            discriminator: basic
+        exceptions: []
+        groupName: Installations
+        discriminator: basic
+        isOverload: false
+        overloads: []
+        apiVersions:
+          - null
+      - name: update
+        description: ''
+        url: /installations/{installationId}
+        method: PATCH
+        parameters:
+          - *ref_1
+          - *ref_2
+          - optional: false
+            description: ''
+            clientName: installation_id
+            inOverload: false
+            restApiName: installationId
+            location: path
+            type: *ref_0
+            implementation: Method
+          - checkClientInput: false
+            clientDefaultValue: application/json
+            clientName: content_type
+            delimiter: null
+            description: 'Body parameter Content-Type. Known values are: application/json.'
+            implementation: Method
+            inDocstring: true
+            inOverload: false
+            inOverriden: false
+            location: header
+            optional: true
+            restApiName: Content-Type
+            type: *ref_0
+        bodyParameter:
+          contentTypes:
+            - application/json
+          type: &ref_17
+            type: list
+            elementType: &ref_15
+              type: model
+              name: JsonPatch
+              description: ''
+              parents: []
+              discriminatedSubtypes: {}
+              properties:
+                - clientName: op
+                  restApiName: op
+                  type: &ref_16
+                    type: enum
+                    name: JsonPatchOperation
+                    description: ''
+                    valueType:
+                      type: string
+                    values:
+                      - name: ADD
+                        value: add
+                        description: ''
+                      - name: REMOVE
+                        value: remove
+                        description: ''
+                      - name: REPLACE
+                        value: replace
+                        description: ''
+                  optional: false
+                  description: ''
+                  readonly: false
+                - clientName: path
+                  restApiName: path
+                  type: *ref_0
+                  optional: false
+                  description: ''
+                  readonly: false
+                - clientName: value
+                  restApiName: value
+                  type: *ref_0
+                  optional: true
+                  description: ''
+                  readonly: false
+              snakeCaseName: json_patch
+            name: InstallationsUpdateRequest
+            snakeCaseName: installations_update_request
+          restApiName: updates
+          location: body
+          optional: false
+          description: ''
+          clientName: updates
+          inOverload: false
+          defaultContentType: application/json
+        responses:
+          - headers:
+              - type: *ref_0
+                restApiName: tracking-id
+              - type: *ref_0
+                restApiName: x-ms-correlation-request-id
+            statusCodes:
+              - 200
+            discriminator: basic
+        exceptions: []
+        groupName: Installations
+        discriminator: basic
+        isOverload: false
+        overloads: []
+        apiVersions:
+          - null
+  - propertyName: Registrations
+    className: Registrations
+    operations:
+      - name: create
+        description: ''
+        url: /registrations
+        method: POST
+        parameters:
+          - *ref_1
+          - *ref_2
+          - clientDefaultValue: application/atom+xml;type=entry;charset=utf-8
+            optional: false
+            description: ''
+            clientName: content_type
+            inOverload: false
+            restApiName: Content-Type
+            location: header
+            type: &ref_6
+              type: string
+            implementation: Method
+          - checkClientInput: false
+            clientDefaultValue: application/json
+            clientName: accept
+            delimiter: null
+            description: Accept header.
+            explode: false
+            groupedBy: null
+            implementation: Method
+            inDocstring: true
+            inOverload: false
+            inOverriden: false
+            location: header
+            optional: false
+            restApiName: Accept
+            skipUrlEncoding: false
+            type: *ref_4
+        bodyParameter:
+          contentTypes:
+            - application/json
+          type: &ref_5
+            name: MyEnum
+            snakeCaseName: my_enum
+            description: n/a
+            isPublic: false
+            type: enum
+            values:
+              - description: ''
+                name: n/a
+              - description: ''
+                name: n/a
+              - description: ''
+                name: n/a
+              - description: ''
+                name: n/a
+              - description: ''
+                name: n/a
+              - description: ''
+                name: n/a
+              - description: ''
+                name: n/a
+              - description: ''
+                name: n/a
+              - description: ''
+                name: n/a
+              - description: ''
+                name: n/a
+              - description: ''
+                name: n/a
+              - description: ''
+                name: n/a
+            xmlMetadata: {}
+          restApiName: body
+          location: body
+          optional: false
+          description: ''
+          clientName: body
+          inOverload: false
+          defaultContentType: application/json
+        responses:
+          - headers: []
+            statusCodes:
+              - 201
+            discriminator: basic
+            type: *ref_5
+        exceptions: []
+        groupName: Registrations
+        discriminator: basic
+        isOverload: false
+        overloads: []
+        apiVersions:
+          - null
+      - name: create_or_update
+        description: ''
+        url: /registrations/{registrationId}
+        method: PUT
+        parameters:
+          - *ref_1
+          - *ref_2
+          - optional: false
+            description: ''
+            clientName: registration_id
+            inOverload: false
+            restApiName: registrationId
+            location: path
+            type: *ref_0
+            implementation: Method
+          - clientDefaultValue: application/atom+xml;type=entry;charset=utf-8
+            optional: false
+            description: ''
+            clientName: content_type
+            inOverload: false
+            restApiName: Content-Type
+            location: header
+            type: *ref_6
+            implementation: Method
+          - optional: true
+            description: ''
+            clientName: e_tag
+            inOverload: false
+            restApiName: If-Match
+            location: header
+            type: *ref_0
+            implementation: Method
+          - checkClientInput: false
+            clientDefaultValue: application/json
+            clientName: accept
+            delimiter: null
+            description: Accept header.
+            explode: false
+            groupedBy: null
+            implementation: Method
+            inDocstring: true
+            inOverload: false
+            inOverriden: false
+            location: header
+            optional: false
+            restApiName: Accept
+            skipUrlEncoding: false
+            type: *ref_4
+        bodyParameter:
+          contentTypes:
+            - application/json
+          type: *ref_5
+          restApiName: body
+          location: body
+          optional: false
+          description: ''
+          clientName: body
+          inOverload: false
+          defaultContentType: application/json
+        responses:
+          - headers: []
+            statusCodes:
+              - 201
+            discriminator: basic
+            type: *ref_5
+        exceptions: []
+        groupName: Registrations
+        discriminator: basic
+        isOverload: false
+        overloads: []
+        apiVersions:
+          - null
+      - name: delete
+        description: ''
+        url: /registrations/{registrationId}
+        method: DELETE
+        parameters:
+          - *ref_1
+          - *ref_2
+          - optional: false
+            description: ''
+            clientName: registration_id
+            inOverload: false
+            restApiName: registrationId
+            location: path
+            type: *ref_0
+            implementation: Method
+          - optional: true
+            description: ''
+            clientName: e_tag
+            inOverload: false
+            restApiName: If-Match
+            location: header
+            type: *ref_0
+            implementation: Method
+        responses:
+          - headers:
+              - type: *ref_0
+                restApiName: tracking-id
+              - type: *ref_0
+                restApiName: x-ms-correlation-request-id
+            statusCodes:
+              - 200
+            discriminator: basic
+        exceptions: []
+        groupName: Registrations
+        discriminator: basic
+        isOverload: false
+        overloads: []
+        apiVersions:
+          - null
+      - name: get
+        description: ''
+        url: /registrations/{registrationId}
+        method: GET
+        parameters:
+          - *ref_1
+          - *ref_2
+          - optional: false
+            description: ''
+            clientName: registration_id
+            inOverload: false
+            restApiName: registrationId
+            location: path
+            type: *ref_0
+            implementation: Method
+          - checkClientInput: false
+            clientDefaultValue: application/json
+            clientName: accept
+            delimiter: null
+            description: Accept header.
+            explode: false
+            groupedBy: null
+            implementation: Method
+            inDocstring: true
+            inOverload: false
+            inOverriden: false
+            location: header
+            optional: false
+            restApiName: Accept
+            skipUrlEncoding: false
+            type: *ref_4
+        responses:
+          - headers: []
+            statusCodes:
+              - 200
+            discriminator: basic
+            type: *ref_5
+        exceptions: []
+        groupName: Registrations
+        discriminator: basic
+        isOverload: false
+        overloads: []
+        apiVersions:
+          - null
+      - name: list
+        description: ''
+        url: /registrations
+        method: GET
+        parameters:
+          - *ref_1
+          - *ref_2
+          - optional: true
+            description: ''
+            clientName: top
+            inOverload: false
+            restApiName: $top
+            location: query
+            type: *ref_0
+            implementation: Method
+          - optional: true
+            description: ''
+            clientName: filter
+            inOverload: false
+            restApiName: $fitler
+            location: query
+            type: *ref_0
+            implementation: Method
+          - optional: true
+            description: ''
+            clientName: continuation_token
+            inOverload: false
+            restApiName: continuationToken
+            location: query
+            type: *ref_0
+            implementation: Method
+          - checkClientInput: false
+            clientDefaultValue: application/json
+            clientName: accept
+            delimiter: null
+            description: Accept header.
+            explode: false
+            groupedBy: null
+            implementation: Method
+            inDocstring: true
+            inOverload: false
+            inOverriden: false
+            location: header
+            optional: false
+            restApiName: Accept
+            skipUrlEncoding: false
+            type: *ref_4
+        responses:
+          - headers:
+              - type: *ref_0
+                restApiName: X-MS-ContinuationToken
+            statusCodes:
+              - 200
+            discriminator: basic
+            type: &ref_7
+              type: list
+              elementType: *ref_5
+        exceptions: []
+        groupName: Registrations
+        discriminator: basic
+        isOverload: false
+        overloads: []
+        apiVersions:
+          - null
+  - propertyName: ListRegistrationsByTag
+    className: ListRegistrationsByTag
+    operations:
+      - name: list
+        description: ''
+        url: /tags/{tag}/registrations
+        method: GET
+        parameters:
+          - *ref_1
+          - *ref_2
+          - optional: false
+            description: ''
+            clientName: tag
+            inOverload: false
+            restApiName: tag
+            location: path
+            type: *ref_0
+            implementation: Method
+          - optional: true
+            description: ''
+            clientName: top
+            inOverload: false
+            restApiName: $top
+            location: query
+            type: *ref_0
+            implementation: Method
+          - optional: true
+            description: ''
+            clientName: continuation_token
+            inOverload: false
+            restApiName: continuationToken
+            location: query
+            type: *ref_0
+            implementation: Method
+          - checkClientInput: false
+            clientDefaultValue: application/json
+            clientName: accept
+            delimiter: null
+            description: Accept header.
+            explode: false
+            groupedBy: null
+            implementation: Method
+            inDocstring: true
+            inOverload: false
+            inOverriden: false
+            location: header
+            optional: false
+            restApiName: Accept
+            skipUrlEncoding: false
+            type: *ref_4
+        responses:
+          - headers:
+              - type: *ref_0
+                restApiName: X-MS-ContinuationToken
+            statusCodes:
+              - 200
+            discriminator: basic
+            type: *ref_7
+        exceptions: []
+        groupName: ListRegistrationsByTag
+        discriminator: basic
+        isOverload: false
+        overloads: []
+        apiVersions:
+          - null
+  - propertyName: Notifications
+    className: Notifications
+    operations:
+      - name: send_notification
+        description: ''
+        url: /messages
+        method: POST
+        parameters:
+          - *ref_1
+          - *ref_2
+          - optional: true
+            description: ''
+            clientName: direct
+            inOverload: false
+            restApiName: direct
+            location: query
+            type: &ref_8
+              type: boolean
+            implementation: Method
+          - optional: false
+            description: ''
+            clientName: test
+            inOverload: false
+            restApiName: test
+            location: query
+            type: *ref_8
+            implementation: Method
+          - optional: false
+            description: ''
+            clientName: platform
+            inOverload: false
+            restApiName: ServiceBusNotification-Format
+            location: header
+            type: *ref_0
+            implementation: Method
+          - optional: true
+            description: ''
+            clientName: device_handle
+            inOverload: false
+            restApiName: ServiceBusNotification-DeviceHandle
+            location: header
+            type: *ref_0
+            implementation: Method
+          - optional: true
+            description: ''
+            clientName: tags
+            inOverload: false
+            restApiName: ServiceBusNotification-Tags
+            location: header
+            type: *ref_0
+            implementation: Method
+          - checkClientInput: false
+            clientDefaultValue: application/json
+            clientName: accept
+            delimiter: null
+            description: Accept header.
+            explode: false
+            groupedBy: null
+            implementation: Method
+            inDocstring: true
+            inOverload: false
+            inOverriden: false
+            location: header
+            optional: false
+            restApiName: Accept
+            skipUrlEncoding: false
+            type: *ref_4
+          - checkClientInput: false
+            clientDefaultValue: application/json
+            clientName: content_type
+            delimiter: null
+            description: 'Body parameter Content-Type. Known values are: application/json.'
+            implementation: Method
+            inDocstring: true
+            inOverload: false
+            inOverriden: false
+            location: header
+            optional: true
+            restApiName: Content-Type
+            type: *ref_0
+        bodyParameter:
+          contentTypes:
+            - application/json
+          type: &ref_10
+            type: model
+            name: Notification
+            description: ''
+            parents: []
+            discriminatedSubtypes: {}
+            properties:
+              - clientName: body
+                restApiName: body
+                type: *ref_0
+                optional: false
+                description: ''
+                readonly: false
+              - clientName: headers
+                restApiName: headers
+                type: &ref_11
+                  type: dict
+                  elementType: *ref_0
+                optional: true
+                description: ''
+                readonly: false
+            snakeCaseName: notification
+          restApiName: notification
+          location: body
+          optional: false
+          description: ''
+          clientName: notification
+          inOverload: false
+          defaultContentType: application/json
+        responses:
+          - headers:
+              - type: *ref_0
+                restApiName: location
+              - type: *ref_0
+                restApiName: tracking-id
+              - type: *ref_0
+                restApiName: x-ms-correlation-request-id
+            statusCodes:
+              - 201
+            discriminator: basic
+            type: &ref_19
+              type: model
+              name: NotificationOutcome
+              description: ''
+              parents: []
+              discriminatedSubtypes: {}
+              properties:
+                - clientName: success
+                  restApiName: success
+                  type: &ref_9
+                    type: integer
+                  optional: false
+                  description: ''
+                  readonly: false
+                - clientName: failure
+                  restApiName: failure
+                  type: *ref_9
+                  optional: false
+                  description: ''
+                  readonly: false
+                - clientName: results
+                  restApiName: results
+                  type: &ref_21
+                    type: list
+                    elementType: &ref_20
+                      type: model
+                      name: RegistrationResult
+                      description: ''
+                      parents: []
+                      discriminatedSubtypes: {}
+                      properties:
+                        - clientName: application_platform
+                          restApiName: applicationPlatform
+                          type: *ref_0
+                          optional: false
+                          description: ''
+                          readonly: false
+                        - clientName: pns_handle
+                          restApiName: pnsHandle
+                          type: *ref_0
+                          optional: false
+                          description: ''
+                          readonly: false
+                        - clientName: registration_id
+                          restApiName: registrationId
+                          type: *ref_0
+                          optional: false
+                          description: ''
+                          readonly: false
+                        - clientName: outcome
+                          restApiName: outcome
+                          type: *ref_0
+                          optional: false
+                          description: ''
+                          readonly: false
+                      snakeCaseName: registration_result
+                  optional: false
+                  description: ''
+                  readonly: false
+              snakeCaseName: notification_outcome
+        exceptions: []
+        groupName: Notifications
+        discriminator: basic
+        isOverload: false
+        overloads: []
+        apiVersions:
+          - null
+  - propertyName: ScheduledNotifications
+    className: ScheduledNotifications
+    operations:
+      - name: cancel_notification
+        description: ''
+        url: /schedulednotifications/{notificationId}
+        method: DELETE
+        parameters:
+          - *ref_1
+          - *ref_2
+          - optional: false
+            description: ''
+            clientName: notification_id
+            inOverload: false
+            restApiName: notificationId
+            location: path
+            type: *ref_0
+            implementation: Method
+        responses:
+          - headers:
+              - type: *ref_0
+                restApiName: tracking-id
+              - type: *ref_0
+                restApiName: x-ms-correlation-request-id
+            statusCodes:
+              - 200
+            discriminator: basic
+        exceptions: []
+        groupName: ScheduledNotifications
+        discriminator: basic
+        isOverload: false
+        overloads: []
+        apiVersions:
+          - null
+      - name: schedule_notification
+        description: ''
+        url: /schedulednotifications
+        method: POST
+        parameters:
+          - *ref_1
+          - *ref_2
+          - optional: false
+            description: ''
+            clientName: schedule_time
+            inOverload: false
+            restApiName: ServiceBusNotification-ScheduleTime
+            location: header
+            type: *ref_0
+            implementation: Method
+          - optional: false
+            description: ''
+            clientName: platform
+            inOverload: false
+            restApiName: ServiceBusNotification-Format
+            location: header
+            type: *ref_0
+            implementation: Method
+          - optional: true
+            description: ''
+            clientName: tags
+            inOverload: false
+            restApiName: ServiceBusNotification-Tags
+            location: header
+            type: *ref_0
+            implementation: Method
+          - checkClientInput: false
+            clientDefaultValue: application/json
+            clientName: content_type
+            delimiter: null
+            description: 'Body parameter Content-Type. Known values are: application/json.'
+            implementation: Method
+            inDocstring: true
+            inOverload: false
+            inOverriden: false
+            location: header
+            optional: true
+            restApiName: Content-Type
+            type: *ref_0
+        bodyParameter:
+          contentTypes:
+            - application/json
+          type: *ref_10
+          restApiName: notification
+          location: body
+          optional: false
+          description: ''
+          clientName: notification
+          inOverload: false
+          defaultContentType: application/json
+        responses:
+          - headers:
+              - type: *ref_0
+                restApiName: location
+              - type: *ref_0
+                restApiName: tracking-id
+              - type: *ref_0
+                restApiName: x-ms-correlation-request-id
+            statusCodes:
+              - 201
+            discriminator: basic
+        exceptions: []
+        groupName: ScheduledNotifications
+        discriminator: basic
+        isOverload: false
+        overloads: []
+        apiVersions:
+          - null
+  - propertyName: NotificationHubJobs
+    className: NotificationHubJobs
+    operations:
+      - name: create
+        description: ''
+        url: /jobs
+        method: POST
+        parameters:
+          - *ref_1
+          - *ref_2
+          - clientDefaultValue: application/atom+xml;type=entry;charset=utf-8
+            optional: false
+            description: ''
+            clientName: content_type
+            inOverload: false
+            restApiName: Content-Type
+            location: header
+            type: *ref_6
+            implementation: Method
+          - checkClientInput: false
+            clientDefaultValue: application/json
+            clientName: accept
+            delimiter: null
+            description: Accept header.
+            explode: false
+            groupedBy: null
+            implementation: Method
+            inDocstring: true
+            inOverload: false
+            inOverriden: false
+            location: header
+            optional: false
+            restApiName: Accept
+            skipUrlEncoding: false
+            type: *ref_4
+        bodyParameter:
+          contentTypes:
+            - application/json
+          type: &ref_13
+            type: model
+            name: NotificationHubJob
+            description: ''
+            parents: []
+            discriminatedSubtypes: {}
+            properties:
+              - clientName: job_id
+                restApiName: jobId
+                type: *ref_0
+                optional: true
+                description: ''
+                readonly: false
+              - clientName: output_file_name
+                restApiName: outputFileName
+                type: *ref_0
+                optional: true
+                description: ''
+                readonly: false
+              - clientName: failures_file_name
+                restApiName: failuresFileName
+                type: *ref_0
+                optional: true
+                description: ''
+                readonly: false
+              - clientName: progress
+                restApiName: progress
+                type: &ref_22
+                  type: float
+                optional: true
+                description: ''
+                readonly: false
+              - clientName: type
+                restApiName: type
+                type: &ref_23
+                  type: enum
+                  name: NotificationHubJobType
+                  description: ''
+                  valueType:
+                    type: string
+                  values:
+                    - name: EXPORT_REGISTRATIONS
+                      value: ExportRegistrations
+                      description: ''
+                    - name: IMPORT_CREATE_REGISTRATIONS
+                      value: ImportCreateRegistrations
+                      description: ''
+                    - name: IMPORT_UPDATE_REGISTRATIONS
+                      value: ImportUpdateRegistrations
+                      description: ''
+                    - name: IMPORT_DELETE_REGISTRATIONS
+                      value: ImportDeleteRegistrations
+                      description: ''
+                    - name: IMPORT_UPSERT_REGISTRATIONS
+                      value: ImportUpsertRegistrations
+                      description: ''
+                optional: false
+                description: ''
+                readonly: false
+              - clientName: status
+                restApiName: status
+                type: &ref_24
+                  type: enum
+                  name: NotificationHubJobStatus
+                  description: ''
+                  valueType:
+                    type: string
+                  values:
+                    - name: STARTED
+                      value: Started
+                      description: ''
+                    - name: RUNNING
+                      value: Running
+                      description: ''
+                    - name: COMPLETED
+                      value: Completed
+                      description: ''
+                    - name: FAILED
+                      value: Failed
+                      description: ''
+                optional: true
+                description: ''
+                readonly: false
+              - clientName: output_container_url
+                restApiName: outputContainerUrl
+                type: *ref_0
+                optional: false
+                description: ''
+                readonly: false
+              - clientName: import_file_url
+                restApiName: importFileUrl
+                type: *ref_0
+                optional: true
+                description: ''
+                readonly: false
+              - clientName: input_properties
+                restApiName: inputProperties
+                type: *ref_11
+                optional: true
+                description: ''
+                readonly: false
+              - clientName: failure
+                restApiName: failure
+                type: *ref_0
+                optional: true
+                description: ''
+                readonly: false
+              - clientName: output_properties
+                restApiName: outputProperties
+                type: *ref_11
+                optional: true
+                description: ''
+                readonly: false
+              - clientName: created_at
+                restApiName: createdAt
+                type: &ref_12
+                  type: date
+                optional: true
+                description: ''
+                readonly: false
+              - clientName: updated_at
+                restApiName: updatedAt
+                type: *ref_12
+                optional: true
+                description: ''
+                readonly: false
+            snakeCaseName: notification_hub_job
+          restApiName: notificationHubJob
+          location: body
+          optional: false
+          description: ''
+          clientName: notification_hub_job
+          inOverload: false
+          defaultContentType: application/json
+        responses:
+          - headers: []
+            statusCodes:
+              - 201
+            discriminator: basic
+            type: *ref_13
+        exceptions: []
+        groupName: NotificationHubJobs
+        discriminator: basic
+        isOverload: false
+        overloads: []
+        apiVersions:
+          - null
+      - name: get
+        description: ''
+        url: /jobs/{jobId}
+        method: GET
+        parameters:
+          - *ref_1
+          - *ref_2
+          - optional: false
+            description: ''
+            clientName: job_id
+            inOverload: false
+            restApiName: jobId
+            location: path
+            type: *ref_0
+            implementation: Method
+          - checkClientInput: false
+            clientDefaultValue: application/json
+            clientName: accept
+            delimiter: null
+            description: Accept header.
+            explode: false
+            groupedBy: null
+            implementation: Method
+            inDocstring: true
+            inOverload: false
+            inOverriden: false
+            location: header
+            optional: false
+            restApiName: Accept
+            skipUrlEncoding: false
+            type: *ref_4
+        responses:
+          - headers: []
+            statusCodes:
+              - 200
+            discriminator: basic
+            type: *ref_13
+        exceptions: []
+        groupName: NotificationHubJobs
+        discriminator: basic
+        isOverload: false
+        overloads: []
+        apiVersions:
+          - null
+      - name: list
+        description: ''
+        url: /jobs
+        method: GET
+        parameters:
+          - *ref_1
+          - *ref_2
+          - checkClientInput: false
+            clientDefaultValue: application/json
+            clientName: accept
+            delimiter: null
+            description: Accept header.
+            explode: false
+            groupedBy: null
+            implementation: Method
+            inDocstring: true
+            inOverload: false
+            inOverriden: false
+            location: header
+            optional: false
+            restApiName: Accept
+            skipUrlEncoding: false
+            type: *ref_4
+        responses:
+          - headers: []
+            statusCodes:
+              - 200
+            discriminator: basic
+            type: &ref_25
+              type: list
+              elementType: *ref_13
+        exceptions: []
+        groupName: NotificationHubJobs
+        discriminator: basic
+        isOverload: false
+        overloads: []
+        apiVersions:
+          - null
+types:
+  - *ref_0
+  - type: model
+    name: SimpleInstallation
+    description: ''
+    parents: []
+    discriminatedSubtypes: {}
+    properties:
+      - clientName: push_handle
+        restApiName: pushHandle
+        type: *ref_0
+        optional: false
+        description: ''
+        readonly: false
+    snakeCaseName: simple_installation
+  - type: model
+    name: InstallationCommon
+    description: ''
+    parents: []
+    discriminatedSubtypes: {}
+    properties:
+      - clientName: installation_id
+        restApiName: installationId
+        type: *ref_0
+        optional: false
+        description: ''
+        readonly: false
+      - clientName: user_id
+        restApiName: userId
+        type: *ref_0
+        optional: true
+        description: ''
+        readonly: false
+      - clientName: expiration_time
+        restApiName: expirationTime
+        type: *ref_0
+        optional: true
+        description: ''
+        readonly: true
+      - clientName: last_update
+        restApiName: lastUpdate
+        type: *ref_0
+        optional: true
+        description: ''
+        readonly: true
+      - clientName: tags
+        restApiName: tags
+        type: &ref_14
+          type: list
+          elementType: *ref_0
+        optional: false
+        description: ''
+        readonly: false
+      - clientName: templates
+        restApiName: templates
+        type: *ref_11
+        optional: false
+        description: ''
+        readonly: false
+    snakeCaseName: installation_common
+  - *ref_14
+  - *ref_11
+  - *ref_3
+  - *ref_15
+  - *ref_16
+  - *ref_17
+  - type: constant
+    value: application/atom+xml;type=entry;charset=utf-8
+    valueType: *ref_6
+  - &ref_18
+    type: model
+    name: RegistrationDescriptionCommon
+    description: ''
+    parents: []
+    discriminatedSubtypes: {}
+    properties:
+      - clientName: registration_id
+        restApiName: registrationId
+        type: *ref_0
+        optional: true
+        description: ''
+        readonly: false
+      - clientName: tags
+        restApiName: tags
+        type: *ref_0
+        optional: true
+        description: ''
+        readonly: false
+      - clientName: etag
+        restApiName: etag
+        type: *ref_0
+        optional: true
+        description: ''
+        readonly: false
+      - clientName: push_variables
+        restApiName: pushVariables
+        type: *ref_11
+        optional: true
+        description: ''
+        readonly: false
+      - clientName: expiration_time
+        restApiName: expirationTime
+        type: *ref_12
+        optional: true
+        description: ''
+        readonly: false
+    snakeCaseName: registration_description_common
+  - *ref_12
+  - type: model
+    name: AdmRegistrationDescription
+    description: ''
+    parents:
+      - *ref_18
+    discriminatedSubtypes: {}
+    properties:
+      - clientName: adm_registration_id
+        restApiName: admRegistrationId
+        type: *ref_0
+        optional: false
+        description: ''
+        readonly: false
+    snakeCaseName: adm_registration_description
+  - type: model
+    name: AppleRegistrationDescription
+    description: ''
+    parents:
+      - *ref_18
+    discriminatedSubtypes: {}
+    properties:
+      - clientName: device_token
+        restApiName: deviceToken
+        type: *ref_0
+        optional: false
+        description: ''
+        readonly: false
+    snakeCaseName: apple_registration_description
+  - type: model
+    name: BaiduRegistrationDescription
+    description: ''
+    parents:
+      - *ref_18
+    discriminatedSubtypes: {}
+    properties:
+      - clientName: baidu_channel_id
+        restApiName: baiduChannelId
+        type: *ref_0
+        optional: false
+        description: ''
+        readonly: false
+      - clientName: baidu_user_id
+        restApiName: baiduUserId
+        type: *ref_0
+        optional: false
+        description: ''
+        readonly: false
+    snakeCaseName: baidu_registration_description
+  - type: model
+    name: BrowserRegistrationDescription
+    description: ''
+    parents:
+      - *ref_18
+    discriminatedSubtypes: {}
+    properties:
+      - clientName: endpoint
+        restApiName: endpoint
+        type: *ref_0
+        optional: false
+        description: ''
+        readonly: false
+      - clientName: auth
+        restApiName: auth
+        type: *ref_0
+        optional: false
+        description: ''
+        readonly: false
+      - clientName: p256dh
+        restApiName: p256dh
+        type: *ref_0
+        optional: false
+        description: ''
+        readonly: false
+    snakeCaseName: browser_registration_description
+  - *ref_5
+  - *ref_7
+  - *ref_8
+  - *ref_19
+  - *ref_9
+  - *ref_20
+  - *ref_21
+  - *ref_10
+  - *ref_13
+  - *ref_22
+  - *ref_23
+  - *ref_24
+  - *ref_25
+  - *ref_0
+  - *ref_4
