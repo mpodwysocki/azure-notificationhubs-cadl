@@ -29,7 +29,7 @@ operationGroups:
   operations:
   - apiVersions:
     - null
-    description: ''
+    description: Get an Azure Notification Hubs installation
     discriminator: basic
     exceptions: []
     groupName: Installations
@@ -57,7 +57,7 @@ operationGroups:
       restApiName: hubName
       type: *id001
     - clientName: installation_id
-      description: ''
+      description: The installation ID
       implementation: Method
       inOverload: false
       location: path
@@ -92,10 +92,10 @@ operationGroups:
       statusCodes:
       - 200
       type: &id002
-        description: ''
+        description: Represents an Azure Notification Hubs Installation
         discriminatedSubtypes:
           browser: &id024
-            description: ''
+            description: Represents an Web Push based Azure Notification Hubs Installation
             discriminatedSubtypes: {}
             discriminatorValue: browser
             name: BrowserInstallation
@@ -103,7 +103,7 @@ operationGroups:
             - *id002
             properties:
             - clientName: platform
-              description: ''
+              description: The platform for the installation
               isDiscriminator: true
               optional: false
               readonly: false
@@ -114,30 +114,30 @@ operationGroups:
                 valueType:
                   type: string
             - clientName: push_handle
-              description: ''
+              description: The Web API push handle for the installation
               optional: false
               readonly: false
               restApiName: pushHandle
               type: &id025
-                description: ''
+                description: Represents a Web Push push handle
                 discriminatedSubtypes: {}
                 name: BrowserPushHandle
                 parents: []
                 properties:
                 - clientName: endpoint
-                  description: ''
+                  description: The Web Push API endpoint
                   optional: false
                   readonly: false
                   restApiName: endpoint
                   type: *id001
                 - clientName: p256dh
-                  description: ''
+                  description: The Web Push API P256DH key
                   optional: false
                   readonly: false
                   restApiName: p256dh
                   type: *id001
                 - clientName: auth
-                  description: ''
+                  description: The Web Push API auth secret
                   optional: false
                   readonly: false
                   restApiName: auth
@@ -147,7 +147,7 @@ operationGroups:
             snakeCaseName: browser_installation
             type: model
           gcm: &id026
-            description: ''
+            description: Represents an FCM Legacy based Azure Notification Hubs Installation
             discriminatedSubtypes: {}
             discriminatorValue: gcm
             name: FcmLegacyInstallation
@@ -155,7 +155,7 @@ operationGroups:
             - *id002
             properties:
             - clientName: platform
-              description: ''
+              description: The platform for the installation
               isDiscriminator: true
               optional: false
               readonly: false
@@ -171,31 +171,31 @@ operationGroups:
         parents: []
         properties:
         - clientName: installation_id
-          description: ''
+          description: The installation ID
           optional: false
           readonly: false
           restApiName: installationId
           type: *id001
         - clientName: user_id
-          description: ''
+          description: The user ID
           optional: true
           readonly: false
           restApiName: userId
           type: *id001
         - clientName: expiration_time
-          description: ''
+          description: The installation expiration time
           optional: true
           readonly: true
           restApiName: expirationTime
           type: *id001
         - clientName: last_update
-          description: ''
+          description: The last updated date
           optional: true
           readonly: true
           restApiName: lastUpdate
           type: *id001
         - clientName: tags
-          description: ''
+          description: The itags for the installation
           optional: false
           readonly: false
           restApiName: tags
@@ -203,7 +203,7 @@ operationGroups:
             elementType: *id001
             type: list
         - clientName: templates
-          description: ''
+          description: The templates for the installation
           optional: false
           readonly: false
           restApiName: templates
@@ -223,7 +223,7 @@ operationGroups:
     url: /installations/{installationId}
   - apiVersions:
     - null
-    description: ''
+    description: Delete an Azure Notification Hubs installation
     discriminator: basic
     exceptions: []
     groupName: Installations
@@ -235,7 +235,7 @@ operationGroups:
     - *id004
     - *id005
     - clientName: installation_id
-      description: ''
+      description: The installation ID
       implementation: Method
       inOverload: false
       location: path
@@ -259,13 +259,13 @@ operationGroups:
       contentTypes:
       - application/json
       defaultContentType: application/json
-      description: ''
+      description: The installation object
       inOverload: false
       location: body
       optional: false
       restApiName: installation
       type: *id002
-    description: ''
+    description: Create or update an Azure Notification Hubs installation
     discriminator: basic
     exceptions: []
     groupName: Installations
@@ -277,7 +277,7 @@ operationGroups:
     - *id004
     - *id005
     - clientName: installation_id
-      description: ''
+      description: The installation ID
       implementation: Method
       inOverload: false
       location: path
@@ -314,47 +314,47 @@ operationGroups:
       contentTypes:
       - application/json
       defaultContentType: application/json
-      description: ''
+      description: The installation patches
       inOverload: false
       location: body
       optional: false
       restApiName: updates
       type: &id029
         elementType: &id027
-          description: ''
+          description: Represents a JSON Patch operation
           discriminatedSubtypes: {}
           name: JsonPatch
           parents: []
           properties:
           - clientName: op
-            description: ''
+            description: The JSON patch operation type
             optional: false
             readonly: false
             restApiName: op
             type: &id028
-              description: ''
+              description: Represents a JSON Patch operation type
               name: JsonPatchOperation
               type: enum
               valueType:
                 type: string
               values:
-              - description: ''
+              - description: The add JSON patch operation type
                 name: ADD
                 value: add
-              - description: ''
+              - description: The remove JSON patch operation type
                 name: REMOVE
                 value: remove
-              - description: ''
+              - description: The replace JSON patch operation type
                 name: REPLACE
                 value: replace
           - clientName: path
-            description: ''
+            description: The JSON patch path
             optional: false
             readonly: false
             restApiName: path
             type: *id001
           - clientName: value
-            description: ''
+            description: The JSON patch value
             optional: true
             readonly: false
             restApiName: value
@@ -364,7 +364,7 @@ operationGroups:
         name: InstallationsUpdateRequest
         snakeCaseName: installations_update_request
         type: list
-    description: ''
+    description: Update an Azure Notification Hubs installation using JSON Patch semantics
     discriminator: basic
     exceptions: []
     groupName: Installations
@@ -376,7 +376,7 @@ operationGroups:
     - *id004
     - *id005
     - clientName: installation_id
-      description: ''
+      description: The installation ID
       implementation: Method
       inOverload: false
       location: path
@@ -416,16 +416,17 @@ operationGroups:
       contentTypes:
       - application/json
       defaultContentType: application/json
-      description: ''
+      description: The registration description
       inOverload: false
       location: body
       optional: false
       restApiName: body
       type: &id006
-        description: ''
+        description: Represents an Azure Notification Hubs registration description
         discriminatedSubtypes:
           adm: &id030
-            description: ''
+            description: Represents an ADM based Azure Notification Hubs registration
+              description
             discriminatedSubtypes: {}
             discriminatorValue: adm
             name: AdmRegistrationDescription
@@ -433,17 +434,17 @@ operationGroups:
             - *id006
             properties:
             - clientName: adm_registration_id
-              description: ''
+              description: The ADM registration ID
               optional: false
               readonly: false
               restApiName: admRegistrationId
               type: *id001
-            - clientName: type
-              description: ''
+            - clientName: platform
+              description: The platform of registration description
               isDiscriminator: true
               optional: false
               readonly: false
-              restApiName: type
+              restApiName: platform
               type: &id014
                 type: constant
                 value: adm
@@ -452,7 +453,8 @@ operationGroups:
             snakeCaseName: adm_registration_description
             type: model
           admTemplate: &id031
-            description: ''
+            description: Represents an ADM template based Azure Notification Hubs
+              registration description
             discriminatedSubtypes: {}
             discriminatorValue: admTemplate
             name: AdmTemplateRegistrationDescription
@@ -460,29 +462,29 @@ operationGroups:
             - *id006
             properties:
             - clientName: adm_registration_id
-              description: ''
+              description: The ADM registration ID
               optional: false
               readonly: false
               restApiName: admRegistrationId
               type: *id001
             - clientName: body_template
-              description: ''
+              description: The registration body template
               optional: false
               readonly: false
               restApiName: bodyTemplate
               type: *id001
             - clientName: template_name
-              description: ''
+              description: The registration template name
               optional: true
               readonly: false
               restApiName: templateName
               type: *id001
-            - clientName: type
-              description: ''
+            - clientName: platform
+              description: The platform of registration description
               isDiscriminator: true
               optional: false
               readonly: false
-              restApiName: type
+              restApiName: platform
               type: &id032
                 type: constant
                 value: admTemplate
@@ -491,7 +493,8 @@ operationGroups:
             snakeCaseName: adm_template_registration_description
             type: model
           apple: &id033
-            description: ''
+            description: Represents an Apple based Azure Notification Hubs registration
+              description
             discriminatedSubtypes: {}
             discriminatorValue: apple
             name: AppleRegistrationDescription
@@ -499,17 +502,17 @@ operationGroups:
             - *id006
             properties:
             - clientName: device_token
-              description: ''
+              description: The APNs device token
               optional: false
               readonly: false
               restApiName: deviceToken
               type: *id001
-            - clientName: type
-              description: ''
+            - clientName: platform
+              description: The platform of registration description
               isDiscriminator: true
               optional: false
               readonly: false
-              restApiName: type
+              restApiName: platform
               type: &id016
                 type: constant
                 value: apple
@@ -518,7 +521,8 @@ operationGroups:
             snakeCaseName: apple_registration_description
             type: model
           appleTemplate: &id034
-            description: ''
+            description: Represents an Apple template based Azure Notification Hubs
+              registration description
             discriminatedSubtypes: {}
             discriminatorValue: appleTemplate
             name: AppleTemplateRegistrationDescription
@@ -526,42 +530,42 @@ operationGroups:
             - *id006
             properties:
             - clientName: device_token
-              description: ''
+              description: The APNs device token
               optional: false
               readonly: false
               restApiName: deviceToken
               type: *id001
             - clientName: body_template
-              description: ''
+              description: The registration body template
               optional: false
               readonly: false
               restApiName: bodyTemplate
               type: *id001
             - clientName: template_name
-              description: ''
+              description: The registration template name
               optional: true
               readonly: false
               restApiName: templateName
               type: *id001
             - clientName: apns_headers
-              description: ''
+              description: The APNs headers for the template
               optional: true
               readonly: false
               restApiName: apnsHeaders
               type: *id007
             - clientName: priority
-              description: ''
+              description: The APNs priority for any message
               optional: true
               readonly: false
               restApiName: priority
               type: &id020
                 type: integer
-            - clientName: type
-              description: ''
+            - clientName: platform
+              description: The platform of registration description
               isDiscriminator: true
               optional: false
               readonly: false
-              restApiName: type
+              restApiName: platform
               type: &id035
                 type: constant
                 value: appleTemplate
@@ -570,7 +574,8 @@ operationGroups:
             snakeCaseName: apple_template_registration_description
             type: model
           baidu: &id036
-            description: ''
+            description: Represents a Baidu based Azure Notification Hubs registration
+              description
             discriminatedSubtypes: {}
             discriminatorValue: baidu
             name: BaiduRegistrationDescription
@@ -578,23 +583,23 @@ operationGroups:
             - *id006
             properties:
             - clientName: baidu_channel_id
-              description: ''
+              description: The Baidu channel ID
               optional: false
               readonly: false
               restApiName: baiduChannelId
               type: *id001
             - clientName: baidu_user_id
-              description: ''
+              description: The baidu user ID
               optional: false
               readonly: false
               restApiName: baiduUserId
               type: *id001
-            - clientName: type
-              description: ''
+            - clientName: platform
+              description: The platform of registration description
               isDiscriminator: true
               optional: false
               readonly: false
-              restApiName: type
+              restApiName: platform
               type: &id017
                 type: constant
                 value: baidu
@@ -603,7 +608,8 @@ operationGroups:
             snakeCaseName: baidu_registration_description
             type: model
           baiduTemplate: &id037
-            description: ''
+            description: Represents a Baidu template based Azure Notification Hubs
+              registration description
             discriminatedSubtypes: {}
             discriminatorValue: baiduTemplate
             name: BaiduTemplateRegistrationDescription
@@ -611,35 +617,35 @@ operationGroups:
             - *id006
             properties:
             - clientName: baidu_channel_id
-              description: ''
+              description: The Baidu channel ID
               optional: false
               readonly: false
               restApiName: baiduChannelId
               type: *id001
             - clientName: baidu_user_id
-              description: ''
+              description: The baidu user ID
               optional: false
               readonly: false
               restApiName: baiduUserId
               type: *id001
             - clientName: body_template
-              description: ''
+              description: The registration body template
               optional: false
               readonly: false
               restApiName: bodyTemplate
               type: *id001
             - clientName: template_name
-              description: ''
+              description: The registration template name
               optional: true
               readonly: false
               restApiName: templateName
               type: *id001
-            - clientName: type
-              description: ''
+            - clientName: platform
+              description: The platform of registration description
               isDiscriminator: true
               optional: false
               readonly: false
-              restApiName: type
+              restApiName: platform
               type: &id038
                 type: constant
                 value: baiduTemplate
@@ -648,7 +654,8 @@ operationGroups:
             snakeCaseName: baidu_template_registration_description
             type: model
           browser: &id039
-            description: ''
+            description: Represents a Web Push based Azure Notification Hubs registration
+              description
             discriminatedSubtypes: {}
             discriminatorValue: browser
             name: BrowserRegistrationDescription
@@ -656,58 +663,77 @@ operationGroups:
             - *id006
             properties:
             - clientName: endpoint
-              description: ''
+              description: The Web Push endpoint URL
               optional: false
               readonly: false
               restApiName: endpoint
               type: *id001
             - clientName: auth
-              description: ''
+              description: The Web Push auth secret
               optional: false
               readonly: false
               restApiName: auth
               type: *id001
             - clientName: p256dh
-              description: ''
+              description: The Web Push P256DH
               optional: false
               readonly: false
               restApiName: p256dh
               type: *id001
-            - clientName: type
-              description: ''
+            - clientName: platform
+              description: The platform of registration description
               isDiscriminator: true
               optional: false
               readonly: false
-              restApiName: type
+              restApiName: platform
               type: *id008
             snakeCaseName: browser_registration_description
             type: model
           browserTemplate: &id040
-            description: ''
+            description: Represents a Web Push template based Azure Notification Hubs
+              registration description
             discriminatedSubtypes: {}
             discriminatorValue: browserTemplate
             name: BrowserTemplateRegistrationDescription
             parents:
             - *id006
             properties:
+            - clientName: endpoint
+              description: The Web Push endpoint URL
+              optional: false
+              readonly: false
+              restApiName: endpoint
+              type: *id001
+            - clientName: auth
+              description: The Web Push auth secret
+              optional: false
+              readonly: false
+              restApiName: auth
+              type: *id001
+            - clientName: p256dh
+              description: The Web Push P256DH
+              optional: false
+              readonly: false
+              restApiName: p256dh
+              type: *id001
             - clientName: body_template
-              description: ''
+              description: The registration body template
               optional: false
               readonly: false
               restApiName: bodyTemplate
               type: *id001
             - clientName: template_name
-              description: ''
+              description: The registration template name
               optional: true
               readonly: false
               restApiName: templateName
               type: *id001
-            - clientName: type
-              description: ''
+            - clientName: platform
+              description: The platform of registration description
               isDiscriminator: true
               optional: false
               readonly: false
-              restApiName: type
+              restApiName: platform
               type: &id041
                 type: constant
                 value: browserTemplate
@@ -716,7 +742,8 @@ operationGroups:
             snakeCaseName: browser_template_registration_description
             type: model
           gcm: &id042
-            description: ''
+            description: Represents a Firebase Legacy based Azure Notification Hubs
+              registration description
             discriminatedSubtypes: {}
             discriminatorValue: gcm
             name: GcmRegistrationDescription
@@ -724,22 +751,23 @@ operationGroups:
             - *id006
             properties:
             - clientName: gcm_registration_id
-              description: ''
+              description: The Firebase Legacy registration ID
               optional: false
               readonly: false
               restApiName: gcmRegistrationId
               type: *id001
-            - clientName: type
-              description: ''
+            - clientName: platform
+              description: The platform of registration description
               isDiscriminator: true
               optional: false
               readonly: false
-              restApiName: type
+              restApiName: platform
               type: *id003
             snakeCaseName: gcm_registration_description
             type: model
           gcmTemplate: &id043
-            description: ''
+            description: Represents a Firebase Legacy template based Azure Notification
+              Hubs registration description
             discriminatedSubtypes: {}
             discriminatorValue: gcmTemplate
             name: GcmTemplateRegistrationDescription
@@ -747,29 +775,29 @@ operationGroups:
             - *id006
             properties:
             - clientName: gcm_registration_id
-              description: ''
+              description: The Firebase Legacy registration ID
               optional: false
               readonly: false
               restApiName: gcmRegistrationId
               type: *id001
             - clientName: body_template
-              description: ''
+              description: The registration body template
               optional: false
               readonly: false
               restApiName: bodyTemplate
               type: *id001
             - clientName: template_name
-              description: ''
+              description: The registration template name
               optional: true
               readonly: false
               restApiName: templateName
               type: *id001
-            - clientName: type
-              description: ''
+            - clientName: platform
+              description: The platform of registration description
               isDiscriminator: true
               optional: false
               readonly: false
-              restApiName: type
+              restApiName: platform
               type: &id044
                 type: constant
                 value: gcmTemplate
@@ -778,7 +806,8 @@ operationGroups:
             snakeCaseName: gcm_template_registration_description
             type: model
           mpns: &id045
-            description: ''
+            description: Represents a Windows Phone based Azure Notification Hubs
+              registration description
             discriminatedSubtypes: {}
             discriminatorValue: mpns
             name: MpnsRegistrationDescription
@@ -786,17 +815,17 @@ operationGroups:
             - *id006
             properties:
             - clientName: channel_uri
-              description: ''
+              description: The Windows Phone channel URL
               optional: false
               readonly: false
               restApiName: channelUri
               type: *id001
-            - clientName: type
-              description: ''
+            - clientName: platform
+              description: The platform of registration description
               isDiscriminator: true
               optional: false
               readonly: false
-              restApiName: type
+              restApiName: platform
               type: &id046
                 type: constant
                 value: mpns
@@ -805,7 +834,8 @@ operationGroups:
             snakeCaseName: mpns_registration_description
             type: model
           mpnsTemplate: &id047
-            description: ''
+            description: Represents a Windows Phone template based Azure Notification
+              Hubs registration description
             discriminatedSubtypes: {}
             discriminatorValue: mpnsTemplate
             name: MpnsTemplateRegistrationDescription
@@ -813,35 +843,35 @@ operationGroups:
             - *id006
             properties:
             - clientName: channel_uri
-              description: ''
+              description: The Windows Phone channel URL
               optional: false
               readonly: false
               restApiName: channelUri
               type: *id001
             - clientName: body_template
-              description: ''
+              description: The registration body template
               optional: false
               readonly: false
               restApiName: bodyTemplate
               type: *id001
             - clientName: template_name
-              description: ''
+              description: The registration template name
               optional: true
               readonly: false
               restApiName: templateName
               type: *id001
             - clientName: mpns_headers
-              description: ''
+              description: The Windows Phone template headers
               optional: true
               readonly: false
               restApiName: mpnsHeaders
               type: *id007
-            - clientName: type
-              description: ''
+            - clientName: platform
+              description: The platform of registration description
               isDiscriminator: true
               optional: false
               readonly: false
-              restApiName: type
+              restApiName: platform
               type: &id048
                 type: constant
                 value: mpnsTemplate
@@ -850,7 +880,8 @@ operationGroups:
             snakeCaseName: mpns_template_registration_description
             type: model
           windows: &id049
-            description: ''
+            description: Represents a Windows based Azure Notification Hubs registration
+              description
             discriminatedSubtypes: {}
             discriminatorValue: windows
             name: WindowsRegistrationDescription
@@ -858,17 +889,17 @@ operationGroups:
             - *id006
             properties:
             - clientName: channel_uri
-              description: ''
+              description: The Windows channel URL
               optional: false
               readonly: false
               restApiName: channelUri
               type: *id001
-            - clientName: type
-              description: ''
+            - clientName: platform
+              description: The platform of registration description
               isDiscriminator: true
               optional: false
               readonly: false
-              restApiName: type
+              restApiName: platform
               type: &id050
                 type: constant
                 value: windows
@@ -877,7 +908,8 @@ operationGroups:
             snakeCaseName: windows_registration_description
             type: model
           windowsTemplate: &id051
-            description: ''
+            description: Represents a Windows template based Azure Notification Hubs
+              registration description
             discriminatedSubtypes: {}
             discriminatorValue: windowsTemplate
             name: WindowsTemplateRegistrationDescription
@@ -885,35 +917,35 @@ operationGroups:
             - *id006
             properties:
             - clientName: channel_uri
-              description: ''
+              description: The Windows channel URL
               optional: false
               readonly: false
               restApiName: channelUri
               type: *id001
             - clientName: body_template
-              description: ''
+              description: The registration body template
               optional: false
               readonly: false
               restApiName: bodyTemplate
               type: *id001
             - clientName: template_name
-              description: ''
+              description: The registration template name
               optional: true
               readonly: false
               restApiName: templateName
               type: *id001
             - clientName: wns_headers
-              description: ''
+              description: The Windows template headers
               optional: true
               readonly: false
               restApiName: wnsHeaders
               type: *id007
-            - clientName: type
-              description: ''
+            - clientName: platform
+              description: The platform of registration description
               isDiscriminator: true
               optional: false
               readonly: false
-              restApiName: type
+              restApiName: platform
               type: &id009
                 type: constant
                 value: windowsTemplate
@@ -925,47 +957,47 @@ operationGroups:
         parents: []
         properties:
         - clientName: registration_id
-          description: ''
+          description: The registration ID
           optional: true
           readonly: false
           restApiName: registrationId
           type: *id001
         - clientName: tags
-          description: ''
+          description: The registration tags comma separated list
           optional: true
           readonly: false
           restApiName: tags
           type: *id001
         - clientName: etag
-          description: ''
+          description: The registration etag
           optional: true
           readonly: false
           restApiName: etag
           type: *id001
         - clientName: push_variables
-          description: ''
+          description: The registration push variables property bag
           optional: true
           readonly: false
           restApiName: pushVariables
           type: *id007
         - clientName: expiration_time
-          description: ''
+          description: The registration expiration time
           optional: true
           readonly: false
           restApiName: expirationTime
           type: &id021
             type: date
-        - clientName: type
+        - clientName: platform
           description: ''
           isDiscriminator: true
           isPolymorphic: true
           optional: false
           readonly: false
-          restApiName: type
+          restApiName: platform
           type: *id009
         snakeCaseName: registration_description
         type: model
-    description: ''
+    description: Create an Azure Notification Hubs registration description
     discriminator: basic
     exceptions: []
     groupName: Registrations
@@ -978,7 +1010,7 @@ operationGroups:
     - *id005
     - clientDefaultValue: application/atom+xml;type=entry;charset=utf-8
       clientName: content_type
-      description: ''
+      description: The HTTP content-type
       implementation: Method
       inOverload: false
       location: header
@@ -1016,13 +1048,13 @@ operationGroups:
       contentTypes:
       - application/json
       defaultContentType: application/json
-      description: ''
+      description: The registration description
       inOverload: false
       location: body
       optional: false
       restApiName: body
       type: *id006
-    description: ''
+    description: Create or update an Azure Notification Hubs registration description
     discriminator: basic
     exceptions: []
     groupName: Registrations
@@ -1034,7 +1066,7 @@ operationGroups:
     - *id004
     - *id005
     - clientName: registration_id
-      description: ''
+      description: The registration ID
       implementation: Method
       inOverload: false
       location: path
@@ -1043,7 +1075,7 @@ operationGroups:
       type: *id001
     - clientDefaultValue: application/atom+xml;type=entry;charset=utf-8
       clientName: content_type
-      description: ''
+      description: The Content-Type HTTP header
       implementation: Method
       inOverload: false
       location: header
@@ -1051,7 +1083,7 @@ operationGroups:
       restApiName: Content-Type
       type: *id011
     - clientName: e_tag
-      description: ''
+      description: The If-Match HTTP header
       implementation: Method
       inOverload: false
       location: header
@@ -1083,7 +1115,7 @@ operationGroups:
     url: /registrations/{registrationId}
   - apiVersions:
     - null
-    description: ''
+    description: Delete an Azure Notification Hubs registration description
     discriminator: basic
     exceptions: []
     groupName: Registrations
@@ -1095,7 +1127,7 @@ operationGroups:
     - *id004
     - *id005
     - clientName: registration_id
-      description: ''
+      description: The registration ID
       implementation: Method
       inOverload: false
       location: path
@@ -1103,7 +1135,7 @@ operationGroups:
       restApiName: registrationId
       type: *id001
     - clientName: e_tag
-      description: ''
+      description: The If-Match HTTP header
       implementation: Method
       inOverload: false
       location: header
@@ -1122,7 +1154,7 @@ operationGroups:
     url: /registrations/{registrationId}
   - apiVersions:
     - null
-    description: ''
+    description: Get an Azure Notification Hubs registration description
     discriminator: basic
     exceptions: []
     groupName: Registrations
@@ -1134,7 +1166,7 @@ operationGroups:
     - *id004
     - *id005
     - clientName: registration_id
-      description: ''
+      description: The registration ID
       implementation: Method
       inOverload: false
       location: path
@@ -1166,7 +1198,7 @@ operationGroups:
     url: /registrations/{registrationId}
   - apiVersions:
     - null
-    description: ''
+    description: List Azure Notification Hubs registration descriptions
     discriminator: basic
     exceptions: []
     groupName: Registrations
@@ -1178,7 +1210,7 @@ operationGroups:
     - *id004
     - *id005
     - clientName: top
-      description: ''
+      description: The limit to the number of records to retrieve
       implementation: Method
       inOverload: false
       location: query
@@ -1186,7 +1218,7 @@ operationGroups:
       restApiName: $top
       type: *id001
     - clientName: filter
-      description: ''
+      description: The filter query to find registrations
       implementation: Method
       inOverload: false
       location: query
@@ -1194,7 +1226,7 @@ operationGroups:
       restApiName: $fitler
       type: *id001
     - clientName: continuation_token
-      description: ''
+      description: The continuation token for more results
       implementation: Method
       inOverload: false
       location: query
@@ -1233,7 +1265,8 @@ operationGroups:
   operations:
   - apiVersions:
     - null
-    description: ''
+    description: List all Azure Notification Hubs registrations description matching
+      the given tag
     discriminator: basic
     exceptions: []
     groupName: ListRegistrationsByTag
@@ -1245,7 +1278,7 @@ operationGroups:
     - *id004
     - *id005
     - clientName: tag
-      description: ''
+      description: The tag name to search
       implementation: Method
       inOverload: false
       location: path
@@ -1253,7 +1286,7 @@ operationGroups:
       restApiName: tag
       type: *id001
     - clientName: top
-      description: ''
+      description: The limit to the number of records to retrieve
       implementation: Method
       inOverload: false
       location: query
@@ -1261,7 +1294,7 @@ operationGroups:
       restApiName: $top
       type: *id001
     - clientName: continuation_token
-      description: ''
+      description: The continuation token for more results
       implementation: Method
       inOverload: false
       location: query
@@ -1303,16 +1336,16 @@ operationGroups:
       contentTypes:
       - application/json
       defaultContentType: application/json
-      description: ''
+      description: The notification to send
       inOverload: false
       location: body
       optional: false
       restApiName: notification
       type: &id013
-        description: ''
+        description: Represents an Azure Notification Hubs notification
         discriminatedSubtypes:
           adm: &id055
-            description: ''
+            description: Represents an ADM based Azure Notification Hubs notification
             discriminatedSubtypes: {}
             discriminatorValue: adm
             name: AdmNotification
@@ -1320,7 +1353,7 @@ operationGroups:
             - *id013
             properties:
             - clientName: content_type
-              description: ''
+              description: The notification content type
               optional: false
               readonly: false
               restApiName: contentType
@@ -1330,7 +1363,7 @@ operationGroups:
                 valueType:
                   type: string
             - clientName: platform
-              description: ''
+              description: The notification platform type
               isDiscriminator: true
               optional: false
               readonly: false
@@ -1339,7 +1372,7 @@ operationGroups:
             snakeCaseName: adm_notification
             type: model
           apple: &id056
-            description: ''
+            description: Represents an Apple based Azure Notification Hubs notification
             discriminatedSubtypes: {}
             discriminatorValue: apple
             name: AppleNotification
@@ -1347,13 +1380,13 @@ operationGroups:
             - *id013
             properties:
             - clientName: content_type
-              description: ''
+              description: The notification content type
               optional: false
               readonly: false
               restApiName: contentType
               type: *id015
             - clientName: platform
-              description: ''
+              description: The notification platform type
               isDiscriminator: true
               optional: false
               readonly: false
@@ -1362,7 +1395,7 @@ operationGroups:
             snakeCaseName: apple_notification
             type: model
           baidu: &id057
-            description: ''
+            description: Represents a Baidu based Azure Notification Hubs notification
             discriminatedSubtypes: {}
             discriminatorValue: baidu
             name: BaiduNotification
@@ -1370,13 +1403,13 @@ operationGroups:
             - *id013
             properties:
             - clientName: content_type
-              description: ''
+              description: The notification content type
               optional: false
               readonly: false
               restApiName: contentType
               type: *id015
             - clientName: platform
-              description: ''
+              description: The notification platform type
               isDiscriminator: true
               optional: false
               readonly: false
@@ -1385,7 +1418,7 @@ operationGroups:
             snakeCaseName: baidu_notification
             type: model
           browser: &id058
-            description: ''
+            description: Represents a Web Push based Azure Notification Hubs notification
             discriminatedSubtypes: {}
             discriminatorValue: browser
             name: BrowserNotification
@@ -1393,13 +1426,13 @@ operationGroups:
             - *id013
             properties:
             - clientName: content_type
-              description: ''
+              description: The notification content type
               optional: false
               readonly: false
               restApiName: contentType
               type: *id015
             - clientName: platform
-              description: ''
+              description: The notification platform type
               isDiscriminator: true
               optional: false
               readonly: false
@@ -1408,7 +1441,8 @@ operationGroups:
             snakeCaseName: browser_notification
             type: model
           gcm: &id059
-            description: ''
+            description: Represents an Firebase Legacy based Azure Notification Hubs
+              notification
             discriminatedSubtypes: {}
             discriminatorValue: gcm
             name: FirebaseLegacyNotification
@@ -1416,13 +1450,13 @@ operationGroups:
             - *id013
             properties:
             - clientName: content_type
-              description: ''
+              description: The notification content type
               optional: false
               readonly: false
               restApiName: contentType
               type: *id015
             - clientName: platform
-              description: ''
+              description: The notification platform type
               isDiscriminator: true
               optional: false
               readonly: false
@@ -1431,7 +1465,7 @@ operationGroups:
             snakeCaseName: firebase_legacy_notification
             type: model
           wns: &id060
-            description: ''
+            description: Represents a Windows based Azure Notification Hubs notification
             discriminatedSubtypes: {}
             discriminatorValue: wns
             name: WindowsNotification
@@ -1439,7 +1473,7 @@ operationGroups:
             - *id013
             properties:
             - clientName: platform
-              description: ''
+              description: The notification content type
               isDiscriminator: true
               optional: false
               readonly: false
@@ -1455,13 +1489,13 @@ operationGroups:
         parents: []
         properties:
         - clientName: body
-          description: ''
+          description: The notification body
           optional: false
           readonly: false
           restApiName: body
           type: *id001
         - clientName: headers
-          description: ''
+          description: The HTTP headers for the notification
           optional: true
           readonly: false
           restApiName: headers
@@ -1476,7 +1510,7 @@ operationGroups:
           type: *id018
         snakeCaseName: notification
         type: model
-    description: ''
+    description: Send a notification using Azure Notification Hubs
     discriminator: basic
     exceptions: []
     groupName: Notifications
@@ -1488,7 +1522,7 @@ operationGroups:
     - *id004
     - *id005
     - clientName: direct
-      description: ''
+      description: Direct send operation
       implementation: Method
       inOverload: false
       location: query
@@ -1497,7 +1531,7 @@ operationGroups:
       type: &id019
         type: boolean
     - clientName: test
-      description: ''
+      description: Enables test send for debug purposes
       implementation: Method
       inOverload: false
       location: query
@@ -1505,7 +1539,7 @@ operationGroups:
       restApiName: test
       type: *id019
     - clientName: platform
-      description: ''
+      description: The notification target platform
       implementation: Method
       inOverload: false
       location: header
@@ -1513,7 +1547,7 @@ operationGroups:
       restApiName: ServiceBusNotification-Format
       type: *id001
     - clientName: device_handle
-      description: ''
+      description: The notification target device handle
       implementation: Method
       inOverload: false
       location: header
@@ -1521,7 +1555,7 @@ operationGroups:
       restApiName: ServiceBusNotification-DeviceHandle
       type: *id001
     - clientName: tags
-      description: ''
+      description: The notification target tag expression
       implementation: Method
       inOverload: false
       location: header
@@ -1569,55 +1603,56 @@ operationGroups:
       statusCodes:
       - 201
       type: &id052
-        description: ''
+        description: Represents the notification outcome
         discriminatedSubtypes: {}
         name: NotificationOutcome
         parents: []
         properties:
         - clientName: success
-          description: ''
+          description: Successfully delivered notifications outcome count
           optional: false
           readonly: false
           restApiName: success
           type: *id020
         - clientName: failure
-          description: ''
+          description: Failed delivery notifications outcome count
           optional: false
           readonly: false
           restApiName: failure
           type: *id020
         - clientName: results
-          description: ''
+          description: The notification outcome results per device
           optional: false
           readonly: false
           restApiName: results
           type: &id054
             elementType: &id053
-              description: ''
+              description: Represents the registration results for the notification
+                outcome
               discriminatedSubtypes: {}
               name: RegistrationResult
               parents: []
               properties:
               - clientName: application_platform
-                description: ''
+                description: The application platform
                 optional: false
                 readonly: false
                 restApiName: applicationPlatform
                 type: *id001
               - clientName: pns_handle
-                description: ''
+                description: The registration push handle
                 optional: false
                 readonly: false
                 restApiName: pnsHandle
                 type: *id001
               - clientName: registration_id
-                description: ''
+                description: The registration ID
                 optional: false
                 readonly: false
                 restApiName: registrationId
                 type: *id001
               - clientName: outcome
-                description: ''
+                description: The outcome result message
                 optional: false
                 readonly: false
                 restApiName: outcome
@@ -1633,7 +1668,7 @@ operationGroups:
   operations:
   - apiVersions:
     - null
-    description: ''
+    description: Cancel a scheduled notification
     discriminator: basic
     exceptions: []
     groupName: ScheduledNotifications
@@ -1645,7 +1680,7 @@ operationGroups:
     - *id004
     - *id005
     - clientName: notification_id
-      description: ''
+      description: The ID of the notification to cancel
       implementation: Method
       inOverload: false
       location: path
@@ -1669,13 +1704,13 @@ operationGroups:
       contentTypes:
       - application/json
       defaultContentType: application/json
-      description: ''
+      description: The notification to schedule
       inOverload: false
       location: body
       optional: false
       restApiName: notification
       type: *id013
-    description: ''
+    description: Schedule a notification
     discriminator: basic
     exceptions: []
     groupName: ScheduledNotifications
@@ -1687,7 +1722,7 @@ operationGroups:
     - *id004
     - *id005
     - clientName: schedule_time
-      description: ''
+      description: The notification scheduled time
       implementation: Method
       inOverload: false
       location: header
@@ -1695,7 +1730,7 @@ operationGroups:
       restApiName: ServiceBusNotification-ScheduleTime
       type: *id001
     - clientName: platform
-      description: ''
+      description: The notification target platform
       implementation: Method
       inOverload: false
       location: header
@@ -1703,7 +1738,7 @@ operationGroups:
       restApiName: ServiceBusNotification-Format
       type: *id001
     - clientName: tags
-      description: ''
+      description: The notification target tag expression
       implementation: Method
       inOverload: false
       location: header
@@ -1745,138 +1780,138 @@ operationGroups:
       contentTypes:
       - application/json
       defaultContentType: application/json
-      description: ''
+      description: The Azure Notification Hub import/export job to create
       inOverload: false
       location: body
       optional: false
       restApiName: notificationHubJob
       type: &id022
-        description: ''
+        description: Represents the Azure Notification Hubs job
         discriminatedSubtypes: {}
         name: NotificationHubJob
         parents: []
         properties:
         - clientName: job_id
-          description: ''
+          description: Job ID
           optional: true
           readonly: false
           restApiName: jobId
           type: *id001
         - clientName: output_file_name
-          description: ''
+          description: Job output file name
           optional: true
           readonly: false
           restApiName: outputFileName
           type: *id001
         - clientName: failures_file_name
-          description: ''
+          description: Job failures file name
           optional: true
           readonly: false
           restApiName: failuresFileName
           type: *id001
         - clientName: progress
-          description: ''
+          description: Job progress percentage
           optional: true
           readonly: false
           restApiName: progress
           type: &id061
             type: float
         - clientName: type
-          description: ''
+          description: Job type
           optional: false
           readonly: false
           restApiName: type
           type: &id062
-            description: ''
+            description: Represents the Azure Notification Hubs job types
             name: NotificationHubJobType
             type: enum
             valueType:
               type: string
             values:
-            - description: ''
+            - description: Export registrations job type
               name: EXPORT_REGISTRATIONS
               value: ExportRegistrations
-            - description: ''
+            - description: Import create registrations job type
               name: IMPORT_CREATE_REGISTRATIONS
               value: ImportCreateRegistrations
-            - description: ''
+            - description: Import update registrations job type
               name: IMPORT_UPDATE_REGISTRATIONS
               value: ImportUpdateRegistrations
-            - description: ''
+            - description: Import delete registrations job type
               name: IMPORT_DELETE_REGISTRATIONS
               value: ImportDeleteRegistrations
-            - description: ''
+            - description: Import create or update registrations job type
               name: IMPORT_UPSERT_REGISTRATIONS
               value: ImportUpsertRegistrations
         - clientName: status
-          description: ''
+          description: Job status
           optional: true
           readonly: false
           restApiName: status
           type: &id063
-            description: ''
+            description: Represents the Azure Notification Hubs job status
             name: NotificationHubJobStatus
             type: enum
             valueType:
               type: string
             values:
-            - description: ''
+            - description: Job started
               name: STARTED
               value: Started
-            - description: ''
+            - description: Job running
               name: RUNNING
               value: Running
-            - description: ''
+            - description: Job completed
               name: COMPLETED
               value: Completed
-            - description: ''
+            - description: Job failed
               name: FAILED
               value: Failed
         - clientName: output_container_url
-          description: ''
+          description: Job output container URL
           optional: false
           readonly: false
           restApiName: outputContainerUrl
           type: *id001
         - clientName: import_file_url
-          description: ''
+          description: Job import file URL
           optional: true
           readonly: false
           restApiName: importFileUrl
           type: *id001
         - clientName: input_properties
-          description: ''
+          description: Job input property bag
           optional: true
           readonly: false
           restApiName: inputProperties
           type: *id007
         - clientName: failure
-          description: ''
+          description: Job failure reason
           optional: true
           readonly: false
           restApiName: failure
           type: *id001
         - clientName: output_properties
-          description: ''
+          description: Job output property bag
           optional: true
           readonly: false
           restApiName: outputProperties
           type: *id007
         - clientName: created_at
-          description: ''
+          description: Job created time
           optional: true
           readonly: false
           restApiName: createdAt
           type: *id021
         - clientName: updated_at
-          description: ''
+          description: Job updated time
           optional: true
           readonly: false
           restApiName: updatedAt
           type: *id021
         snakeCaseName: notification_hub_job
         type: model
-    description: ''
+    description: Create an import/export Azure Notification Hubs job
     discriminator: basic
     exceptions: []
     groupName: NotificationHubJobs
@@ -1889,7 +1924,7 @@ operationGroups:
     - *id005
     - clientDefaultValue: application/atom+xml;type=entry;charset=utf-8
       clientName: content_type
-      description: ''
+      description: The HTTP Content-Type header
       implementation: Method
       inOverload: false
       location: header
@@ -1921,7 +1956,7 @@ operationGroups:
     url: /jobs
   - apiVersions:
     - null
-    description: ''
+    description: Get an import/export Azure Notification Hubs job
     discriminator: basic
     exceptions: []
     groupName: NotificationHubJobs
@@ -1933,7 +1968,7 @@ operationGroups:
     - *id004
     - *id005
     - clientName: job_id
-      description: ''
+      description: The job ID
       implementation: Method
       inOverload: false
       location: path
@@ -1965,7 +2000,7 @@ operationGroups:
     url: /jobs/{jobId}
   - apiVersions:
     - null
-    description: ''
+    description: List all import/export Azure Notification Hubs jobs
     discriminator: basic
     exceptions: []
     groupName: NotificationHubJobs

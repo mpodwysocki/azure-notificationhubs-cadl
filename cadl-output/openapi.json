@@ -3,18 +3,20 @@
   "info": {
     "title": "Azure Notification Hubs Service",
     "version": "2020-06",
-    "description": "This is the entry point for an Azure Notification Hub"
+    "description": "The Azure Notification Hubs service"
   },
   "tags": [],
   "paths": {
     "/installations/{installationId}": {
       "get": {
         "operationId": "Installations_get",
+        "description": "Get an Azure Notification Hubs installation",
         "parameters": [
           {
             "name": "installationId",
             "in": "path",
             "required": true,
+            "description": "The installation ID",
             "schema": {
               "type": "string"
             }
@@ -35,11 +37,13 @@
       },
       "delete": {
         "operationId": "Installations_delete",
+        "description": "Delete an Azure Notification Hubs installation",
         "parameters": [
           {
             "name": "installationId",
             "in": "path",
             "required": true,
+            "description": "The installation ID",
             "schema": {
               "type": "string"
             }
@@ -50,11 +54,13 @@
             "description": "There is no content to send for this request, but the headers may be useful. ",
             "headers": {
               "tracking-id": {
+                "description": "The tracking ID header",
                 "schema": {
                   "type": "string"
                 }
               },
               "x-ms-correlation-request-id": {
+                "description": "The correlation ID header",
                 "schema": {
                   "type": "string"
                 }
@@ -65,11 +71,13 @@
       },
       "put": {
         "operationId": "Installations_createOrUpdate",
+        "description": "Create or update an Azure Notification Hubs installation",
         "parameters": [
           {
             "name": "installationId",
             "in": "path",
             "required": true,
+            "description": "The installation ID",
             "schema": {
               "type": "string"
             }
@@ -80,11 +88,13 @@
             "description": "The request has succeeded.",
             "headers": {
               "tracking-id": {
+                "description": "The tracking ID header",
                 "schema": {
                   "type": "string"
                 }
               },
               "x-ms-correlation-request-id": {
+                "description": "The correlation ID header",
                 "schema": {
                   "type": "string"
                 }
@@ -93,6 +103,7 @@
           }
         },
         "requestBody": {
+          "description": "The installation object",
           "content": {
             "application/json": {
               "schema": {
@@ -104,11 +115,13 @@
       },
       "patch": {
         "operationId": "Installations_update",
+        "description": "Update an Azure Notification Hubs installation using JSON Patch semantics",
         "parameters": [
           {
             "name": "installationId",
             "in": "path",
             "required": true,
+            "description": "The installation ID",
             "schema": {
               "type": "string"
             }
@@ -119,11 +132,13 @@
             "description": "The request has succeeded.",
             "headers": {
               "tracking-id": {
+                "description": "The tracking ID header",
                 "schema": {
                   "type": "string"
                 }
               },
               "x-ms-correlation-request-id": {
+                "description": "The correlation ID header",
                 "schema": {
                   "type": "string"
                 }
@@ -132,6 +147,7 @@
           }
         },
         "requestBody": {
+          "description": "The installation patches",
           "content": {
             "application/json": {
               "schema": {
@@ -149,11 +165,13 @@
     "/registrations": {
       "post": {
         "operationId": "Registrations_create",
+        "description": "Create an Azure Notification Hubs registration description",
         "parameters": [
           {
             "name": "contentType",
             "in": "header",
             "required": true,
+            "description": "The HTTP content-type",
             "schema": {
               "type": "string",
               "enum": [
@@ -175,6 +193,7 @@
           }
         },
         "requestBody": {
+          "description": "The registration description",
           "content": {
             "application/json": {
               "schema": {
@@ -186,11 +205,13 @@
       },
       "get": {
         "operationId": "Registrations_list",
+        "description": "List Azure Notification Hubs registration descriptions",
         "parameters": [
           {
             "name": "top",
             "in": "query",
             "required": false,
+            "description": "The limit to the number of records to retrieve",
             "schema": {
               "type": "string"
             }
@@ -199,6 +220,7 @@
             "name": "filter",
             "in": "query",
             "required": false,
+            "description": "The filter query to find registrations",
             "schema": {
               "type": "string"
             }
@@ -207,6 +229,7 @@
             "name": "continuationToken",
             "in": "query",
             "required": false,
+            "description": "The continuation token for more results",
             "schema": {
               "type": "string"
             }
@@ -217,6 +240,7 @@
             "description": "The request has succeeded.",
             "headers": {
               "X-MS-ContinuationToken": {
+                "description": "The continuation token for more results",
                 "schema": {
                   "type": "string"
                 }
@@ -240,11 +264,13 @@
     "/registrations/{registrationId}": {
       "put": {
         "operationId": "Registrations_createOrUpdate",
+        "description": "Create or update an Azure Notification Hubs registration description",
         "parameters": [
           {
             "name": "registrationId",
             "in": "path",
             "required": true,
+            "description": "The registration ID",
             "schema": {
               "type": "string"
             }
@@ -253,6 +279,7 @@
             "name": "contentType",
             "in": "header",
             "required": true,
+            "description": "The Content-Type HTTP header",
             "schema": {
               "type": "string",
               "enum": [
@@ -264,6 +291,7 @@
             "name": "eTag",
             "in": "header",
             "required": false,
+            "description": "The If-Match HTTP header",
             "schema": {
               "type": "string"
             }
@@ -282,6 +310,7 @@
           }
         },
         "requestBody": {
+          "description": "The registration description",
           "content": {
             "application/json": {
               "schema": {
@@ -293,11 +322,13 @@
       },
       "delete": {
         "operationId": "Registrations_delete",
+        "description": "Delete an Azure Notification Hubs registration description",
         "parameters": [
           {
             "name": "registrationId",
             "in": "path",
             "required": true,
+            "description": "The registration ID",
             "schema": {
               "type": "string"
             }
@@ -306,6 +337,7 @@
             "name": "eTag",
             "in": "header",
             "required": false,
+            "description": "The If-Match HTTP header",
             "schema": {
               "type": "string"
             }
@@ -316,11 +348,13 @@
             "description": "The request has succeeded.",
             "headers": {
               "tracking-id": {
+                "description": "The tracking ID header",
                 "schema": {
                   "type": "string"
                 }
               },
               "x-ms-correlation-request-id": {
+                "description": "The correlation ID header",
                 "schema": {
                   "type": "string"
                 }
@@ -331,11 +365,13 @@
       },
       "get": {
         "operationId": "Registrations_get",
+        "description": "Get an Azure Notification Hubs registration description",
         "parameters": [
           {
             "name": "registrationId",
             "in": "path",
             "required": true,
+            "description": "The registration ID",
             "schema": {
               "type": "string"
             }
@@ -358,11 +394,13 @@
     "/tags/{tag}/registrations": {
       "get": {
         "operationId": "ListRegistrationsByTag_list",
+        "description": "List all Azure Notification Hubs registrations description matching the given tag",
         "parameters": [
           {
             "name": "tag",
             "in": "path",
             "required": true,
+            "description": "The tag name to search",
             "schema": {
               "type": "string"
             }
@@ -371,6 +409,7 @@
             "name": "top",
             "in": "query",
             "required": false,
+            "description": "The limit to the number of records to retrieve",
             "schema": {
               "type": "string"
             }
@@ -379,6 +418,7 @@
             "name": "continuationToken",
             "in": "query",
             "required": false,
+            "description": "The continuation token for more results",
             "schema": {
               "type": "string"
             }
@@ -389,6 +429,7 @@
             "description": "The request has succeeded.",
             "headers": {
               "X-MS-ContinuationToken": {
+                "description": "The continuation token for more results",
                 "schema": {
                   "type": "string"
                 }
@@ -412,11 +453,13 @@
     "/messages": {
       "post": {
         "operationId": "Notifications_sendNotification",
+        "description": "Send a notification using Azure Notification Hubs",
         "parameters": [
           {
             "name": "direct",
             "in": "query",
             "required": false,
+            "description": "Direct send operation",
             "schema": {
               "type": "boolean"
             }
@@ -425,6 +468,7 @@
             "name": "test",
             "in": "query",
             "required": true,
+            "description": "Enables test send for debug purposes",
             "schema": {
               "type": "boolean"
             }
@@ -433,6 +477,7 @@
             "name": "platform",
             "in": "header",
             "required": true,
+            "description": "The notification target platform",
             "schema": {
               "type": "string"
             }
@@ -441,6 +486,7 @@
             "name": "deviceHandle",
             "in": "header",
             "required": false,
+            "description": "The notification target device handle",
             "schema": {
               "type": "string"
             }
@@ -449,6 +495,7 @@
             "name": "tags",
             "in": "header",
             "required": false,
+            "description": "The notification target tag expression",
             "schema": {
               "type": "string"
             }
@@ -464,11 +511,13 @@
                 }
               },
               "tracking-id": {
+                "description": "The tracking ID header",
                 "schema": {
                   "type": "string"
                 }
               },
               "x-ms-correlation-request-id": {
+                "description": "The correlation ID header",
                 "schema": {
                   "type": "string"
                 }
@@ -484,6 +533,7 @@
           }
         },
         "requestBody": {
+          "description": "The notification to send",
           "content": {
             "application/json": {
               "schema": {
@@ -497,11 +547,13 @@
     "/schedulednotifications/{notificationId}": {
       "delete": {
         "operationId": "ScheduledNotifications_cancelNotification",
+        "description": "Cancel a scheduled notification",
         "parameters": [
           {
             "name": "notificationId",
             "in": "path",
             "required": true,
+            "description": "The ID of the notification to cancel",
             "schema": {
               "type": "string"
             }
@@ -512,11 +564,13 @@
             "description": "The request has succeeded.",
             "headers": {
               "tracking-id": {
+                "description": "The tracking ID header",
                 "schema": {
                   "type": "string"
                 }
               },
               "x-ms-correlation-request-id": {
+                "description": "The correlation ID header",
                 "schema": {
                   "type": "string"
                 }
@@ -529,11 +583,13 @@
     "/schedulednotifications": {
       "post": {
         "operationId": "ScheduledNotifications_scheduleNotification",
+        "description": "Schedule a notification",
         "parameters": [
           {
             "name": "scheduleTime",
             "in": "header",
             "required": true,
+            "description": "The notification scheduled time",
             "schema": {
               "type": "string"
             }
@@ -542,6 +598,7 @@
             "name": "platform",
             "in": "header",
             "required": true,
+            "description": "The notification target platform",
             "schema": {
               "type": "string"
             }
@@ -550,6 +607,7 @@
             "name": "tags",
             "in": "header",
             "required": false,
+            "description": "The notification target tag expression",
             "schema": {
               "type": "string"
             }
@@ -560,16 +618,19 @@
             "description": "The request has succeeded and a new resource has been created as a result.",
             "headers": {
               "location": {
+                "description": "The HTTP location header",
                 "schema": {
                   "type": "string"
                 }
               },
               "tracking-id": {
+                "description": "The tracking ID header",
                 "schema": {
                   "type": "string"
                 }
               },
               "x-ms-correlation-request-id": {
+                "description": "The correlation ID header",
                 "schema": {
                   "type": "string"
                 }
@@ -578,6 +639,7 @@
           }
         },
         "requestBody": {
+          "description": "The notification to schedule",
           "content": {
             "application/json": {
               "schema": {
@@ -591,11 +653,13 @@
     "/jobs": {
       "post": {
         "operationId": "NotificationHubJobs_create",
+        "description": "Create an import/export Azure Notification Hubs job",
         "parameters": [
           {
             "name": "contentType",
             "in": "header",
             "required": true,
+            "description": "The HTTP Content-Type header",
             "schema": {
               "type": "string",
               "enum": [
@@ -617,6 +681,7 @@
           }
         },
         "requestBody": {
+          "description": "The Azure Notification Hub import/export job to create",
           "content": {
             "application/json": {
               "schema": {
@@ -628,6 +693,7 @@
       },
       "get": {
         "operationId": "NotificationHubJobs_list",
+        "description": "List all import/export Azure Notification Hubs jobs",
         "parameters": [],
         "responses": {
           "200": {
@@ -650,11 +716,13 @@
     "/jobs/{jobId}": {
       "get": {
         "operationId": "NotificationHubJobs_get",
+        "description": "Get an import/export Azure Notification Hubs job",
         "parameters": [
           {
             "name": "jobId",
             "in": "path",
             "required": true,
+            "description": "The job ID",
             "schema": {
               "type": "string"
             }
@@ -685,17 +753,21 @@
             "description": "Discriminator property for Installation."
           },
           "installationId": {
-            "type": "string"
+            "type": "string",
+            "description": "The installation ID"
           },
           "userId": {
-            "type": "string"
+            "type": "string",
+            "description": "The user ID"
           },
           "expirationTime": {
             "type": "string",
+            "description": "The installation expiration time",
             "readOnly": true
           },
           "lastUpdate": {
             "type": "string",
+            "description": "The last updated date",
             "readOnly": true
           },
           "tags": {
@@ -703,16 +775,19 @@
             "items": {
               "type": "string"
             },
-            "x-cadl-name": "string[]"
+            "x-cadl-name": "string[]",
+            "description": "The itags for the installation"
           },
           "templates": {
             "type": "object",
             "additionalProperties": {
               "type": "string"
             },
-            "x-cadl-name": "Record<string>"
+            "x-cadl-name": "Record<string>",
+            "description": "The templates for the installation"
           }
         },
+        "description": "Represents an Azure Notification Hubs Installation",
         "discriminator": {
           "propertyName": "platform",
           "mapping": {
@@ -730,15 +805,23 @@
         "type": "object",
         "properties": {
           "op": {
-            "$ref": "#/components/schemas/Models.JsonPatchOperation"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Models.JsonPatchOperation"
+              }
+            ],
+            "description": "The JSON patch operation type"
           },
           "path": {
-            "type": "string"
+            "type": "string",
+            "description": "The JSON patch path"
           },
           "value": {
-            "type": "string"
+            "type": "string",
+            "description": "The JSON patch value"
           }
         },
+        "description": "Represents a JSON Patch operation",
         "required": [
           "op",
           "path"
@@ -747,33 +830,39 @@
       "Models.RegistrationDescription": {
         "type": "object",
         "properties": {
-          "type": {
+          "platform": {
             "type": "string",
             "description": "Discriminator property for RegistrationDescription."
           },
           "registrationId": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration ID"
           },
           "tags": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration tags comma separated list"
           },
           "etag": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration etag"
           },
           "pushVariables": {
             "type": "object",
             "additionalProperties": {
               "type": "string"
             },
-            "x-cadl-name": "Record<string>"
+            "x-cadl-name": "Record<string>",
+            "description": "The registration push variables property bag"
           },
           "expirationTime": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "description": "The registration expiration time"
           }
         },
+        "description": "Represents an Azure Notification Hubs registration description",
         "discriminator": {
-          "propertyName": "type",
+          "propertyName": "platform",
           "mapping": {
             "adm": "#/components/schemas/Models.AdmRegistrationDescription",
             "admTemplate": "#/components/schemas/Models.AdmTemplateRegistrationDescription",
@@ -800,16 +889,19 @@
             "description": "Discriminator property for Notification."
           },
           "body": {
-            "type": "string"
+            "type": "string",
+            "description": "The notification body"
           },
           "headers": {
             "type": "object",
             "additionalProperties": {
               "type": "string"
             },
-            "x-cadl-name": "Record<string>"
+            "x-cadl-name": "Record<string>",
+            "description": "The HTTP headers for the notification"
           }
         },
+        "description": "Represents an Azure Notification Hubs notification",
         "discriminator": {
           "propertyName": "platform",
           "mapping": {
@@ -830,20 +922,24 @@
         "properties": {
           "success": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "Successfully delivered notifications outcome count"
           },
           "failure": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "Failed delivery notifications outcome count"
           },
           "results": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Models.RegistrationResult"
             },
-            "x-cadl-name": "Models.RegistrationResult[]"
+            "x-cadl-name": "Models.RegistrationResult[]",
+            "description": "The notification outcome results per device"
           }
         },
+        "description": "Represents the notification outcome",
         "required": [
           "success",
           "failure",
@@ -854,56 +950,78 @@
         "type": "object",
         "properties": {
           "jobId": {
-            "type": "string"
+            "type": "string",
+            "description": "Job ID"
           },
           "outputFileName": {
-            "type": "string"
+            "type": "string",
+            "description": "Job output file name"
           },
           "failuresFileName": {
-            "type": "string"
+            "type": "string",
+            "description": "Job failures file name"
           },
           "progress": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "description": "Job progress percentage"
           },
           "type": {
-            "$ref": "#/components/schemas/Models.NotificationHubJobType"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Models.NotificationHubJobType"
+              }
+            ],
+            "description": "Job type"
           },
           "status": {
-            "$ref": "#/components/schemas/Models.NotificationHubJobStatus"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Models.NotificationHubJobStatus"
+              }
+            ],
+            "description": "Job status"
           },
           "outputContainerUrl": {
-            "type": "string"
+            "type": "string",
+            "description": "Job output container URL"
           },
           "importFileUrl": {
-            "type": "string"
+            "type": "string",
+            "description": "Job import file URL"
           },
           "inputProperties": {
             "type": "object",
             "additionalProperties": {
               "type": "string"
             },
-            "x-cadl-name": "Record<string>"
+            "x-cadl-name": "Record<string>",
+            "description": "Job input property bag"
           },
           "failure": {
-            "type": "string"
+            "type": "string",
+            "description": "Job failure reason"
           },
           "outputProperties": {
             "type": "object",
             "additionalProperties": {
               "type": "string"
             },
-            "x-cadl-name": "Record<string>"
+            "x-cadl-name": "Record<string>",
+            "description": "Job output property bag"
           },
           "createdAt": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "description": "Job created time"
           },
           "updatedAt": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "description": "Job updated time"
           }
         },
+        "description": "Represents the Azure Notification Hubs job",
         "required": [
           "type",
           "outputContainerUrl"
@@ -916,12 +1034,19 @@
             "type": "string",
             "enum": [
               "browser"
-            ]
+            ],
+            "description": "The platform for the installation"
           },
           "pushHandle": {
-            "$ref": "#/components/schemas/Models.BrowserPushHandle"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Models.BrowserPushHandle"
+              }
+            ],
+            "description": "The Web API push handle for the installation"
           }
         },
+        "description": "Represents an Web Push based Azure Notification Hubs Installation",
         "required": [
           "platform",
           "pushHandle"
@@ -939,9 +1064,11 @@
             "type": "string",
             "enum": [
               "gcm"
-            ]
+            ],
+            "description": "The platform for the installation"
           }
         },
+        "description": "Represents an FCM Legacy based Azure Notification Hubs Installation",
         "required": [
           "platform"
         ],
@@ -953,6 +1080,7 @@
       },
       "Models.JsonPatchOperation": {
         "type": "string",
+        "description": "Represents a JSON Patch operation type",
         "enum": [
           "add",
           "remove",
@@ -963,18 +1091,21 @@
         "type": "object",
         "properties": {
           "admRegistrationId": {
-            "type": "string"
+            "type": "string",
+            "description": "The ADM registration ID"
           },
-          "type": {
+          "platform": {
             "type": "string",
             "enum": [
               "adm"
-            ]
+            ],
+            "description": "The platform of registration description"
           }
         },
+        "description": "Represents an ADM based Azure Notification Hubs registration description",
         "required": [
           "admRegistrationId",
-          "type"
+          "platform"
         ],
         "allOf": [
           {
@@ -986,25 +1117,30 @@
         "type": "object",
         "properties": {
           "admRegistrationId": {
-            "type": "string"
+            "type": "string",
+            "description": "The ADM registration ID"
           },
           "bodyTemplate": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration body template"
           },
           "templateName": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration template name"
           },
-          "type": {
+          "platform": {
             "type": "string",
             "enum": [
               "admTemplate"
-            ]
+            ],
+            "description": "The platform of registration description"
           }
         },
+        "description": "Represents an ADM template based Azure Notification Hubs registration description",
         "required": [
           "admRegistrationId",
           "bodyTemplate",
-          "type"
+          "platform"
         ],
         "allOf": [
           {
@@ -1016,18 +1152,21 @@
         "type": "object",
         "properties": {
           "deviceToken": {
-            "type": "string"
+            "type": "string",
+            "description": "The APNs device token"
           },
-          "type": {
+          "platform": {
             "type": "string",
             "enum": [
               "apple"
-            ]
+            ],
+            "description": "The platform of registration description"
           }
         },
+        "description": "Represents an Apple based Azure Notification Hubs registration description",
         "required": [
           "deviceToken",
-          "type"
+          "platform"
         ],
         "allOf": [
           {
@@ -1039,36 +1178,43 @@
         "type": "object",
         "properties": {
           "deviceToken": {
-            "type": "string"
+            "type": "string",
+            "description": "The APNs device token"
           },
           "bodyTemplate": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration body template"
           },
           "templateName": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration template name"
           },
           "apnsHeaders": {
             "type": "object",
             "additionalProperties": {
               "type": "string"
             },
-            "x-cadl-name": "Record<string>"
+            "x-cadl-name": "Record<string>",
+            "description": "The APNs headers for the template"
           },
           "priority": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "The APNs priority for any message"
           },
-          "type": {
+          "platform": {
             "type": "string",
             "enum": [
               "appleTemplate"
-            ]
+            ],
+            "description": "The platform of registration description"
           }
         },
+        "description": "Represents an Apple template based Azure Notification Hubs registration description",
         "required": [
           "deviceToken",
           "bodyTemplate",
-          "type"
+          "platform"
         ],
         "allOf": [
           {
@@ -1080,22 +1226,26 @@
         "type": "object",
         "properties": {
           "baiduChannelId": {
-            "type": "string"
+            "type": "string",
+            "description": "The Baidu channel ID"
           },
           "baiduUserId": {
-            "type": "string"
+            "type": "string",
+            "description": "The baidu user ID"
           },
-          "type": {
+          "platform": {
             "type": "string",
             "enum": [
               "baidu"
-            ]
+            ],
+            "description": "The platform of registration description"
           }
         },
+        "description": "Represents a Baidu based Azure Notification Hubs registration description",
         "required": [
           "baiduChannelId",
           "baiduUserId",
-          "type"
+          "platform"
         ],
         "allOf": [
           {
@@ -1107,29 +1257,35 @@
         "type": "object",
         "properties": {
           "baiduChannelId": {
-            "type": "string"
+            "type": "string",
+            "description": "The Baidu channel ID"
           },
           "baiduUserId": {
-            "type": "string"
+            "type": "string",
+            "description": "The baidu user ID"
           },
           "bodyTemplate": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration body template"
           },
           "templateName": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration template name"
           },
-          "type": {
+          "platform": {
             "type": "string",
             "enum": [
               "baiduTemplate"
-            ]
+            ],
+            "description": "The platform of registration description"
           }
         },
+        "description": "Represents a Baidu template based Azure Notification Hubs registration description",
         "required": [
           "baiduChannelId",
           "baiduUserId",
           "bodyTemplate",
-          "type"
+          "platform"
         ],
         "allOf": [
           {
@@ -1141,26 +1297,31 @@
         "type": "object",
         "properties": {
           "endpoint": {
-            "type": "string"
+            "type": "string",
+            "description": "The Web Push endpoint URL"
           },
           "auth": {
-            "type": "string"
+            "type": "string",
+            "description": "The Web Push auth secret"
           },
           "p256dh": {
-            "type": "string"
+            "type": "string",
+            "description": "The Web Push P256DH"
           },
-          "type": {
+          "platform": {
             "type": "string",
             "enum": [
               "browser"
-            ]
+            ],
+            "description": "The platform of registration description"
           }
         },
+        "description": "Represents a Web Push based Azure Notification Hubs registration description",
         "required": [
           "endpoint",
           "auth",
           "p256dh",
-          "type"
+          "platform"
         ],
         "allOf": [
           {
@@ -1171,22 +1332,41 @@
       "Models.BrowserTemplateRegistrationDescription": {
         "type": "object",
         "properties": {
+          "endpoint": {
+            "type": "string",
+            "description": "The Web Push endpoint URL"
+          },
+          "auth": {
+            "type": "string",
+            "description": "The Web Push auth secret"
+          },
+          "p256dh": {
+            "type": "string",
+            "description": "The Web Push P256DH"
+          },
           "bodyTemplate": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration body template"
           },
           "templateName": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration template name"
           },
-          "type": {
+          "platform": {
             "type": "string",
             "enum": [
               "browserTemplate"
-            ]
+            ],
+            "description": "The platform of registration description"
           }
         },
+        "description": "Represents a Web Push template based Azure Notification Hubs registration description",
         "required": [
+          "endpoint",
+          "auth",
+          "p256dh",
           "bodyTemplate",
-          "type"
+          "platform"
         ],
         "allOf": [
           {
@@ -1198,18 +1378,21 @@
         "type": "object",
         "properties": {
           "gcmRegistrationId": {
-            "type": "string"
+            "type": "string",
+            "description": "The Firebase Legacy registration ID"
           },
-          "type": {
+          "platform": {
             "type": "string",
             "enum": [
               "gcm"
-            ]
+            ],
+            "description": "The platform of registration description"
           }
         },
+        "description": "Represents a Firebase Legacy based Azure Notification Hubs registration description",
         "required": [
           "gcmRegistrationId",
-          "type"
+          "platform"
         ],
         "allOf": [
           {
@@ -1221,25 +1404,30 @@
         "type": "object",
         "properties": {
           "gcmRegistrationId": {
-            "type": "string"
+            "type": "string",
+            "description": "The Firebase Legacy registration ID"
           },
           "bodyTemplate": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration body template"
           },
           "templateName": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration template name"
           },
-          "type": {
+          "platform": {
             "type": "string",
             "enum": [
               "gcmTemplate"
-            ]
+            ],
+            "description": "The platform of registration description"
           }
         },
+        "description": "Represents a Firebase Legacy template based Azure Notification Hubs registration description",
         "required": [
           "gcmRegistrationId",
           "bodyTemplate",
-          "type"
+          "platform"
         ],
         "allOf": [
           {
@@ -1251,18 +1439,21 @@
         "type": "object",
         "properties": {
           "channelUri": {
-            "type": "string"
+            "type": "string",
+            "description": "The Windows Phone channel URL"
           },
-          "type": {
+          "platform": {
             "type": "string",
             "enum": [
               "mpns"
-            ]
+            ],
+            "description": "The platform of registration description"
           }
         },
+        "description": "Represents a Windows Phone based Azure Notification Hubs registration description",
         "required": [
           "channelUri",
-          "type"
+          "platform"
         ],
         "allOf": [
           {
@@ -1274,32 +1465,38 @@
         "type": "object",
         "properties": {
           "channelUri": {
-            "type": "string"
+            "type": "string",
+            "description": "The Windows Phone channel URL"
           },
           "bodyTemplate": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration body template"
           },
           "templateName": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration template name"
           },
           "mpnsHeaders": {
             "type": "object",
             "additionalProperties": {
               "type": "string"
             },
-            "x-cadl-name": "Record<string>"
+            "x-cadl-name": "Record<string>",
+            "description": "The Windows Phone template headers"
           },
-          "type": {
+          "platform": {
             "type": "string",
             "enum": [
               "mpnsTemplate"
-            ]
+            ],
+            "description": "The platform of registration description"
           }
         },
+        "description": "Represents a Windows Phone template based Azure Notification Hubs registration description",
         "required": [
           "channelUri",
           "bodyTemplate",
-          "type"
+          "platform"
         ],
         "allOf": [
           {
@@ -1311,18 +1508,21 @@
         "type": "object",
         "properties": {
           "channelUri": {
-            "type": "string"
+            "type": "string",
+            "description": "The Windows channel URL"
           },
-          "type": {
+          "platform": {
             "type": "string",
             "enum": [
               "windows"
-            ]
+            ],
+            "description": "The platform of registration description"
           }
         },
+        "description": "Represents a Windows based Azure Notification Hubs registration description",
         "required": [
           "channelUri",
-          "type"
+          "platform"
         ],
         "allOf": [
           {
@@ -1334,32 +1534,38 @@
         "type": "object",
         "properties": {
           "channelUri": {
-            "type": "string"
+            "type": "string",
+            "description": "The Windows channel URL"
           },
           "bodyTemplate": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration body template"
           },
           "templateName": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration template name"
           },
           "wnsHeaders": {
             "type": "object",
             "additionalProperties": {
               "type": "string"
             },
-            "x-cadl-name": "Record<string>"
+            "x-cadl-name": "Record<string>",
+            "description": "The Windows template headers"
           },
-          "type": {
+          "platform": {
             "type": "string",
             "enum": [
               "windowsTemplate"
-            ]
+            ],
+            "description": "The platform of registration description"
           }
         },
+        "description": "Represents a Windows template based Azure Notification Hubs registration description",
         "required": [
           "channelUri",
           "bodyTemplate",
-          "type"
+          "platform"
         ],
         "allOf": [
           {
@@ -1374,15 +1580,18 @@
             "type": "string",
             "enum": [
               "application/json;charset=utf-8"
-            ]
+            ],
+            "description": "The notification content type"
           },
           "platform": {
             "type": "string",
             "enum": [
               "adm"
-            ]
+            ],
+            "description": "The notification platform type"
           }
         },
+        "description": "Represents an ADM based Azure Notification Hubs notification",
         "required": [
           "contentType",
           "platform"
@@ -1400,15 +1609,18 @@
             "type": "string",
             "enum": [
               "application/json;charset=utf-8"
-            ]
+            ],
+            "description": "The notification content type"
           },
           "platform": {
             "type": "string",
             "enum": [
               "apple"
-            ]
+            ],
+            "description": "The notification platform type"
           }
         },
+        "description": "Represents an Apple based Azure Notification Hubs notification",
         "required": [
           "contentType",
           "platform"
@@ -1426,15 +1638,18 @@
             "type": "string",
             "enum": [
               "application/json;charset=utf-8"
-            ]
+            ],
+            "description": "The notification content type"
           },
           "platform": {
             "type": "string",
             "enum": [
               "baidu"
-            ]
+            ],
+            "description": "The notification platform type"
           }
         },
+        "description": "Represents a Baidu based Azure Notification Hubs notification",
         "required": [
           "contentType",
           "platform"
@@ -1452,15 +1667,18 @@
             "type": "string",
             "enum": [
               "application/json;charset=utf-8"
-            ]
+            ],
+            "description": "The notification content type"
           },
           "platform": {
             "type": "string",
             "enum": [
               "browser"
-            ]
+            ],
+            "description": "The notification platform type"
           }
         },
+        "description": "Represents a Web Push based Azure Notification Hubs notification",
         "required": [
           "contentType",
           "platform"
@@ -1478,15 +1696,18 @@
             "type": "string",
             "enum": [
               "application/json;charset=utf-8"
-            ]
+            ],
+            "description": "The notification content type"
           },
           "platform": {
             "type": "string",
             "enum": [
               "gcm"
-            ]
+            ],
+            "description": "The notification platform type"
           }
         },
+        "description": "Represents an Firebase Legacy based Azure Notification Hubs notification",
         "required": [
           "contentType",
           "platform"
@@ -1504,9 +1725,11 @@
             "type": "string",
             "enum": [
               "wns"
-            ]
+            ],
+            "description": "The notification content type"
           }
         },
+        "description": "Represents a Windows based Azure Notification Hubs notification",
         "required": [
           "platform"
         ],
@@ -1520,18 +1743,23 @@
         "type": "object",
         "properties": {
           "applicationPlatform": {
-            "type": "string"
+            "type": "string",
+            "description": "The application platform"
           },
           "pnsHandle": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration push handle"
           },
           "registrationId": {
-            "type": "string"
+            "type": "string",
+            "description": "The registration ID"
           },
           "outcome": {
-            "type": "string"
+            "type": "string",
+            "description": "The outcome result message"
           }
         },
+        "description": "Represents the registration results for the notification outcome",
         "required": [
           "applicationPlatform",
           "pnsHandle",
@@ -1541,6 +1769,7 @@
       },
       "Models.NotificationHubJobType": {
         "type": "string",
+        "description": "Represents the Azure Notification Hubs job types",
         "enum": [
           "ExportRegistrations",
           "ImportCreateRegistrations",
@@ -1551,6 +1780,7 @@
       },
       "Models.NotificationHubJobStatus": {
         "type": "string",
+        "description": "Represents the Azure Notification Hubs job status",
         "enum": [
           "Started",
           "Running",
@@ -1562,15 +1792,19 @@
         "type": "object",
         "properties": {
           "endpoint": {
-            "type": "string"
+            "type": "string",
+            "description": "The Web Push API endpoint"
           },
           "p256dh": {
-            "type": "string"
+            "type": "string",
+            "description": "The Web Push API P256DH key"
           },
           "auth": {
-            "type": "string"
+            "type": "string",
+            "description": "The Web Push API auth secret"
           }
         },
+        "description": "Represents a Web Push push handle",
         "required": [
           "endpoint",
           "p256dh",
@@ -1584,9 +1818,11 @@
             "type": "string",
             "enum": [
               "application/xml;charset=utf-8"
-            ]
+            ],
+            "description": "The notification content type"
           }
         },
+        "description": "Represents a Windows XML based Azure Notification Hubs notification",
         "required": [
           "contentType"
         ],
@@ -1603,9 +1839,11 @@
             "type": "string",
             "enum": [
               "application/octet-stream"
-            ]
+            ],
+            "description": "The notification content type"
           }
         },
+        "description": "Represents a Windows raw based Azure Notification Hubs notification",
         "required": [
           "contentType"
         ],

@@ -7,6 +7,7 @@ import "./models/registration.cadl";
 using Cadl.Http;
 using NotificationHubs.Models;
 
+@doc("The Azure Notification Hubs service")
 @serviceTitle("Azure Notification Hubs Service")
 @serviceVersion("2020-06")
 @server("https://{namespaceName}.servicebus.windows.net/{hubName}", "Notification Hubs Namespace", {
@@ -18,171 +19,277 @@ using NotificationHubs.Models;
 @doc("This is the entry point for an Azure Notification Hub")
 namespace NotificationHubs;
 
+@doc("Azure Notification Hubs registration installation operations")
 @route("/installations")
 namespace Installations {
   @get
-  op get(@path installationId: string): {
+  @doc("Get an Azure Notification Hubs installation")
+  op get(
+    @doc("The installation ID")
+    @path installationId: string
+  ): {
+    @doc("Successful status code")
     @statusCode statusCode: 200;
+    @doc("The matching installation")
     @body installation: Installation;
   };
 
   @delete
-  op delete(@path installationId: string): {
+  @doc("Delete an Azure Notification Hubs installation")
+  op delete(
+    @doc("The installation ID")
+    @path installationId: string
+  ): {
+    @doc("Successful status code")
     @statusCode statusCode: 204;
+    @doc("The tracking ID header")
     @header trackingId: string;
+    @doc("The correlation ID header")
     @header("x-ms-correlation-request-id") correlationId: string;
   };
 
   @put
+  @doc("Create or update an Azure Notification Hubs installation")
   op createOrUpdate(
+    @doc("The installation ID")
     @path installationId: string,
+    @doc("The installation object")
     @body installation: Installation
   ): {
+    @doc("Successful status code")
     @statusCode statusCode: 200;
+    @doc("The tracking ID header")
     @header trackingId: string;
+    @doc("The correlation ID header")
     @header("x-ms-correlation-request-id") correlationId: string;
   };
 
+  @doc("Update an Azure Notification Hubs installation using JSON Patch semantics")
   @patch
   op update(
+    @doc("The installation ID")
     @path installationId: string,
+    @doc("The installation patches")
     @body updates: JsonPatch[]
   ): {
+    @doc("Successful status code")
     @statusCode statusCode: 200;
+    @doc("The tracking ID header")
     @header trackingId: string;
+    @doc("The correlation ID header")
     @header("x-ms-correlation-request-id") correlationId: string;
   };
 }
 
+@doc("Azure Notification Hubs registration description operations")
 @route("/registrations")
 namespace Registrations {
+  @doc("Create an Azure Notification Hubs registration description")
   @post
   op create(
+    @doc("The registration description")
     @body body: RegistrationDescription,
+    @doc("The HTTP content-type")
     @header("Content-Type") contentType: "application/atom+xml;type=entry;charset=utf-8"
   ): {
+    @doc("Successful status code")
     @statusCode statusCode: 201;
+    @doc("The created registration description")
     @body body: RegistrationDescription;
   };
 
+  @doc("Create or update an Azure Notification Hubs registration description")
   @put
   op createOrUpdate(
+    @doc("The registration ID")
     @path registrationId: string;
+    @doc("The registration description")
     @body body: RegistrationDescription;
+    @doc("The Content-Type HTTP header")
     @header("Content-Type") contentType: "application/atom+xml;type=entry;charset=utf-8",
+    @doc("The If-Match HTTP header")
     @header("If-Match") eTag?: string
   ): {
+    @doc("Successful status code")
     @statusCode statusCode: 201;
+    @doc("The created or updated registration description")
     @body body: RegistrationDescription;
   };
 
+  @doc("Delete an Azure Notification Hubs registration description")
   @delete
   op delete(
+    @doc("The registration ID")
     @path registrationId: string,
+    @doc("The If-Match HTTP header")
     @header("If-Match") eTag?: string
   ): {
+    @doc("Successful status code")
     @statusCode statusCode: 200;
+    @doc("The tracking ID header")
     @header trackingId: string;
+    @doc("The correlation ID header")
     @header("x-ms-correlation-request-id") correlationId: string;
   };
 
+  @doc("Get an Azure Notification Hubs registration description")
   @get
-  op get(@path registrationId: string): {
+  op get(
+    @doc("The registration ID")
+    @path registrationId: string
+  ): {
+    @doc("Successful status code")
     @statusCode statusCode: 200;
+    @doc("The matching registration description")
     @body body: RegistrationDescription,
   };
 
+  @doc("List Azure Notification Hubs registration descriptions")
   @get
   op list(
+    @doc("The limit to the number of records to retrieve")
     @query("$top") top?: string,
+    @doc("The filter query to find registrations")
     @query("$fitler") filter?: string,
+    @doc("The continuation token for more results")
     @query continuationToken?: string
   ): {
+    @doc("Successful status code")
     @statusCode statusCode: 200;
+    @doc("The continuation token for more results")
     @header("X-MS-ContinuationToken") continuationToken?: string;
+    @doc("The list of registration descriptions")
     @body body: RegistrationDescription[];
   };
 }
 
+@doc("Azure Notification Hubs tags search operations")
 @route("/tags/{tag}/registrations")
 namespace ListRegistrationsByTag {
+  @doc("List all Azure Notification Hubs registrations description matching the given tag")
+  @get
   op list(
+    @doc("The tag name to search")
     @path tag: string,
+    @doc("The limit to the number of records to retrieve")
     @query("$top") top?: string,
+    @doc("The continuation token for more results")
     @query continuationToken?: string
   ): {
+    @doc("Successful status code")
     @statusCode statusCode: 200;
+    @doc("The continuation token for more results")
     @header("X-MS-ContinuationToken") continuationToken?: string;
+    @doc("The list of registration descriptions")
     @body body: RegistrationDescription[];
   };
 }
 
+@doc("Azure Notification Hubs message operations")
 @route("/messages")
 namespace Notifications {
+  @doc("Send a notification using Azure Notification Hubs")
   @post
   op sendNotification(
+    @doc("Direct send operation")
     @query direct?: boolean,
+    @doc("Enables test send for debug purposes")
     @query test: boolean,
+    @doc("The notification to send")
     @body notification: Notification,
+    @doc("The notification target platform")
     @header("ServiceBusNotification-Format") platform: string,
+    @doc("The notification target device handle")
     @header("ServiceBusNotification-DeviceHandle") deviceHandle?: string;
+    @doc("The notification target tag expression")
     @header("ServiceBusNotification-Tags") tags?: string
   ): {
+    @doc("Successful status code")
     @statusCode statusCode: 201;
     @header location?: string;
+    @doc("The tracking ID header")
     @header trackingId: string;
+    @doc("The correlation ID header")
     @header("x-ms-correlation-request-id") correlationId: string;
     @body outcome?: NotificationOutcome;
   };
 }
 
+@doc("Azure Notification Hubs scheduled send operations")
 @route("/schedulednotifications")
 namespace ScheduledNotifications {
+  @doc("Cancel a scheduled notification")
   @delete
   op cancelNotification(
+    @doc("The ID of the notification to cancel")
     @path notificationId: string
   ): {
+    @doc("Successful status code")
     @statusCode statusCode: 200;
+    @doc("The tracking ID header")
     @header trackingId: string;
+    @doc("The correlation ID header")
     @header("x-ms-correlation-request-id") correlationId: string;
   };
 
+  @doc("Schedule a notification")
   @post
   op scheduleNotification(
+    @doc("The notification to schedule")
     @body notification: Notification,
+    @doc("The notification scheduled time")
     @header("ServiceBusNotification-ScheduleTime") scheduleTime: string,
+    @doc("The notification target platform")
     @header("ServiceBusNotification-Format") platform: string,
+    @doc("The notification target tag expression")
     @header("ServiceBusNotification-Tags") tags?: string
   ): {
+    @doc("Successful status code")
     @statusCode statusCode: 201;
+    @doc("The HTTP location header")
     @header location: string;
+    @doc("The tracking ID header")
     @header trackingId: string;
+    @doc("The correlation ID header")
     @header("x-ms-correlation-request-id") correlationId: string;
   };
 }
 
+@doc("Azure Notification Hubs import and export job operations")
 @route("/jobs")
 namespace NotificationHubJobs {
+  @doc("Create an import/export Azure Notification Hubs job")
   @post
   op create(
+    @doc("The HTTP Content-Type header")
     @header("Content-Type") contentType: "application/atom+xml;type=entry;charset=utf-8",
+    @doc("The Azure Notification Hub import/export job to create")
     @body notificationHubJob: NotificationHubJob
   ): {
+    @doc("Successful status code")
     @statusCode statusCode: 201;
+    @doc("The newly created Azure Notification Hubs import/export job")
     @body notificationHubJob: NotificationHubJob;
   };
 
+  @doc("Get an import/export Azure Notification Hubs job")
   @get
   op get(
+    @doc("The job ID")
     @path jobId: string;
   ): {
+    @doc("Successful status code")
     @statusCode statusCode: 200;
+    @doc("The matching Azure Notification Hubs import/export job")
     @body notificationHubJob: NotificationHubJob;
   };
 
+  @doc("List all import/export Azure Notification Hubs jobs")
   @get
   op list(): {
+    @doc("Successful status code")
     @statusCode statusCode: 200;
+    @doc("The Azure Notification Hubs import/export jobs")
     @body notificationHubJobs: NotificationHubJob[];
   };
 }

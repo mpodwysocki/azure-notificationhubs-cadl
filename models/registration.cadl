@@ -4,102 +4,177 @@ using Cadl.Rest;
 
 namespace NotificationHubs.Models;
 
-@discriminator("type")
+@discriminator("platform")
+@doc("Represents an Azure Notification Hubs registration description")
 model RegistrationDescription {
+  @doc("The registration ID")
   registrationId?: string;
+  @doc("The registration tags comma separated list")
   tags?: string;
+  @doc("The registration etag")
   etag?: string;
+  @doc("The registration push variables property bag")
   pushVariables?: Record<string>;
+  @doc("The registration expiration time")
   expirationTime?: plainDate;
 }
 
+@doc("Represents an ADM based Azure Notification Hubs registration description")
 model AdmRegistrationDescription extends RegistrationDescription {
+  @doc("The ADM registration ID")
   admRegistrationId: string;
-  type: "adm";
+  @doc("The platform of registration description")
+  platform: "adm";
 }
 
+@doc("Represents an ADM template based Azure Notification Hubs registration description")
 model AdmTemplateRegistrationDescription extends RegistrationDescription {
+  @doc("The ADM registration ID")
   admRegistrationId: string;
+  @doc("The registration body template")
   bodyTemplate: string;
+  @doc("The registration template name")
   templateName?: string;
-  type: "admTemplate";
+  @doc("The platform of registration description")
+  platform: "admTemplate";
 }
 
+@doc("Represents an Apple based Azure Notification Hubs registration description")
 model AppleRegistrationDescription extends RegistrationDescription {
+  @doc("The APNs device token")
   deviceToken: string;
-  type: "apple";
+  @doc("The platform of registration description")
+  platform: "apple";
 }
 
+@doc("Represents an Apple template based Azure Notification Hubs registration description")
 model AppleTemplateRegistrationDescription extends RegistrationDescription {
+  @doc("The APNs device token")
   deviceToken: string;
+  @doc("The registration body template")
   bodyTemplate: string;
+  @doc("The registration template name")
   templateName?: string;
+  @doc("The APNs headers for the template")
   apnsHeaders?: Record<string>;
+  @doc("The APNs priority for any message")
   priority?: int32;
-  type: "appleTemplate";
+  @doc("The platform of registration description")
+  platform: "appleTemplate";
 }
 
+@doc("Represents a Baidu based Azure Notification Hubs registration description")
 model BaiduRegistrationDescription extends RegistrationDescription {
+  @doc("The Baidu channel ID")
   baiduChannelId: string;
+  @doc("The baidu user ID")
   baiduUserId: string;
-  type: "baidu";
+  @doc("The platform of registration description")
+  platform: "baidu";
 }
 
+@doc("Represents a Baidu template based Azure Notification Hubs registration description")
 model BaiduTemplateRegistrationDescription extends RegistrationDescription {
+  @doc("The Baidu channel ID")
   baiduChannelId: string;
+  @doc("The baidu user ID")
   baiduUserId: string;
+  @doc("The registration body template")
   bodyTemplate: string;
+  @doc("The registration template name")
   templateName?: string;
-  type: "baiduTemplate";
+  @doc("The platform of registration description")
+  platform: "baiduTemplate";
 }
 
+@doc("Represents a Web Push based Azure Notification Hubs registration description")
 model BrowserRegistrationDescription extends RegistrationDescription {
+  @doc("The Web Push endpoint URL")
   endpoint: string;
+  @doc("The Web Push auth secret")
   auth: string;
+  @doc("The Web Push P256DH")
   p256dh: string;
-  type: "browser";
+  @doc("The platform of registration description")
+  platform: "browser";
 }
 
+@doc("Represents a Web Push template based Azure Notification Hubs registration description")
 model BrowserTemplateRegistrationDescription extends RegistrationDescription {
+  @doc("The Web Push endpoint URL")
+  endpoint: string;
+  @doc("The Web Push auth secret")
+  auth: string;
+  @doc("The Web Push P256DH")
+  p256dh: string;
+  @doc("The registration body template")
   bodyTemplate: string;
+  @doc("The registration template name")
   templateName?: string;
-  type: "browserTemplate";
+  @doc("The platform of registration description")
+  platform: "browserTemplate";
 }
 
+@doc("Represents a Firebase Legacy based Azure Notification Hubs registration description")
 model GcmRegistrationDescription extends RegistrationDescription {
+  @doc("The Firebase Legacy registration ID")
   gcmRegistrationId: string;
-  type: "gcm";
+  @doc("The platform of registration description")
+  platform: "gcm";
 }
 
+@doc("Represents a Firebase Legacy template based Azure Notification Hubs registration description")
 model GcmTemplateRegistrationDescription extends RegistrationDescription {
+  @doc("The Firebase Legacy registration ID")
   gcmRegistrationId: string;
+  @doc("The registration body template")
   bodyTemplate: string;
+  @doc("The registration template name")
   templateName?: string;
-  type: "gcmTemplate";
+  @doc("The platform of registration description")
+  platform: "gcmTemplate";
 }
 
+@doc("Represents a Windows Phone based Azure Notification Hubs registration description")
 model MpnsRegistrationDescription extends RegistrationDescription {
+  @doc("The Windows Phone channel URL")
   channelUri: string;
-  type: "mpns";
+  @doc("The platform of registration description")
+  platform: "mpns";
 }
 
+@doc("Represents a Windows Phone template based Azure Notification Hubs registration description")
 model MpnsTemplateRegistrationDescription extends RegistrationDescription {
+  @doc("The Windows Phone channel URL")
   channelUri: string;
+  @doc("The registration body template")
   bodyTemplate: string;
+  @doc("The registration template name")
   templateName?: string;
+  @doc("The Windows Phone template headers")
   mpnsHeaders?: Record<string>;
-  type: "mpnsTemplate";
+  @doc("The platform of registration description")
+  platform: "mpnsTemplate";
 }
 
+@doc("Represents a Windows based Azure Notification Hubs registration description")
 model WindowsRegistrationDescription extends RegistrationDescription {
+  @doc("The Windows channel URL")
   channelUri: string;
-  type: "windows";
+  @doc("The platform of registration description")
+  platform: "windows";
 }
 
+@doc("Represents a Windows template based Azure Notification Hubs registration description")
 model WindowsTemplateRegistrationDescription extends RegistrationDescription {
+  @doc("The Windows channel URL")
   channelUri: string;
+  @doc("The registration body template")
   bodyTemplate: string;
+  @doc("The registration template name")
   templateName?: string;
+  @doc("The Windows template headers")
   wnsHeaders?: Record<string>;
-  type: "windowsTemplate"
+  @doc("The platform of registration description")
+  platform: "windowsTemplate"
 }

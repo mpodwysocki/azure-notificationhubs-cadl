@@ -5,56 +5,90 @@ using Cadl.Rest;
 namespace NotificationHubs.Models;
 
 @discriminator("platform")
+@doc("Represents an Azure Notification Hubs notification")
 model Notification {
+  @doc("The notification body")
   body: string;
+  @doc("The HTTP headers for the notification")
   headers?: Record<string>;
 }
+
+@doc("Represents an ADM based Azure Notification Hubs notification")
 model AdmNotification extends Notification {
+  @doc("The notification content type")
   contentType: "application/json;charset=utf-8";
+  @doc("The notification platform type")
   platform: "adm";
 }
 
+@doc("Represents an Apple based Azure Notification Hubs notification")
 model AppleNotification extends Notification {
+  @doc("The notification content type")
   contentType: "application/json;charset=utf-8";
+  @doc("The notification platform type")
   platform: "apple";
 }
 
+@doc("Represents a Baidu based Azure Notification Hubs notification")
 model BaiduNotification extends Notification {
+  @doc("The notification content type")
   contentType: "application/json;charset=utf-8";
+  @doc("The notification platform type")
   platform: "baidu";
 }
 
+@doc("Represents a Web Push based Azure Notification Hubs notification")
 model BrowserNotification extends Notification {
+  @doc("The notification content type")
   contentType: "application/json;charset=utf-8";
+  @doc("The notification platform type")
   platform: "browser";
 }
 
+@doc("Represents an Firebase Legacy based Azure Notification Hubs notification")
 model FirebaseLegacyNotification extends Notification {
+  @doc("The notification content type")
   contentType: "application/json;charset=utf-8";
+  @doc("The notification platform type")
   platform: "gcm";
 }
 
+@doc("Represents a Windows based Azure Notification Hubs notification")
 model WindowsNotification extends Notification {
+  @doc("The notification content type")
   platform: "wns";
 }
 
+@doc("Represents a Windows XML based Azure Notification Hubs notification")
 model WindowsXmlNotification extends WindowsNotification {
+  @doc("The notification content type")
   contentType: "application/xml;charset=utf-8";
 }
 
+@doc("Represents a Windows raw based Azure Notification Hubs notification")
 model WindowsRawNotification extends WindowsNotification {
+  @doc("The notification content type")
   contentType: "application/octet-stream";
 }
 
+@doc("Represents the notification outcome")
 model NotificationOutcome {
+  @doc("Successfully delivered notifications outcome count")
   success: int32;
+  @doc("Failed delivery notifications outcome count")
   failure: int32;
+  @doc("The notification outcome results per device")
   results: RegistrationResult[];
 }
 
+@doc("Represents the registration results for the notification outcome")
 model RegistrationResult {
+  @doc("The application platform")
   applicationPlatform: string;
+  @doc("The registration push handle")
   pnsHandle: string;
+  @doc("The registration ID")
   registrationId: string;
+  @doc("The outcome result message")
   outcome: string;
 }

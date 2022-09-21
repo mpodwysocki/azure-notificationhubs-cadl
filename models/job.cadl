@@ -1,32 +1,57 @@
 namespace NotificationHubs.Models;
 
+@doc("Represents the Azure Notification Hubs job types")
 enum NotificationHubJobType {
+  @doc("Export registrations job type")
   ExportRegistrations: "ExportRegistrations",
+  @doc("Import create registrations job type")
   ImportCreateRegistrations: "ImportCreateRegistrations",
+  @doc("Import update registrations job type")
   ImportUpdateRegistrations: "ImportUpdateRegistrations",
+  @doc("Import delete registrations job type")
   ImportDeleteRegistrations: "ImportDeleteRegistrations",
+  @doc("Import create or update registrations job type")
   ImportUpsertRegistrations: "ImportUpsertRegistrations",
 }
 
+@doc("Represents the Azure Notification Hubs job status")
 enum NotificationHubJobStatus {
+  @doc("Job started")
   Started: "Started",
+  @doc("Job running")
   Running: "Running",
+  @doc("Job completed")
   Completed: "Completed",
+  @doc("Job failed")
   Failed: "Failed",
 }
 
+@doc("Represents the Azure Notification Hubs job")
 model NotificationHubJob {
+  @doc("Job ID")
   jobId?: string;
+  @doc("Job output file name")
   outputFileName?: string;
+  @doc("Job failures file name")
   failuresFileName?: string;
+  @doc("Job progress percentage")
   progress?: float64;
+  @doc("Job type")
   type: NotificationHubJobType;
+  @doc("Job status")
   status?: NotificationHubJobStatus;
+  @doc("Job output container URL")
   outputContainerUrl: string;
+  @doc("Job import file URL")
   importFileUrl?: string;
+  @doc("Job input property bag")
   inputProperties?: Record<string>;
+  @doc("Job failure reason")
   failure?: string;
+  @doc("Job output property bag")
   outputProperties?: Record<string>;
+  @doc("Job created time")
   createdAt?: plainDate;
+  @doc("Job updated time")
   updatedAt?: plainDate;
 }
