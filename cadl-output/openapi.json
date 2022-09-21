@@ -1,0 +1,1558 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Azure Notification Hubs Service",
+    "version": "2020-06",
+    "description": "This is the entry point for an Azure Notification Hub"
+  },
+  "tags": [],
+  "paths": {
+    "/installations/{installationId}": {
+      "get": {
+        "operationId": "Installations_get",
+        "parameters": [
+          {
+            "name": "installationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Installation"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "Installations_delete",
+        "parameters": [
+          {
+            "name": "installationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. ",
+            "headers": {
+              "tracking-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-ms-correlation-request-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "Installations_createOrUpdate",
+        "parameters": [
+          {
+            "name": "installationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "tracking-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-ms-correlation-request-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Installation"
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "Installations_update",
+        "parameters": [
+          {
+            "name": "installationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "tracking-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-ms-correlation-request-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Models.JsonPatch"
+                },
+                "x-cadl-name": "Models.JsonPatch[]"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/registrations": {
+      "post": {
+        "operationId": "Registrations_create",
+        "parameters": [
+          {
+            "name": "contentType",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/atom+xml;type=entry;charset=utf-8"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationDescription"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationDescription"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "Registrations_list",
+        "parameters": [
+          {
+            "name": "top",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "continuationToken",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "X-MS-ContinuationToken": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RegistrationDescription"
+                  },
+                  "x-cadl-name": "RegistrationDescription[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/registrations/{registrationId}": {
+      "put": {
+        "operationId": "Registrations_createOrUpdate",
+        "parameters": [
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentType",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/atom+xml;type=entry;charset=utf-8"
+              ]
+            }
+          },
+          {
+            "name": "eTag",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationDescription"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationDescription"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "Registrations_delete",
+        "parameters": [
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "eTag",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "tracking-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-ms-correlation-request-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "Registrations_get",
+        "parameters": [
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationDescription"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tags/{tag}/registrations": {
+      "get": {
+        "operationId": "ListRegistrationsByTag_list",
+        "parameters": [
+          {
+            "name": "tag",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "top",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "continuationToken",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "X-MS-ContinuationToken": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RegistrationDescription"
+                  },
+                  "x-cadl-name": "RegistrationDescription[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/messages": {
+      "post": {
+        "operationId": "Notifications_sendNotification",
+        "parameters": [
+          {
+            "name": "direct",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "test",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "platform",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deviceHandle",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "headers": {
+              "location": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "tracking-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-ms-correlation-request-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Models.NotificationOutcome"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Models.Notification"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/schedulednotifications/{notificationId}": {
+      "delete": {
+        "operationId": "ScheduledNotifications_cancelNotification",
+        "parameters": [
+          {
+            "name": "notificationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "tracking-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-ms-correlation-request-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/schedulednotifications": {
+      "post": {
+        "operationId": "ScheduledNotifications_scheduleNotification",
+        "parameters": [
+          {
+            "name": "scheduleTime",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "platform",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "headers": {
+              "location": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "tracking-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-ms-correlation-request-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Models.Notification"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs": {
+      "post": {
+        "operationId": "NotificationHubJobs_create",
+        "parameters": [
+          {
+            "name": "contentType",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/atom+xml;type=entry;charset=utf-8"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Models.NotificationHubJob"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Models.NotificationHubJob"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "NotificationHubJobs_list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Models.NotificationHubJob"
+                  },
+                  "x-cadl-name": "Models.NotificationHubJob[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobs/{jobId}": {
+      "get": {
+        "operationId": "NotificationHubJobs_get",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Models.NotificationHubJob"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Installation": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/Models.AdmInstallation"
+          },
+          {
+            "$ref": "#/components/schemas/Models.AppleInstallation"
+          },
+          {
+            "$ref": "#/components/schemas/Models.BaiduInstallation"
+          },
+          {
+            "$ref": "#/components/schemas/Models.BrowserInstallation"
+          },
+          {
+            "$ref": "#/components/schemas/Models.FcmLegacyInstallation"
+          },
+          {
+            "$ref": "#/components/schemas/Models.WindowsInstallation"
+          }
+        ]
+      },
+      "Models.JsonPatch": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "$ref": "#/components/schemas/Models.JsonPatchOperation"
+          },
+          "path": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "op",
+          "path"
+        ]
+      },
+      "RegistrationDescription": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/Models.AdmRegistrationDescription"
+          },
+          {
+            "$ref": "#/components/schemas/Models.AdmTemplateRegistrationDescription"
+          },
+          {
+            "$ref": "#/components/schemas/Models.AppleRegistrationDescription"
+          },
+          {
+            "$ref": "#/components/schemas/Models.AppleTemplateRegistrationDescription"
+          },
+          {
+            "$ref": "#/components/schemas/Models.BaiduRegistrationDescription"
+          },
+          {
+            "$ref": "#/components/schemas/Models.BaiduTemplateRegistrationDescription"
+          },
+          {
+            "$ref": "#/components/schemas/Models.BrowserRegistrationDescription"
+          },
+          {
+            "$ref": "#/components/schemas/Models.BrowserTemplateRegistrationDescription"
+          },
+          {
+            "$ref": "#/components/schemas/Models.GcmRegistrationDescription"
+          },
+          {
+            "$ref": "#/components/schemas/Models.GcmTemplateRegistrationDescription"
+          },
+          {
+            "$ref": "#/components/schemas/Models.WindowsRegistrationDescription"
+          },
+          {
+            "$ref": "#/components/schemas/Models.WindowsTemplateRegistrationDescription"
+          }
+        ]
+      },
+      "Models.Notification": {
+        "type": "object",
+        "properties": {
+          "body": {
+            "type": "string"
+          },
+          "headers": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "x-cadl-name": "Record<string>"
+          }
+        },
+        "required": [
+          "body"
+        ]
+      },
+      "Models.NotificationOutcome": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "failure": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Models.RegistrationResult"
+            },
+            "x-cadl-name": "Models.RegistrationResult[]"
+          }
+        },
+        "required": [
+          "success",
+          "failure",
+          "results"
+        ]
+      },
+      "Models.NotificationHubJob": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "string"
+          },
+          "outputFileName": {
+            "type": "string"
+          },
+          "failuresFileName": {
+            "type": "string"
+          },
+          "progress": {
+            "type": "number",
+            "format": "double"
+          },
+          "type": {
+            "$ref": "#/components/schemas/Models.NotificationHubJobType"
+          },
+          "status": {
+            "$ref": "#/components/schemas/Models.NotificationHubJobStatus"
+          },
+          "outputContainerUrl": {
+            "type": "string"
+          },
+          "importFileUrl": {
+            "type": "string"
+          },
+          "inputProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "x-cadl-name": "Record<string>"
+          },
+          "failure": {
+            "type": "string"
+          },
+          "outputProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "x-cadl-name": "Record<string>"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "type",
+          "outputContainerUrl"
+        ]
+      },
+      "Models.AdmInstallation": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "adm"
+            ]
+          }
+        },
+        "required": [
+          "platform"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.SimpleInstallation"
+          }
+        ]
+      },
+      "Models.AppleInstallation": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "apns"
+            ]
+          }
+        },
+        "required": [
+          "platform"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.SimpleInstallation"
+          }
+        ]
+      },
+      "Models.BaiduInstallation": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "baidu"
+            ]
+          }
+        },
+        "required": [
+          "platform"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.SimpleInstallation"
+          }
+        ]
+      },
+      "Models.BrowserInstallation": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "browser"
+            ]
+          },
+          "pushHandle": {
+            "$ref": "#/components/schemas/Models.BrowserPushHandle"
+          }
+        },
+        "required": [
+          "platform",
+          "pushHandle"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.InstallationCommon"
+          }
+        ]
+      },
+      "Models.FcmLegacyInstallation": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "gcm"
+            ]
+          }
+        },
+        "required": [
+          "platform"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.InstallationCommon"
+          }
+        ]
+      },
+      "Models.WindowsInstallation": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "wns"
+            ]
+          }
+        },
+        "required": [
+          "platform"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.SimpleInstallation"
+          }
+        ]
+      },
+      "Models.JsonPatchOperation": {
+        "type": "string",
+        "enum": [
+          "add",
+          "remove",
+          "replace"
+        ]
+      },
+      "Models.AdmRegistrationDescription": {
+        "type": "object",
+        "properties": {
+          "admRegistrationId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "admRegistrationId"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.RegistrationDescriptionCommon"
+          }
+        ]
+      },
+      "Models.AdmTemplateRegistrationDescription": {
+        "type": "object",
+        "properties": {
+          "bodyTemplate": {
+            "type": "string"
+          },
+          "templateName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "bodyTemplate"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.AdmRegistrationDescription"
+          }
+        ]
+      },
+      "Models.AppleRegistrationDescription": {
+        "type": "object",
+        "properties": {
+          "deviceToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "deviceToken"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.RegistrationDescriptionCommon"
+          }
+        ]
+      },
+      "Models.AppleTemplateRegistrationDescription": {
+        "type": "object",
+        "properties": {
+          "bodyTemplate": {
+            "type": "string"
+          },
+          "templateName": {
+            "type": "string"
+          },
+          "apnsHeaders": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "x-cadl-name": "Record<string>"
+          },
+          "priority": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "bodyTemplate"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.AppleRegistrationDescription"
+          }
+        ]
+      },
+      "Models.BaiduRegistrationDescription": {
+        "type": "object",
+        "properties": {
+          "baiduChannelId": {
+            "type": "string"
+          },
+          "baiduUserId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "baiduChannelId",
+          "baiduUserId"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.RegistrationDescriptionCommon"
+          }
+        ]
+      },
+      "Models.BaiduTemplateRegistrationDescription": {
+        "type": "object",
+        "properties": {
+          "bodyTemplate": {
+            "type": "string"
+          },
+          "templateName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "bodyTemplate"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.BaiduRegistrationDescription"
+          }
+        ]
+      },
+      "Models.BrowserRegistrationDescription": {
+        "type": "object",
+        "properties": {
+          "endpoint": {
+            "type": "string"
+          },
+          "auth": {
+            "type": "string"
+          },
+          "p256dh": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "endpoint",
+          "auth",
+          "p256dh"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.RegistrationDescriptionCommon"
+          }
+        ]
+      },
+      "Models.BrowserTemplateRegistrationDescription": {
+        "type": "object",
+        "properties": {
+          "bodyTemplate": {
+            "type": "string"
+          },
+          "templateName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "bodyTemplate"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.BrowserRegistrationDescription"
+          }
+        ]
+      },
+      "Models.GcmRegistrationDescription": {
+        "type": "object",
+        "properties": {
+          "gcmRegistrationId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "gcmRegistrationId"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.RegistrationDescriptionCommon"
+          }
+        ]
+      },
+      "Models.GcmTemplateRegistrationDescription": {
+        "type": "object",
+        "properties": {
+          "bodyTemplate": {
+            "type": "string"
+          },
+          "templateName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "bodyTemplate"
+        ]
+      },
+      "Models.WindowsRegistrationDescription": {
+        "type": "object",
+        "properties": {
+          "channelUri": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "channelUri"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.RegistrationDescriptionCommon"
+          }
+        ]
+      },
+      "Models.WindowsTemplateRegistrationDescription": {
+        "type": "object",
+        "properties": {
+          "bodyTemplate": {
+            "type": "string"
+          },
+          "templateName": {
+            "type": "string"
+          },
+          "wnsHeaders": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "x-cadl-name": "Record<string>"
+          }
+        },
+        "required": [
+          "bodyTemplate"
+        ]
+      },
+      "Models.JsonNotification": {
+        "type": "object",
+        "properties": {
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "application/json;charset=utf-8"
+            ]
+          }
+        },
+        "required": [
+          "contentType"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.Notification"
+          }
+        ]
+      },
+      "Models.WindowsNotification": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "wns"
+            ]
+          }
+        },
+        "required": [
+          "platform"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.Notification"
+          }
+        ]
+      },
+      "Models.RegistrationResult": {
+        "type": "object",
+        "properties": {
+          "applicationPlatform": {
+            "type": "string"
+          },
+          "pnsHandle": {
+            "type": "string"
+          },
+          "registrationId": {
+            "type": "string"
+          },
+          "outcome": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "applicationPlatform",
+          "pnsHandle",
+          "registrationId",
+          "outcome"
+        ]
+      },
+      "Models.NotificationHubJobType": {
+        "type": "string",
+        "enum": [
+          "ExportRegistrations",
+          "ImportCreateRegistrations",
+          "ImportUpdateRegistrations",
+          "ImportDeleteRegistrations",
+          "ImportUpsertRegistrations"
+        ]
+      },
+      "Models.NotificationHubJobStatus": {
+        "type": "string",
+        "enum": [
+          "Started",
+          "Running",
+          "Completed",
+          "Failed"
+        ]
+      },
+      "Models.SimpleInstallation": {
+        "type": "object",
+        "properties": {
+          "pushHandle": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pushHandle"
+        ]
+      },
+      "Models.BrowserPushHandle": {
+        "type": "object",
+        "properties": {
+          "endpoint": {
+            "type": "string"
+          },
+          "p256dh": {
+            "type": "string"
+          },
+          "auth": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "endpoint",
+          "p256dh",
+          "auth"
+        ]
+      },
+      "Models.InstallationCommon": {
+        "type": "object",
+        "properties": {
+          "installationId": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "expirationTime": {
+            "type": "string",
+            "readOnly": true
+          },
+          "lastUpdate": {
+            "type": "string",
+            "readOnly": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "x-cadl-name": "string[]"
+          },
+          "templates": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "x-cadl-name": "Record<string>"
+          }
+        },
+        "required": [
+          "installationId",
+          "tags",
+          "templates"
+        ]
+      },
+      "Models.RegistrationDescriptionCommon": {
+        "type": "object",
+        "properties": {
+          "registrationId": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          },
+          "etag": {
+            "type": "string"
+          },
+          "pushVariables": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "x-cadl-name": "Record<string>"
+          },
+          "expirationTime": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "Models.AdmNotification": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "adm"
+            ]
+          }
+        },
+        "required": [
+          "platform"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.JsonNotification"
+          }
+        ]
+      },
+      "Models.AppleNotification": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "apple"
+            ]
+          }
+        },
+        "required": [
+          "platform"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.JsonNotification"
+          }
+        ]
+      },
+      "Models.BaiduNotification": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "baidu"
+            ]
+          }
+        },
+        "required": [
+          "platform"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.JsonNotification"
+          }
+        ]
+      },
+      "Models.BrowserNotification": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "browser"
+            ]
+          }
+        },
+        "required": [
+          "platform"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.JsonNotification"
+          }
+        ]
+      },
+      "Models.FirebaseLegacyNotification": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "gcm"
+            ]
+          }
+        },
+        "required": [
+          "platform"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.JsonNotification"
+          }
+        ]
+      },
+      "Models.WindowsXmlNotification": {
+        "type": "object",
+        "properties": {
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "application/xml;charset=utf-8"
+            ]
+          }
+        },
+        "required": [
+          "contentType"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.WindowsNotification"
+          }
+        ]
+      },
+      "Models.WindowsRawNotification": {
+        "type": "object",
+        "properties": {
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "application/octet-stream"
+            ]
+          }
+        },
+        "required": [
+          "contentType"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.WindowsNotification"
+          }
+        ]
+      },
+      "Models.MpnsRegistrationDescription": {
+        "type": "object",
+        "properties": {
+          "channelUri": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "channelUri"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.RegistrationDescriptionCommon"
+          }
+        ]
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://{namespaceName}.servicebus.windows.net/{hubName}",
+      "description": "Notification Hubs Namespace",
+      "variables": {
+        "namespaceName": {
+          "default": "",
+          "description": "Notification Hubs Namespace"
+        },
+        "hubName": {
+          "default": "",
+          "description": "Notification Hub Name"
+        }
+      }
+    }
+  ]
+}
