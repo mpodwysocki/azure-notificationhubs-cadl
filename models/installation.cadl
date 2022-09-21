@@ -1,15 +1,11 @@
+import "@cadl-lang/rest";
+
+using Cadl.Rest;
+
 namespace NotificationHubs.Models;
 
-enum InstallationPlatform {
-  Adm: "adm",
-  Apns: "apns",
-  Baidu: "baidu",
-  Browser: "browser",
-  FcmLegacy: "gcm",
-  Wns: "wns",
-}
-
-model InstallationCommon {
+@discriminator("platform")
+model Installation {
   installationId: string;
   userId?: string;
   @visibility("read") expirationTime?: string;
@@ -47,35 +43,26 @@ model BrowserPushHandle {
 }
 
 model AdmInstallation extends SimpleInstallation {
-  platform: InstallationPlatform.Adm;
+  platform: "adm";
 }
 
 model AppleInstallation extends SimpleInstallation {
-  platform: InstallationPlatform.Apns;
+  platform: "apns";
 }
 
 model BaiduInstallation extends SimpleInstallation {
-  platform: InstallationPlatform.Baidu;
+  platform: "baidu";
 }
 
-model BrowserInstallation extends InstallationCommon {
-  platform: InstallationPlatform.Browser;
+model BrowserInstallation extends Installation {
+  platform: "browser";
   pushHandle: BrowserPushHandle;
 }
 
-model FcmLegacyInstallation extends InstallationCommon {
-  platform: InstallationPlatform.FcmLegacy;
+model FcmLegacyInstallation extends Installation {
+  platform: "gcm";
 }
 
 model WindowsInstallation extends SimpleInstallation {
-  platform: InstallationPlatform.Wns;
-}
-
-union Installation {
-  adm: AdmInstallation,
-  apple: AppleInstallation,
-  baidu: BaiduInstallation,
-  browser: BrowserInstallation,
-  fcmLegacy: FcmLegacyInstallation,
-  windows: WindowsInstallation,
+  platform: "wns";
 }

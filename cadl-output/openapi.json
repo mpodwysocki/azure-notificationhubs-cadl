@@ -26,7 +26,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Installation"
+                  "$ref": "#/components/schemas/Models.Installation"
                 }
               }
             }
@@ -96,7 +96,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Installation"
+                "$ref": "#/components/schemas/Models.Installation"
               }
             }
           }
@@ -168,7 +168,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegistrationDescription"
+                  "$ref": "#/components/schemas/Models.RegistrationDescription"
                 }
               }
             }
@@ -178,7 +178,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegistrationDescription"
+                "$ref": "#/components/schemas/Models.RegistrationDescription"
               }
             }
           }
@@ -227,9 +227,9 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/RegistrationDescription"
+                    "$ref": "#/components/schemas/Models.RegistrationDescription"
                   },
-                  "x-cadl-name": "RegistrationDescription[]"
+                  "x-cadl-name": "Models.RegistrationDescription[]"
                 }
               }
             }
@@ -275,7 +275,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegistrationDescription"
+                  "$ref": "#/components/schemas/Models.RegistrationDescription"
                 }
               }
             }
@@ -285,7 +285,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegistrationDescription"
+                "$ref": "#/components/schemas/Models.RegistrationDescription"
               }
             }
           }
@@ -347,7 +347,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegistrationDescription"
+                  "$ref": "#/components/schemas/Models.RegistrationDescription"
                 }
               }
             }
@@ -399,9 +399,9 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/RegistrationDescription"
+                    "$ref": "#/components/schemas/Models.RegistrationDescription"
                   },
-                  "x-cadl-name": "RegistrationDescription[]"
+                  "x-cadl-name": "Models.RegistrationDescription[]"
                 }
               }
             }
@@ -677,26 +677,53 @@
   },
   "components": {
     "schemas": {
-      "Installation": {
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/Models.AdmInstallation"
+      "Models.Installation": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "description": "Discriminator property for Installation."
           },
-          {
-            "$ref": "#/components/schemas/Models.AppleInstallation"
+          "installationId": {
+            "type": "string"
           },
-          {
-            "$ref": "#/components/schemas/Models.BaiduInstallation"
+          "userId": {
+            "type": "string"
           },
-          {
-            "$ref": "#/components/schemas/Models.BrowserInstallation"
+          "expirationTime": {
+            "type": "string",
+            "readOnly": true
           },
-          {
-            "$ref": "#/components/schemas/Models.FcmLegacyInstallation"
+          "lastUpdate": {
+            "type": "string",
+            "readOnly": true
           },
-          {
-            "$ref": "#/components/schemas/Models.WindowsInstallation"
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "x-cadl-name": "string[]"
+          },
+          "templates": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "x-cadl-name": "Record<string>"
           }
+        },
+        "discriminator": {
+          "propertyName": "platform",
+          "mapping": {
+            "browser": "#/components/schemas/Models.BrowserInstallation",
+            "gcm": "#/components/schemas/Models.FcmLegacyInstallation"
+          }
+        },
+        "required": [
+          "installationId",
+          "tags",
+          "templates"
         ]
       },
       "Models.JsonPatch": {
@@ -717,49 +744,61 @@
           "path"
         ]
       },
-      "RegistrationDescription": {
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/Models.AdmRegistrationDescription"
+      "Models.RegistrationDescription": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Discriminator property for RegistrationDescription."
           },
-          {
-            "$ref": "#/components/schemas/Models.AdmTemplateRegistrationDescription"
+          "registrationId": {
+            "type": "string"
           },
-          {
-            "$ref": "#/components/schemas/Models.AppleRegistrationDescription"
+          "tags": {
+            "type": "string"
           },
-          {
-            "$ref": "#/components/schemas/Models.AppleTemplateRegistrationDescription"
+          "etag": {
+            "type": "string"
           },
-          {
-            "$ref": "#/components/schemas/Models.BaiduRegistrationDescription"
+          "pushVariables": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "x-cadl-name": "Record<string>"
           },
-          {
-            "$ref": "#/components/schemas/Models.BaiduTemplateRegistrationDescription"
-          },
-          {
-            "$ref": "#/components/schemas/Models.BrowserRegistrationDescription"
-          },
-          {
-            "$ref": "#/components/schemas/Models.BrowserTemplateRegistrationDescription"
-          },
-          {
-            "$ref": "#/components/schemas/Models.GcmRegistrationDescription"
-          },
-          {
-            "$ref": "#/components/schemas/Models.GcmTemplateRegistrationDescription"
-          },
-          {
-            "$ref": "#/components/schemas/Models.WindowsRegistrationDescription"
-          },
-          {
-            "$ref": "#/components/schemas/Models.WindowsTemplateRegistrationDescription"
+          "expirationTime": {
+            "type": "string",
+            "format": "date"
           }
-        ]
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "adm": "#/components/schemas/Models.AdmRegistrationDescription",
+            "admTemplate": "#/components/schemas/Models.AdmTemplateRegistrationDescription",
+            "apple": "#/components/schemas/Models.AppleRegistrationDescription",
+            "appleTemplate": "#/components/schemas/Models.AppleTemplateRegistrationDescription",
+            "baidu": "#/components/schemas/Models.BaiduRegistrationDescription",
+            "baiduTemplate": "#/components/schemas/Models.BaiduTemplateRegistrationDescription",
+            "browser": "#/components/schemas/Models.BrowserRegistrationDescription",
+            "browserTemplate": "#/components/schemas/Models.BrowserTemplateRegistrationDescription",
+            "gcm": "#/components/schemas/Models.GcmRegistrationDescription",
+            "gcmTemplate": "#/components/schemas/Models.GcmTemplateRegistrationDescription",
+            "mpns": "#/components/schemas/Models.MpnsRegistrationDescription",
+            "mpnsTemplate": "#/components/schemas/Models.MpnsTemplateRegistrationDescription",
+            "windows": "#/components/schemas/Models.WindowsRegistrationDescription",
+            "windowsTemplate": "#/components/schemas/Models.WindowsTemplateRegistrationDescription"
+          }
+        }
       },
       "Models.Notification": {
         "type": "object",
         "properties": {
+          "platform": {
+            "type": "string",
+            "description": "Discriminator property for Notification."
+          },
           "body": {
             "type": "string"
           },
@@ -769,6 +808,17 @@
               "type": "string"
             },
             "x-cadl-name": "Record<string>"
+          }
+        },
+        "discriminator": {
+          "propertyName": "platform",
+          "mapping": {
+            "adm": "#/components/schemas/Models.AdmNotification",
+            "apple": "#/components/schemas/Models.AppleNotification",
+            "baidu": "#/components/schemas/Models.BaiduNotification",
+            "browser": "#/components/schemas/Models.BrowserNotification",
+            "gcm": "#/components/schemas/Models.FirebaseLegacyNotification",
+            "wns": "#/components/schemas/Models.WindowsNotification"
           }
         },
         "required": [
@@ -859,63 +909,6 @@
           "outputContainerUrl"
         ]
       },
-      "Models.AdmInstallation": {
-        "type": "object",
-        "properties": {
-          "platform": {
-            "type": "string",
-            "enum": [
-              "adm"
-            ]
-          }
-        },
-        "required": [
-          "platform"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.SimpleInstallation"
-          }
-        ]
-      },
-      "Models.AppleInstallation": {
-        "type": "object",
-        "properties": {
-          "platform": {
-            "type": "string",
-            "enum": [
-              "apns"
-            ]
-          }
-        },
-        "required": [
-          "platform"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.SimpleInstallation"
-          }
-        ]
-      },
-      "Models.BaiduInstallation": {
-        "type": "object",
-        "properties": {
-          "platform": {
-            "type": "string",
-            "enum": [
-              "baidu"
-            ]
-          }
-        },
-        "required": [
-          "platform"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.SimpleInstallation"
-          }
-        ]
-      },
       "Models.BrowserInstallation": {
         "type": "object",
         "properties": {
@@ -935,7 +928,7 @@
         ],
         "allOf": [
           {
-            "$ref": "#/components/schemas/Models.InstallationCommon"
+            "$ref": "#/components/schemas/Models.Installation"
           }
         ]
       },
@@ -954,26 +947,7 @@
         ],
         "allOf": [
           {
-            "$ref": "#/components/schemas/Models.InstallationCommon"
-          }
-        ]
-      },
-      "Models.WindowsInstallation": {
-        "type": "object",
-        "properties": {
-          "platform": {
-            "type": "string",
-            "enum": [
-              "wns"
-            ]
-          }
-        },
-        "required": [
-          "platform"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.SimpleInstallation"
+            "$ref": "#/components/schemas/Models.Installation"
           }
         ]
       },
@@ -990,33 +964,51 @@
         "properties": {
           "admRegistrationId": {
             "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "adm"
+            ]
           }
         },
         "required": [
-          "admRegistrationId"
+          "admRegistrationId",
+          "type"
         ],
         "allOf": [
           {
-            "$ref": "#/components/schemas/Models.RegistrationDescriptionCommon"
+            "$ref": "#/components/schemas/Models.RegistrationDescription"
           }
         ]
       },
       "Models.AdmTemplateRegistrationDescription": {
         "type": "object",
         "properties": {
+          "admRegistrationId": {
+            "type": "string"
+          },
           "bodyTemplate": {
             "type": "string"
           },
           "templateName": {
             "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "admTemplate"
+            ]
           }
         },
         "required": [
-          "bodyTemplate"
+          "admRegistrationId",
+          "bodyTemplate",
+          "type"
         ],
         "allOf": [
           {
-            "$ref": "#/components/schemas/Models.AdmRegistrationDescription"
+            "$ref": "#/components/schemas/Models.RegistrationDescription"
           }
         ]
       },
@@ -1025,20 +1017,30 @@
         "properties": {
           "deviceToken": {
             "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "apple"
+            ]
           }
         },
         "required": [
-          "deviceToken"
+          "deviceToken",
+          "type"
         ],
         "allOf": [
           {
-            "$ref": "#/components/schemas/Models.RegistrationDescriptionCommon"
+            "$ref": "#/components/schemas/Models.RegistrationDescription"
           }
         ]
       },
       "Models.AppleTemplateRegistrationDescription": {
         "type": "object",
         "properties": {
+          "deviceToken": {
+            "type": "string"
+          },
           "bodyTemplate": {
             "type": "string"
           },
@@ -1055,14 +1057,22 @@
           "priority": {
             "type": "integer",
             "format": "int32"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "appleTemplate"
+            ]
           }
         },
         "required": [
-          "bodyTemplate"
+          "deviceToken",
+          "bodyTemplate",
+          "type"
         ],
         "allOf": [
           {
-            "$ref": "#/components/schemas/Models.AppleRegistrationDescription"
+            "$ref": "#/components/schemas/Models.RegistrationDescription"
           }
         ]
       },
@@ -1074,34 +1084,56 @@
           },
           "baiduUserId": {
             "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "baidu"
+            ]
           }
         },
         "required": [
           "baiduChannelId",
-          "baiduUserId"
+          "baiduUserId",
+          "type"
         ],
         "allOf": [
           {
-            "$ref": "#/components/schemas/Models.RegistrationDescriptionCommon"
+            "$ref": "#/components/schemas/Models.RegistrationDescription"
           }
         ]
       },
       "Models.BaiduTemplateRegistrationDescription": {
         "type": "object",
         "properties": {
+          "baiduChannelId": {
+            "type": "string"
+          },
+          "baiduUserId": {
+            "type": "string"
+          },
           "bodyTemplate": {
             "type": "string"
           },
           "templateName": {
             "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "baiduTemplate"
+            ]
           }
         },
         "required": [
-          "bodyTemplate"
+          "baiduChannelId",
+          "baiduUserId",
+          "bodyTemplate",
+          "type"
         ],
         "allOf": [
           {
-            "$ref": "#/components/schemas/Models.BaiduRegistrationDescription"
+            "$ref": "#/components/schemas/Models.RegistrationDescription"
           }
         ]
       },
@@ -1116,16 +1148,23 @@
           },
           "p256dh": {
             "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "browser"
+            ]
           }
         },
         "required": [
           "endpoint",
           "auth",
-          "p256dh"
+          "p256dh",
+          "type"
         ],
         "allOf": [
           {
-            "$ref": "#/components/schemas/Models.RegistrationDescriptionCommon"
+            "$ref": "#/components/schemas/Models.RegistrationDescription"
           }
         ]
       },
@@ -1137,14 +1176,21 @@
           },
           "templateName": {
             "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "browserTemplate"
+            ]
           }
         },
         "required": [
-          "bodyTemplate"
+          "bodyTemplate",
+          "type"
         ],
         "allOf": [
           {
-            "$ref": "#/components/schemas/Models.BrowserRegistrationDescription"
+            "$ref": "#/components/schemas/Models.RegistrationDescription"
           }
         ]
       },
@@ -1153,29 +1199,112 @@
         "properties": {
           "gcmRegistrationId": {
             "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "gcm"
+            ]
           }
         },
         "required": [
-          "gcmRegistrationId"
+          "gcmRegistrationId",
+          "type"
         ],
         "allOf": [
           {
-            "$ref": "#/components/schemas/Models.RegistrationDescriptionCommon"
+            "$ref": "#/components/schemas/Models.RegistrationDescription"
           }
         ]
       },
       "Models.GcmTemplateRegistrationDescription": {
         "type": "object",
         "properties": {
+          "gcmRegistrationId": {
+            "type": "string"
+          },
           "bodyTemplate": {
             "type": "string"
           },
           "templateName": {
             "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "gcmTemplate"
+            ]
           }
         },
         "required": [
-          "bodyTemplate"
+          "gcmRegistrationId",
+          "bodyTemplate",
+          "type"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.RegistrationDescription"
+          }
+        ]
+      },
+      "Models.MpnsRegistrationDescription": {
+        "type": "object",
+        "properties": {
+          "channelUri": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "mpns"
+            ]
+          }
+        },
+        "required": [
+          "channelUri",
+          "type"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.RegistrationDescription"
+          }
+        ]
+      },
+      "Models.MpnsTemplateRegistrationDescription": {
+        "type": "object",
+        "properties": {
+          "channelUri": {
+            "type": "string"
+          },
+          "bodyTemplate": {
+            "type": "string"
+          },
+          "templateName": {
+            "type": "string"
+          },
+          "mpnsHeaders": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "x-cadl-name": "Record<string>"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "mpnsTemplate"
+            ]
+          }
+        },
+        "required": [
+          "channelUri",
+          "bodyTemplate",
+          "type"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.RegistrationDescription"
+          }
         ]
       },
       "Models.WindowsRegistrationDescription": {
@@ -1183,20 +1312,30 @@
         "properties": {
           "channelUri": {
             "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "windows"
+            ]
           }
         },
         "required": [
-          "channelUri"
+          "channelUri",
+          "type"
         ],
         "allOf": [
           {
-            "$ref": "#/components/schemas/Models.RegistrationDescriptionCommon"
+            "$ref": "#/components/schemas/Models.RegistrationDescription"
           }
         ]
       },
       "Models.WindowsTemplateRegistrationDescription": {
         "type": "object",
         "properties": {
+          "channelUri": {
+            "type": "string"
+          },
           "bodyTemplate": {
             "type": "string"
           },
@@ -1209,13 +1348,26 @@
               "type": "string"
             },
             "x-cadl-name": "Record<string>"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "windowsTemplate"
+            ]
           }
         },
         "required": [
-          "bodyTemplate"
+          "channelUri",
+          "bodyTemplate",
+          "type"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.RegistrationDescription"
+          }
         ]
       },
-      "Models.JsonNotification": {
+      "Models.AdmNotification": {
         "type": "object",
         "properties": {
           "contentType": {
@@ -1223,10 +1375,121 @@
             "enum": [
               "application/json;charset=utf-8"
             ]
+          },
+          "platform": {
+            "type": "string",
+            "enum": [
+              "adm"
+            ]
           }
         },
         "required": [
-          "contentType"
+          "contentType",
+          "platform"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.Notification"
+          }
+        ]
+      },
+      "Models.AppleNotification": {
+        "type": "object",
+        "properties": {
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "application/json;charset=utf-8"
+            ]
+          },
+          "platform": {
+            "type": "string",
+            "enum": [
+              "apple"
+            ]
+          }
+        },
+        "required": [
+          "contentType",
+          "platform"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.Notification"
+          }
+        ]
+      },
+      "Models.BaiduNotification": {
+        "type": "object",
+        "properties": {
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "application/json;charset=utf-8"
+            ]
+          },
+          "platform": {
+            "type": "string",
+            "enum": [
+              "baidu"
+            ]
+          }
+        },
+        "required": [
+          "contentType",
+          "platform"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.Notification"
+          }
+        ]
+      },
+      "Models.BrowserNotification": {
+        "type": "object",
+        "properties": {
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "application/json;charset=utf-8"
+            ]
+          },
+          "platform": {
+            "type": "string",
+            "enum": [
+              "browser"
+            ]
+          }
+        },
+        "required": [
+          "contentType",
+          "platform"
+        ],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Models.Notification"
+          }
+        ]
+      },
+      "Models.FirebaseLegacyNotification": {
+        "type": "object",
+        "properties": {
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "application/json;charset=utf-8"
+            ]
+          },
+          "platform": {
+            "type": "string",
+            "enum": [
+              "gcm"
+            ]
+          }
+        },
+        "required": [
+          "contentType",
+          "platform"
         ],
         "allOf": [
           {
@@ -1295,17 +1558,6 @@
           "Failed"
         ]
       },
-      "Models.SimpleInstallation": {
-        "type": "object",
-        "properties": {
-          "pushHandle": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "pushHandle"
-        ]
-      },
       "Models.BrowserPushHandle": {
         "type": "object",
         "properties": {
@@ -1323,164 +1575,6 @@
           "endpoint",
           "p256dh",
           "auth"
-        ]
-      },
-      "Models.InstallationCommon": {
-        "type": "object",
-        "properties": {
-          "installationId": {
-            "type": "string"
-          },
-          "userId": {
-            "type": "string"
-          },
-          "expirationTime": {
-            "type": "string",
-            "readOnly": true
-          },
-          "lastUpdate": {
-            "type": "string",
-            "readOnly": true
-          },
-          "tags": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "x-cadl-name": "string[]"
-          },
-          "templates": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "x-cadl-name": "Record<string>"
-          }
-        },
-        "required": [
-          "installationId",
-          "tags",
-          "templates"
-        ]
-      },
-      "Models.RegistrationDescriptionCommon": {
-        "type": "object",
-        "properties": {
-          "registrationId": {
-            "type": "string"
-          },
-          "tags": {
-            "type": "string"
-          },
-          "etag": {
-            "type": "string"
-          },
-          "pushVariables": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "x-cadl-name": "Record<string>"
-          },
-          "expirationTime": {
-            "type": "string",
-            "format": "date"
-          }
-        }
-      },
-      "Models.AdmNotification": {
-        "type": "object",
-        "properties": {
-          "platform": {
-            "type": "string",
-            "enum": [
-              "adm"
-            ]
-          }
-        },
-        "required": [
-          "platform"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.JsonNotification"
-          }
-        ]
-      },
-      "Models.AppleNotification": {
-        "type": "object",
-        "properties": {
-          "platform": {
-            "type": "string",
-            "enum": [
-              "apple"
-            ]
-          }
-        },
-        "required": [
-          "platform"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.JsonNotification"
-          }
-        ]
-      },
-      "Models.BaiduNotification": {
-        "type": "object",
-        "properties": {
-          "platform": {
-            "type": "string",
-            "enum": [
-              "baidu"
-            ]
-          }
-        },
-        "required": [
-          "platform"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.JsonNotification"
-          }
-        ]
-      },
-      "Models.BrowserNotification": {
-        "type": "object",
-        "properties": {
-          "platform": {
-            "type": "string",
-            "enum": [
-              "browser"
-            ]
-          }
-        },
-        "required": [
-          "platform"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.JsonNotification"
-          }
-        ]
-      },
-      "Models.FirebaseLegacyNotification": {
-        "type": "object",
-        "properties": {
-          "platform": {
-            "type": "string",
-            "enum": [
-              "gcm"
-            ]
-          }
-        },
-        "required": [
-          "platform"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.JsonNotification"
-          }
         ]
       },
       "Models.WindowsXmlNotification": {
@@ -1518,22 +1612,6 @@
         "allOf": [
           {
             "$ref": "#/components/schemas/Models.WindowsNotification"
-          }
-        ]
-      },
-      "Models.MpnsRegistrationDescription": {
-        "type": "object",
-        "properties": {
-          "channelUri": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "channelUri"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.RegistrationDescriptionCommon"
           }
         ]
       }

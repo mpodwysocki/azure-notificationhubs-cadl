@@ -1,46 +1,41 @@
+import "@cadl-lang/rest";
+
+using Cadl.Rest;
+
 namespace NotificationHubs.Models;
 
-enum NotificationPlatform {
-  Adm: "adm",
-  Apple: "apple",
-  Baidu: "baidu",
-  Browser: "browser",
-  FcmLegacy: "gcm",
-  Template: "template",
-  Wns: "wns",
-}
-
+@discriminator("platform")
 model Notification {
   body: string;
   headers?: Record<string>;
 }
-
-model JsonNotification extends Notification {
+model AdmNotification extends Notification {
   contentType: "application/json;charset=utf-8";
+  platform: "adm";
 }
 
-model AdmNotification extends JsonNotification {
-  platform: NotificationPlatform.Adm;
+model AppleNotification extends Notification {
+  contentType: "application/json;charset=utf-8";
+  platform: "apple";
 }
 
-model AppleNotification extends JsonNotification {
-  platform: NotificationPlatform.Apple;
+model BaiduNotification extends Notification {
+  contentType: "application/json;charset=utf-8";
+  platform: "baidu";
 }
 
-model BaiduNotification extends JsonNotification {
-  platform: NotificationPlatform.Baidu;
+model BrowserNotification extends Notification {
+  contentType: "application/json;charset=utf-8";
+  platform: "browser";
 }
 
-model BrowserNotification extends JsonNotification {
-  platform: NotificationPlatform.Browser;
-}
-
-model FirebaseLegacyNotification extends JsonNotification {
-  platform: NotificationPlatform.FcmLegacy;
+model FirebaseLegacyNotification extends Notification {
+  contentType: "application/json;charset=utf-8";
+  platform: "gcm";
 }
 
 model WindowsNotification extends Notification {
-  platform: NotificationPlatform.Wns;
+  platform: "wns";
 }
 
 model WindowsXmlNotification extends WindowsNotification {

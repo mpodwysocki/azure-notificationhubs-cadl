@@ -1,6 +1,11 @@
+import "@cadl-lang/rest";
+
+using Cadl.Rest;
+
 namespace NotificationHubs.Models;
 
-model RegistrationDescriptionCommon {
+@discriminator("type")
+model RegistrationDescription {
   registrationId?: string;
   tags?: string;
   etag?: string;
@@ -8,87 +13,93 @@ model RegistrationDescriptionCommon {
   expirationTime?: plainDate;
 }
 
-model AdmRegistrationDescription extends RegistrationDescriptionCommon {
+model AdmRegistrationDescription extends RegistrationDescription {
   admRegistrationId: string;
+  type: "adm";
 }
 
-model AdmTemplateRegistrationDescription extends AdmRegistrationDescription {
+model AdmTemplateRegistrationDescription extends RegistrationDescription {
+  admRegistrationId: string;
   bodyTemplate: string;
   templateName?: string;
+  type: "admTemplate";
 }
 
-model AppleRegistrationDescription extends RegistrationDescriptionCommon {
+model AppleRegistrationDescription extends RegistrationDescription {
   deviceToken: string;
+  type: "apple";
 }
 
-model AppleTemplateRegistrationDescription extends AppleRegistrationDescription {
+model AppleTemplateRegistrationDescription extends RegistrationDescription {
+  deviceToken: string;
   bodyTemplate: string;
   templateName?: string;
   apnsHeaders?: Record<string>;
   priority?: int32;
+  type: "appleTemplate";
 }
 
-model BaiduRegistrationDescription extends RegistrationDescriptionCommon {
+model BaiduRegistrationDescription extends RegistrationDescription {
   baiduChannelId: string;
   baiduUserId: string;
+  type: "baidu";
 }
 
-model BaiduTemplateRegistrationDescription extends BaiduRegistrationDescription {
+model BaiduTemplateRegistrationDescription extends RegistrationDescription {
+  baiduChannelId: string;
+  baiduUserId: string;
   bodyTemplate: string;
   templateName?: string;
+  type: "baiduTemplate";
 }
 
-model BrowserRegistrationDescription extends RegistrationDescriptionCommon {
+model BrowserRegistrationDescription extends RegistrationDescription {
   endpoint: string;
   auth: string;
   p256dh: string;
+  type: "browser";
 }
 
-model BrowserTemplateRegistrationDescription extends BrowserRegistrationDescription {
+model BrowserTemplateRegistrationDescription extends RegistrationDescription {
   bodyTemplate: string;
   templateName?: string;
+  type: "browserTemplate";
 }
 
-model GcmRegistrationDescription extends RegistrationDescriptionCommon {
+model GcmRegistrationDescription extends RegistrationDescription {
   gcmRegistrationId: string;
+  type: "gcm";
 }
 
-model GcmTemplateRegistrationDescription {
+model GcmTemplateRegistrationDescription extends RegistrationDescription {
+  gcmRegistrationId: string;
   bodyTemplate: string;
   templateName?: string;
+  type: "gcmTemplate";
 }
 
-model MpnsRegistrationDescription extends RegistrationDescriptionCommon {
+model MpnsRegistrationDescription extends RegistrationDescription {
   channelUri: string;
+  type: "mpns";
 }
 
-model MpnsTemplateRegistrationDescription {
+model MpnsTemplateRegistrationDescription extends RegistrationDescription {
+  channelUri: string;
   bodyTemplate: string;
   templateName?: string;
   mpnsHeaders?: Record<string>;
+  type: "mpnsTemplate";
 }
 
-model WindowsRegistrationDescription extends RegistrationDescriptionCommon {
+model WindowsRegistrationDescription extends RegistrationDescription {
   channelUri: string;
+  type: "windows";
 }
 
-model WindowsTemplateRegistrationDescription {
+model WindowsTemplateRegistrationDescription extends RegistrationDescription {
+  channelUri: string;
   bodyTemplate: string;
   templateName?: string;
   wnsHeaders?: Record<string>;
-}
-
-union RegistrationDescription {
-  adm: AdmRegistrationDescription,
-  admTemplate: AdmTemplateRegistrationDescription,
-  apple: AppleRegistrationDescription,
-  appleTemplate: AppleTemplateRegistrationDescription,
-  baidu: BaiduRegistrationDescription,
-  baiduTemplate: BaiduTemplateRegistrationDescription,
-  browser: BrowserRegistrationDescription,
-  browserTemplate: BrowserTemplateRegistrationDescription,
-  gcm: GcmRegistrationDescription,
-  gcmTemplate: GcmTemplateRegistrationDescription,
-  windows: WindowsRegistrationDescription,
-  windowsTemplate: WindowsTemplateRegistrationDescription,
+  type: "windowsTemplate"
 }
