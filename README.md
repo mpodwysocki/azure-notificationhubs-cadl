@@ -8,6 +8,7 @@ This builds for the following emitters:
 - Java
 - OpenAPI3
 - Python
+- TypeScript
 
 ## C# Support
 
@@ -52,6 +53,16 @@ npm run build:python
 ```
 
 This will build the notificationhubs project in the `cadl-output/python` directory.
+
+## TypeScript Support
+
+To build the TypeScript Rest Level Client (RLC), run the following command:
+
+```bash
+npm run build:ts
+```
+
+**NOTE** This uses the [autorest.typescript](https://github.com/Azure/autorest.typescript/) CADL extension directly instead from npm.  See the [cadl-rlc-emitter](https://github.com/Azure/autorest.typescript/tree/cadl-integration/packages/cadl-rlc-emitter) package for CADL RLC generation.
 
 ## LICENSE
 

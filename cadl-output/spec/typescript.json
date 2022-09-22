@@ -1,0 +1,9 @@
+{
+  "generateMetadata": true,
+  "includeShortcuts": true,
+  "packageDetails": {
+    "name": "@azure/notification-hubs-rlc",
+    "description": "Azure Notification Hubs Rest Level Client",
+    "version": "1.0.0-beta.1"
+  }
+}
