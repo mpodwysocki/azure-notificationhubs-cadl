@@ -1,0 +1,2876 @@
+language:
+  default:
+    name: Azure Notification Hubs Service
+    description: The Azure Notification Hubs service
+    namespace: NotificationHubs
+  java:
+    namespace: com.notificationhubs
+protocol: {}
+info:
+  title: Azure Notification Hubs Service
+  description: The Azure Notification Hubs service
+schemas:
+  strings:
+    - &ref_1
+      language:
+        default:
+          name: namespaceName
+          description: ''
+      protocol: {}
+      type: string
+    - &ref_0
+      language:
+        default:
+          name: string
+          description: simple string
+      protocol: {}
+      type: string
+  constants:
+    - &ref_33
+      language:
+        default:
+          name: accept
+          description: 'Accept: application/json'
+      protocol: {}
+      type: constant
+      valueType: *ref_0
+      value:
+        value: application/json
+    - &ref_43
+      language:
+        default:
+          name: contentType
+          description: ''
+      protocol: {}
+      type: constant
+      valueType: *ref_0
+      value:
+        value: application/atom+xml;type=entry;charset=utf-8
+  objects:
+    - &ref_2
+      language:
+        default:
+          name: Installation
+          description: Represents an Azure Notification Hubs Installation
+          namespace: NotificationHubs.Models
+        java:
+          namespace: com.notificationhubs.models
+      protocol: {}
+      type: object
+      discriminator:
+        property:
+          language:
+            default:
+              name: platform
+              description: platform
+          protocol: {}
+          schema: *ref_0
+          serializedName: platform
+          required: true
+        immediate: {}
+        all: {}
+      properties:
+        - language:
+            default:
+              name: installationId
+              description: The installation ID
+          protocol: {}
+          schema: *ref_1
+          serializedName: installationId
+          required: true
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: userId
+              description: The user ID
+          protocol: {}
+          schema: *ref_1
+          serializedName: userId
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: expirationTime
+              description: The installation expiration time
+          protocol: {}
+          schema: *ref_1
+          serializedName: expirationTime
+          required: false
+          nullable: false
+          readOnly: true
+        - language:
+            default:
+              name: lastUpdate
+              description: The last updated date
+          protocol: {}
+          schema: *ref_1
+          serializedName: lastUpdate
+          required: false
+          nullable: false
+          readOnly: true
+        - language:
+            default:
+              name: tags
+              description: The itags for the installation
+          protocol: {}
+          schema: &ref_25
+            language:
+              default:
+                name: tags
+                description: ''
+            protocol: {}
+            type: array
+            elementType: *ref_1
+          serializedName: tags
+          required: true
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: templates
+              description: The templates for the installation
+          protocol: {}
+          schema: &ref_6
+            language:
+              default:
+                name: templates
+                description: ''
+            protocol: {}
+            type: dictionary
+            elementType: *ref_1
+          serializedName: templates
+          required: true
+          nullable: false
+          readOnly: false
+      children:
+        immediate:
+          - &ref_3
+            language:
+              default:
+                name: BrowserInstallation
+                description: >-
+                  Represents an Web Push based Azure Notification Hubs
+                  Installation
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: object
+            parents:
+              immediate:
+                - *ref_2
+              all:
+                - *ref_2
+            discriminatorValue: browser
+            properties:
+              - language:
+                  default:
+                    name: pushHandle
+                    description: The Web API push handle for the installation
+                protocol: {}
+                schema: &ref_5
+                  language:
+                    default:
+                      name: BrowserPushHandle
+                      description: Represents a Web Push push handle
+                      namespace: NotificationHubs.Models
+                    java:
+                      namespace: com.notificationhubs.models
+                  protocol: {}
+                  type: object
+                  properties:
+                    - language:
+                        default:
+                          name: endpoint
+                          description: The Web Push API endpoint
+                      protocol: {}
+                      schema: *ref_1
+                      serializedName: endpoint
+                      required: true
+                      nullable: false
+                      readOnly: false
+                    - language:
+                        default:
+                          name: p256dh
+                          description: The Web Push API P256DH key
+                      protocol: {}
+                      schema: *ref_1
+                      serializedName: p256dh
+                      required: true
+                      nullable: false
+                      readOnly: false
+                    - language:
+                        default:
+                          name: auth
+                          description: The Web Push API auth secret
+                      protocol: {}
+                      schema: *ref_1
+                      serializedName: auth
+                      required: true
+                      nullable: false
+                      readOnly: false
+                  usage:
+                    - output
+                    - input
+                serializedName: pushHandle
+                required: true
+                nullable: false
+                readOnly: false
+            usage:
+              - output
+              - input
+          - &ref_4
+            language:
+              default:
+                name: FcmLegacyInstallation
+                description: >-
+                  Represents an FCM Legacy based Azure Notification Hubs
+                  Installation
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: object
+            parents:
+              immediate:
+                - *ref_2
+              all:
+                - *ref_2
+            discriminatorValue: gcm
+            usage:
+              - output
+              - input
+        all:
+          - *ref_3
+          - *ref_4
+      usage:
+        - output
+        - input
+    - *ref_3
+    - *ref_5
+    - *ref_4
+    - &ref_26
+      language:
+        default:
+          name: JsonPatch
+          description: Represents a JSON Patch operation
+          namespace: NotificationHubs.Models
+        java:
+          namespace: com.notificationhubs.models
+      protocol: {}
+      type: object
+      properties:
+        - language:
+            default:
+              name: op
+              description: The JSON patch operation type
+          protocol: {}
+          schema: &ref_29
+            language:
+              default:
+                name: JsonPatchOperation
+                description: Represents a JSON Patch operation type
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: sealed-choice
+            choiceType: *ref_0
+            choices:
+              - value: add
+                language:
+                  default:
+                    name: Add
+                    description: The add JSON patch operation type
+              - value: remove
+                language:
+                  default:
+                    name: Remove
+                    description: The remove JSON patch operation type
+              - value: replace
+                language:
+                  default:
+                    name: Replace
+                    description: The replace JSON patch operation type
+            usage:
+              - input
+          serializedName: op
+          required: true
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: path
+              description: The JSON patch path
+          protocol: {}
+          schema: *ref_1
+          serializedName: path
+          required: true
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: value
+              description: The JSON patch value
+          protocol: {}
+          schema: *ref_1
+          serializedName: value
+          required: false
+          nullable: false
+          readOnly: false
+      usage:
+        - input
+    - &ref_7
+      language:
+        default:
+          name: RegistrationDescription
+          description: Represents an Azure Notification Hubs registration description
+          namespace: NotificationHubs.Models
+        java:
+          namespace: com.notificationhubs.models
+      protocol: {}
+      type: object
+      discriminator:
+        property:
+          language:
+            default:
+              name: platform
+              description: platform
+          protocol: {}
+          schema: *ref_0
+          serializedName: platform
+          required: true
+        immediate: {}
+        all: {}
+      properties:
+        - language:
+            default:
+              name: registrationId
+              description: The registration ID
+          protocol: {}
+          schema: *ref_1
+          serializedName: registrationId
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: tags
+              description: The registration tags comma separated list
+          protocol: {}
+          schema: *ref_1
+          serializedName: tags
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: etag
+              description: The registration etag
+          protocol: {}
+          schema: *ref_1
+          serializedName: etag
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: pushVariables
+              description: The registration push variables property bag
+          protocol: {}
+          schema: *ref_6
+          serializedName: pushVariables
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: expirationTime
+              description: The registration expiration time
+          protocol: {}
+          schema: &ref_24
+            language:
+              default:
+                name: expirationTime
+                description: ''
+            protocol: {}
+            type: date
+          serializedName: expirationTime
+          required: false
+          nullable: false
+          readOnly: false
+      children:
+        immediate:
+          - &ref_8
+            language:
+              default:
+                name: AdmRegistrationDescription
+                description: >-
+                  Represents an ADM based Azure Notification Hubs registration
+                  description
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: object
+            parents:
+              immediate:
+                - *ref_7
+              all:
+                - *ref_7
+            discriminatorValue: adm
+            properties:
+              - language:
+                  default:
+                    name: admRegistrationId
+                    description: The ADM registration ID
+                protocol: {}
+                schema: *ref_1
+                serializedName: admRegistrationId
+                required: true
+                nullable: false
+                readOnly: false
+            usage:
+              - input
+              - output
+          - &ref_9
+            language:
+              default:
+                name: AdmTemplateRegistrationDescription
+                description: >-
+                  Represents an ADM template based Azure Notification Hubs
+                  registration description
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: object
+            parents:
+              immediate:
+                - *ref_7
+              all:
+                - *ref_7
+            discriminatorValue: admTemplate
+            properties:
+              - language:
+                  default:
+                    name: admRegistrationId
+                    description: The ADM registration ID
+                protocol: {}
+                schema: *ref_1
+                serializedName: admRegistrationId
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: bodyTemplate
+                    description: The registration body template
+                protocol: {}
+                schema: *ref_1
+                serializedName: bodyTemplate
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: templateName
+                    description: The registration template name
+                protocol: {}
+                schema: *ref_1
+                serializedName: templateName
+                required: false
+                nullable: false
+                readOnly: false
+            usage:
+              - input
+              - output
+          - &ref_10
+            language:
+              default:
+                name: AppleRegistrationDescription
+                description: >-
+                  Represents an Apple based Azure Notification Hubs registration
+                  description
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: object
+            parents:
+              immediate:
+                - *ref_7
+              all:
+                - *ref_7
+            discriminatorValue: apple
+            properties:
+              - language:
+                  default:
+                    name: deviceToken
+                    description: The APNs device token
+                protocol: {}
+                schema: *ref_1
+                serializedName: deviceToken
+                required: true
+                nullable: false
+                readOnly: false
+            usage:
+              - input
+              - output
+          - &ref_11
+            language:
+              default:
+                name: AppleTemplateRegistrationDescription
+                description: >-
+                  Represents an Apple template based Azure Notification Hubs
+                  registration description
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: object
+            parents:
+              immediate:
+                - *ref_7
+              all:
+                - *ref_7
+            discriminatorValue: appleTemplate
+            properties:
+              - language:
+                  default:
+                    name: deviceToken
+                    description: The APNs device token
+                protocol: {}
+                schema: *ref_1
+                serializedName: deviceToken
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: bodyTemplate
+                    description: The registration body template
+                protocol: {}
+                schema: *ref_1
+                serializedName: bodyTemplate
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: templateName
+                    description: The registration template name
+                protocol: {}
+                schema: *ref_1
+                serializedName: templateName
+                required: false
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: apnsHeaders
+                    description: The APNs headers for the template
+                protocol: {}
+                schema: *ref_6
+                serializedName: apnsHeaders
+                required: false
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: priority
+                    description: The APNs priority for any message
+                protocol: {}
+                schema: &ref_22
+                  language:
+                    default:
+                      name: priority
+                      description: ''
+                  protocol: {}
+                  type: integer
+                  precision: 32
+                serializedName: priority
+                required: false
+                nullable: false
+                readOnly: false
+            usage:
+              - input
+              - output
+          - &ref_12
+            language:
+              default:
+                name: BaiduRegistrationDescription
+                description: >-
+                  Represents a Baidu based Azure Notification Hubs registration
+                  description
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: object
+            parents:
+              immediate:
+                - *ref_7
+              all:
+                - *ref_7
+            discriminatorValue: baidu
+            properties:
+              - language:
+                  default:
+                    name: baiduChannelId
+                    description: The Baidu channel ID
+                protocol: {}
+                schema: *ref_1
+                serializedName: baiduChannelId
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: baiduUserId
+                    description: The baidu user ID
+                protocol: {}
+                schema: *ref_1
+                serializedName: baiduUserId
+                required: true
+                nullable: false
+                readOnly: false
+            usage:
+              - input
+              - output
+          - &ref_13
+            language:
+              default:
+                name: BaiduTemplateRegistrationDescription
+                description: >-
+                  Represents a Baidu template based Azure Notification Hubs
+                  registration description
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: object
+            parents:
+              immediate:
+                - *ref_7
+              all:
+                - *ref_7
+            discriminatorValue: baiduTemplate
+            properties:
+              - language:
+                  default:
+                    name: baiduChannelId
+                    description: The Baidu channel ID
+                protocol: {}
+                schema: *ref_1
+                serializedName: baiduChannelId
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: baiduUserId
+                    description: The baidu user ID
+                protocol: {}
+                schema: *ref_1
+                serializedName: baiduUserId
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: bodyTemplate
+                    description: The registration body template
+                protocol: {}
+                schema: *ref_1
+                serializedName: bodyTemplate
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: templateName
+                    description: The registration template name
+                protocol: {}
+                schema: *ref_1
+                serializedName: templateName
+                required: false
+                nullable: false
+                readOnly: false
+            usage:
+              - input
+              - output
+          - &ref_14
+            language:
+              default:
+                name: BrowserRegistrationDescription
+                description: >-
+                  Represents a Web Push based Azure Notification Hubs
+                  registration description
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: object
+            parents:
+              immediate:
+                - *ref_7
+              all:
+                - *ref_7
+            discriminatorValue: browser
+            properties:
+              - language:
+                  default:
+                    name: endpoint
+                    description: The Web Push endpoint URL
+                protocol: {}
+                schema: *ref_1
+                serializedName: endpoint
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: auth
+                    description: The Web Push auth secret
+                protocol: {}
+                schema: *ref_1
+                serializedName: auth
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: p256dh
+                    description: The Web Push P256DH
+                protocol: {}
+                schema: *ref_1
+                serializedName: p256dh
+                required: true
+                nullable: false
+                readOnly: false
+            usage:
+              - input
+              - output
+          - &ref_15
+            language:
+              default:
+                name: BrowserTemplateRegistrationDescription
+                description: >-
+                  Represents a Web Push template based Azure Notification Hubs
+                  registration description
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: object
+            parents:
+              immediate:
+                - *ref_7
+              all:
+                - *ref_7
+            discriminatorValue: browserTemplate
+            properties:
+              - language:
+                  default:
+                    name: endpoint
+                    description: The Web Push endpoint URL
+                protocol: {}
+                schema: *ref_1
+                serializedName: endpoint
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: auth
+                    description: The Web Push auth secret
+                protocol: {}
+                schema: *ref_1
+                serializedName: auth
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: p256dh
+                    description: The Web Push P256DH
+                protocol: {}
+                schema: *ref_1
+                serializedName: p256dh
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: bodyTemplate
+                    description: The registration body template
+                protocol: {}
+                schema: *ref_1
+                serializedName: bodyTemplate
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: templateName
+                    description: The registration template name
+                protocol: {}
+                schema: *ref_1
+                serializedName: templateName
+                required: false
+                nullable: false
+                readOnly: false
+            usage:
+              - input
+              - output
+          - &ref_16
+            language:
+              default:
+                name: GcmRegistrationDescription
+                description: >-
+                  Represents a Firebase Legacy based Azure Notification Hubs
+                  registration description
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: object
+            parents:
+              immediate:
+                - *ref_7
+              all:
+                - *ref_7
+            discriminatorValue: gcm
+            properties:
+              - language:
+                  default:
+                    name: gcmRegistrationId
+                    description: The Firebase Legacy registration ID
+                protocol: {}
+                schema: *ref_1
+                serializedName: gcmRegistrationId
+                required: true
+                nullable: false
+                readOnly: false
+            usage:
+              - input
+              - output
+          - &ref_17
+            language:
+              default:
+                name: GcmTemplateRegistrationDescription
+                description: >-
+                  Represents a Firebase Legacy template based Azure Notification
+                  Hubs registration description
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: object
+            parents:
+              immediate:
+                - *ref_7
+              all:
+                - *ref_7
+            discriminatorValue: gcmTemplate
+            properties:
+              - language:
+                  default:
+                    name: gcmRegistrationId
+                    description: The Firebase Legacy registration ID
+                protocol: {}
+                schema: *ref_1
+                serializedName: gcmRegistrationId
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: bodyTemplate
+                    description: The registration body template
+                protocol: {}
+                schema: *ref_1
+                serializedName: bodyTemplate
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: templateName
+                    description: The registration template name
+                protocol: {}
+                schema: *ref_1
+                serializedName: templateName
+                required: false
+                nullable: false
+                readOnly: false
+            usage:
+              - input
+              - output
+          - &ref_18
+            language:
+              default:
+                name: MpnsRegistrationDescription
+                description: >-
+                  Represents a Windows Phone based Azure Notification Hubs
+                  registration description
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: object
+            parents:
+              immediate:
+                - *ref_7
+              all:
+                - *ref_7
+            discriminatorValue: mpns
+            properties:
+              - language:
+                  default:
+                    name: channelUri
+                    description: The Windows Phone channel URL
+                protocol: {}
+                schema: *ref_1
+                serializedName: channelUri
+                required: true
+                nullable: false
+                readOnly: false
+            usage:
+              - input
+              - output
+          - &ref_19
+            language:
+              default:
+                name: MpnsTemplateRegistrationDescription
+                description: >-
+                  Represents a Windows Phone template based Azure Notification
+                  Hubs registration description
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: object
+            parents:
+              immediate:
+                - *ref_7
+              all:
+                - *ref_7
+            discriminatorValue: mpnsTemplate
+            properties:
+              - language:
+                  default:
+                    name: channelUri
+                    description: The Windows Phone channel URL
+                protocol: {}
+                schema: *ref_1
+                serializedName: channelUri
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: bodyTemplate
+                    description: The registration body template
+                protocol: {}
+                schema: *ref_1
+                serializedName: bodyTemplate
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: templateName
+                    description: The registration template name
+                protocol: {}
+                schema: *ref_1
+                serializedName: templateName
+                required: false
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: mpnsHeaders
+                    description: The Windows Phone template headers
+                protocol: {}
+                schema: *ref_6
+                serializedName: mpnsHeaders
+                required: false
+                nullable: false
+                readOnly: false
+            usage:
+              - input
+              - output
+          - &ref_20
+            language:
+              default:
+                name: WindowsRegistrationDescription
+                description: >-
+                  Represents a Windows based Azure Notification Hubs
+                  registration description
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: object
+            parents:
+              immediate:
+                - *ref_7
+              all:
+                - *ref_7
+            discriminatorValue: windows
+            properties:
+              - language:
+                  default:
+                    name: channelUri
+                    description: The Windows channel URL
+                protocol: {}
+                schema: *ref_1
+                serializedName: channelUri
+                required: true
+                nullable: false
+                readOnly: false
+            usage:
+              - input
+              - output
+          - &ref_21
+            language:
+              default:
+                name: WindowsTemplateRegistrationDescription
+                description: >-
+                  Represents a Windows template based Azure Notification Hubs
+                  registration description
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: object
+            parents:
+              immediate:
+                - *ref_7
+              all:
+                - *ref_7
+            discriminatorValue: windowsTemplate
+            properties:
+              - language:
+                  default:
+                    name: channelUri
+                    description: The Windows channel URL
+                protocol: {}
+                schema: *ref_1
+                serializedName: channelUri
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: bodyTemplate
+                    description: The registration body template
+                protocol: {}
+                schema: *ref_1
+                serializedName: bodyTemplate
+                required: true
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: templateName
+                    description: The registration template name
+                protocol: {}
+                schema: *ref_1
+                serializedName: templateName
+                required: false
+                nullable: false
+                readOnly: false
+              - language:
+                  default:
+                    name: wnsHeaders
+                    description: The Windows template headers
+                protocol: {}
+                schema: *ref_6
+                serializedName: wnsHeaders
+                required: false
+                nullable: false
+                readOnly: false
+            usage:
+              - input
+              - output
+        all:
+          - *ref_8
+          - *ref_9
+          - *ref_10
+          - *ref_11
+          - *ref_12
+          - *ref_13
+          - *ref_14
+          - *ref_15
+          - *ref_16
+          - *ref_17
+          - *ref_18
+          - *ref_19
+          - *ref_20
+          - *ref_21
+      usage:
+        - input
+        - output
+    - *ref_8
+    - *ref_9
+    - *ref_10
+    - *ref_11
+    - *ref_12
+    - *ref_13
+    - *ref_14
+    - *ref_15
+    - *ref_16
+    - *ref_17
+    - *ref_18
+    - *ref_19
+    - *ref_20
+    - *ref_21
+    - &ref_65
+      language:
+        default:
+          name: NotificationOutcome
+          description: Represents the notification outcome
+          namespace: NotificationHubs.Models
+        java:
+          namespace: com.notificationhubs.models
+      protocol: {}
+      type: object
+      properties:
+        - language:
+            default:
+              name: success
+              description: Successfully delivered notifications outcome count
+          protocol: {}
+          schema: *ref_22
+          serializedName: success
+          required: true
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: failure
+              description: Failed delivery notifications outcome count
+          protocol: {}
+          schema: *ref_22
+          serializedName: failure
+          required: true
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: results
+              description: The notification outcome results per device
+          protocol: {}
+          schema: &ref_27
+            language:
+              default:
+                name: results
+                description: ''
+            protocol: {}
+            type: array
+            elementType: &ref_23
+              language:
+                default:
+                  name: RegistrationResult
+                  description: >-
+                    Represents the registration results for the notification
+                    outcome
+                  namespace: NotificationHubs.Models
+                java:
+                  namespace: com.notificationhubs.models
+              protocol: {}
+              type: object
+              properties:
+                - language:
+                    default:
+                      name: applicationPlatform
+                      description: The application platform
+                  protocol: {}
+                  schema: *ref_1
+                  serializedName: applicationPlatform
+                  required: true
+                  nullable: false
+                  readOnly: false
+                - language:
+                    default:
+                      name: pnsHandle
+                      description: The registration push handle
+                  protocol: {}
+                  schema: *ref_1
+                  serializedName: pnsHandle
+                  required: true
+                  nullable: false
+                  readOnly: false
+                - language:
+                    default:
+                      name: registrationId
+                      description: The registration ID
+                  protocol: {}
+                  schema: *ref_1
+                  serializedName: registrationId
+                  required: true
+                  nullable: false
+                  readOnly: false
+                - language:
+                    default:
+                      name: outcome
+                      description: The outcome result message
+                  protocol: {}
+                  schema: *ref_1
+                  serializedName: outcome
+                  required: true
+                  nullable: false
+                  readOnly: false
+              usage:
+                - output
+          serializedName: results
+          required: true
+          nullable: false
+          readOnly: false
+      usage:
+        - output
+    - *ref_23
+    - &ref_28
+      language:
+        default:
+          name: NotificationHubJob
+          description: Represents the Azure Notification Hubs job
+          namespace: NotificationHubs.Models
+        java:
+          namespace: com.notificationhubs.models
+      protocol: {}
+      type: object
+      properties:
+        - language:
+            default:
+              name: jobId
+              description: Job ID
+          protocol: {}
+          schema: *ref_1
+          serializedName: jobId
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: outputFileName
+              description: Job output file name
+          protocol: {}
+          schema: *ref_1
+          serializedName: outputFileName
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: failuresFileName
+              description: Job failures file name
+          protocol: {}
+          schema: *ref_1
+          serializedName: failuresFileName
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: progress
+              description: Job progress percentage
+          protocol: {}
+          schema: &ref_32
+            language:
+              default:
+                name: progress
+                description: ''
+            protocol: {}
+            type: number
+            precision: 64
+          serializedName: progress
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: type
+              description: Job type
+          protocol: {}
+          schema: &ref_30
+            language:
+              default:
+                name: NotificationHubJobType
+                description: Represents the Azure Notification Hubs job types
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: sealed-choice
+            choiceType: *ref_0
+            choices:
+              - value: ExportRegistrations
+                language:
+                  default:
+                    name: ExportRegistrations
+                    description: Export registrations job type
+              - value: ImportCreateRegistrations
+                language:
+                  default:
+                    name: ImportCreateRegistrations
+                    description: Import create registrations job type
+              - value: ImportUpdateRegistrations
+                language:
+                  default:
+                    name: ImportUpdateRegistrations
+                    description: Import update registrations job type
+              - value: ImportDeleteRegistrations
+                language:
+                  default:
+                    name: ImportDeleteRegistrations
+                    description: Import delete registrations job type
+              - value: ImportUpsertRegistrations
+                language:
+                  default:
+                    name: ImportUpsertRegistrations
+                    description: Import create or update registrations job type
+            usage:
+              - input
+              - output
+          serializedName: type
+          required: true
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: status
+              description: Job status
+          protocol: {}
+          schema: &ref_31
+            language:
+              default:
+                name: NotificationHubJobStatus
+                description: Represents the Azure Notification Hubs job status
+                namespace: NotificationHubs.Models
+              java:
+                namespace: com.notificationhubs.models
+            protocol: {}
+            type: sealed-choice
+            choiceType: *ref_0
+            choices:
+              - value: Started
+                language:
+                  default:
+                    name: Started
+                    description: Job started
+              - value: Running
+                language:
+                  default:
+                    name: Running
+                    description: Job running
+              - value: Completed
+                language:
+                  default:
+                    name: Completed
+                    description: Job completed
+              - value: Failed
+                language:
+                  default:
+                    name: Failed
+                    description: Job failed
+            usage:
+              - input
+              - output
+          serializedName: status
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: outputContainerUrl
+              description: Job output container URL
+          protocol: {}
+          schema: *ref_1
+          serializedName: outputContainerUrl
+          required: true
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: importFileUrl
+              description: Job import file URL
+          protocol: {}
+          schema: *ref_1
+          serializedName: importFileUrl
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: inputProperties
+              description: Job input property bag
+          protocol: {}
+          schema: *ref_6
+          serializedName: inputProperties
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: failure
+              description: Job failure reason
+          protocol: {}
+          schema: *ref_1
+          serializedName: failure
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: outputProperties
+              description: Job output property bag
+          protocol: {}
+          schema: *ref_6
+          serializedName: outputProperties
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: createdAt
+              description: Job created time
+          protocol: {}
+          schema: *ref_24
+          serializedName: createdAt
+          required: false
+          nullable: false
+          readOnly: false
+        - language:
+            default:
+              name: updatedAt
+              description: Job updated time
+          protocol: {}
+          schema: *ref_24
+          serializedName: updatedAt
+          required: false
+          nullable: false
+          readOnly: false
+      usage:
+        - input
+        - output
+  arrays:
+    - *ref_25
+    - &ref_40
+      language:
+        default:
+          name: updates
+          description: ''
+      protocol: {}
+      type: array
+      elementType: *ref_26
+    - &ref_54
+      language:
+        default:
+          name: response
+          description: ''
+      protocol: {}
+      type: array
+      elementType: *ref_7
+    - *ref_27
+    - &ref_73
+      language:
+        default:
+          name: response
+          description: ''
+      protocol: {}
+      type: array
+      elementType: *ref_28
+  dictionaries:
+    - *ref_6
+  sealedChoices:
+    - *ref_29
+    - *ref_30
+    - *ref_31
+  dates:
+    - *ref_24
+  numbers:
+    - *ref_22
+    - *ref_32
+  booleans:
+    - &ref_58
+      language:
+        default:
+          name: direct
+          description: ''
+      protocol: {}
+      type: boolean
+operationGroups:
+  - language:
+      default:
+        name: Installations
+        description: ''
+    protocol: {}
+    $key: Installations
+    operations:
+      - language:
+          default:
+            name: get
+            description: Get an Azure Notification Hubs installation
+        protocol: {}
+        operationId: Installations_get
+        apiVersions:
+          - version: 2020-06
+        extensions:
+          convenienceMethod: false
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /installations/{installationId}
+                method: get
+                uri: https://{namespaceName}.servicebus.windows.net/{hubName}
+        parameters:
+          - &ref_35
+            language:
+              default:
+                name: namespaceName
+                description: Notification Hubs Namespace
+                serializedName: namespaceName
+            protocol:
+              http:
+                in: uri
+            schema: *ref_1
+            implementation: Client
+            origin: modelerfour:synthesized/host
+            required: true
+          - &ref_36
+            language:
+              default:
+                name: hubName
+                description: Notification Hub Name
+                serializedName: hubName
+            protocol:
+              http:
+                in: uri
+            schema: *ref_1
+            implementation: Client
+            origin: modelerfour:synthesized/host
+            required: true
+          - &ref_34
+            language:
+              default:
+                name: installationId
+                description: The installation ID
+                serializedName: installationId
+            protocol:
+              http:
+                in: path
+            schema: *ref_1
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: Accept header
+                serializedName: accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_33
+            implementation: Method
+            origin: modelerfour:synthesized/accept
+            required: true
+        signatureParameters:
+          - *ref_34
+        responses:
+          - language:
+              default:
+                name: ''
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_2
+      - language:
+          default:
+            name: delete
+            description: Delete an Azure Notification Hubs installation
+        protocol: {}
+        operationId: Installations_delete
+        apiVersions:
+          - version: 2020-06
+        extensions:
+          convenienceMethod: false
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /installations/{installationId}
+                method: delete
+                uri: https://{namespaceName}.servicebus.windows.net/{hubName}
+        parameters:
+          - *ref_35
+          - *ref_36
+          - &ref_37
+            language:
+              default:
+                name: installationId
+                description: The installation ID
+                serializedName: installationId
+            protocol:
+              http:
+                in: path
+            schema: *ref_1
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: Accept header
+                serializedName: accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_33
+            implementation: Method
+            origin: modelerfour:synthesized/accept
+            required: true
+        signatureParameters:
+          - *ref_37
+        responses:
+          - language:
+              default:
+                name: ''
+                description: >-
+                  There is no content to send for this request, but the headers
+                  may be useful. 
+            protocol:
+              http:
+                statusCodes:
+                  - '204'
+                headers:
+                  - header: tracking-id
+                    schema: *ref_1
+                  - header: x-ms-correlation-request-id
+                    schema: *ref_1
+      - language:
+          default:
+            name: createOrUpdate
+            description: Create or update an Azure Notification Hubs installation
+        protocol: {}
+        operationId: Installations_createOrUpdate
+        apiVersions:
+          - version: 2020-06
+        extensions:
+          convenienceMethod: false
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /installations/{installationId}
+                method: put
+                uri: https://{namespaceName}.servicebus.windows.net/{hubName}
+        parameters:
+          - *ref_35
+          - *ref_36
+          - &ref_38
+            language:
+              default:
+                name: installationId
+                description: The installation ID
+                serializedName: installationId
+            protocol:
+              http:
+                in: path
+            schema: *ref_1
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: Accept header
+                serializedName: accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_33
+            implementation: Method
+            origin: modelerfour:synthesized/accept
+            required: true
+          - &ref_39
+            language:
+              default:
+                name: installation
+                description: The installation object
+            protocol:
+              http:
+                in: body
+            schema: *ref_2
+            implementation: Method
+            required: true
+        signatureParameters:
+          - *ref_38
+          - *ref_39
+        responses:
+          - language:
+              default:
+                name: ''
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers:
+                  - header: tracking-id
+                    schema: *ref_1
+                  - header: x-ms-correlation-request-id
+                    schema: *ref_1
+      - language:
+          default:
+            name: update
+            description: >-
+              Update an Azure Notification Hubs installation using JSON Patch
+              semantics
+        protocol: {}
+        operationId: Installations_update
+        apiVersions:
+          - version: 2020-06
+        extensions:
+          convenienceMethod: false
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /installations/{installationId}
+                method: patch
+                uri: https://{namespaceName}.servicebus.windows.net/{hubName}
+        parameters:
+          - *ref_35
+          - *ref_36
+          - &ref_41
+            language:
+              default:
+                name: installationId
+                description: The installation ID
+                serializedName: installationId
+            protocol:
+              http:
+                in: path
+            schema: *ref_1
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: Accept header
+                serializedName: accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_33
+            implementation: Method
+            origin: modelerfour:synthesized/accept
+            required: true
+          - &ref_42
+            language:
+              default:
+                name: updates
+                description: The installation patches
+            protocol:
+              http:
+                in: body
+            schema: *ref_40
+            implementation: Method
+            required: true
+        signatureParameters:
+          - *ref_41
+          - *ref_42
+        responses:
+          - language:
+              default:
+                name: ''
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers:
+                  - header: tracking-id
+                    schema: *ref_1
+                  - header: x-ms-correlation-request-id
+                    schema: *ref_1
+  - language:
+      default:
+        name: Registrations
+        description: ''
+    protocol: {}
+    $key: Registrations
+    operations:
+      - language:
+          default:
+            name: create
+            description: Create an Azure Notification Hubs registration description
+        protocol: {}
+        operationId: Registrations_create
+        apiVersions:
+          - version: 2020-06
+        extensions:
+          convenienceMethod: false
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /registrations
+                method: post
+                uri: https://{namespaceName}.servicebus.windows.net/{hubName}
+                mediaTypes:
+                  - application/atom+xml;type=entry;charset=utf-8
+        parameters:
+          - *ref_35
+          - *ref_36
+          - language:
+              default:
+                name: Content-Type
+                description: The HTTP content-type
+                serializedName: Content-Type
+            protocol:
+              http:
+                in: header
+            schema: *ref_43
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: Accept header
+                serializedName: accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_33
+            implementation: Method
+            origin: modelerfour:synthesized/accept
+            required: true
+          - &ref_44
+            language:
+              default:
+                name: body
+                description: The registration description
+            protocol:
+              http:
+                in: body
+            schema: *ref_7
+            implementation: Method
+            required: true
+        signatureParameters:
+          - *ref_44
+        responses:
+          - language:
+              default:
+                name: ''
+                description: >-
+                  The request has succeeded and a new resource has been created
+                  as a result.
+            protocol:
+              http:
+                statusCodes:
+                  - '201'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_7
+      - language:
+          default:
+            name: createOrUpdate
+            description: >-
+              Create or update an Azure Notification Hubs registration
+              description
+        protocol: {}
+        operationId: Registrations_createOrUpdate
+        apiVersions:
+          - version: 2020-06
+        extensions:
+          convenienceMethod: false
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /registrations/{registrationId}
+                method: put
+                uri: https://{namespaceName}.servicebus.windows.net/{hubName}
+                mediaTypes:
+                  - application/atom+xml;type=entry;charset=utf-8
+        parameters:
+          - *ref_35
+          - *ref_36
+          - &ref_45
+            language:
+              default:
+                name: registrationId
+                description: The registration ID
+                serializedName: registrationId
+            protocol:
+              http:
+                in: path
+            schema: *ref_1
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: Content-Type
+                description: The Content-Type HTTP header
+                serializedName: Content-Type
+            protocol:
+              http:
+                in: header
+            schema: *ref_43
+            implementation: Method
+            required: true
+            nullable: false
+          - &ref_46
+            language:
+              default:
+                name: If-Match
+                description: The If-Match HTTP header
+                serializedName: If-Match
+            protocol:
+              http:
+                in: header
+            schema: *ref_1
+            implementation: Method
+            required: false
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: Accept header
+                serializedName: accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_33
+            implementation: Method
+            origin: modelerfour:synthesized/accept
+            required: true
+          - &ref_47
+            language:
+              default:
+                name: body
+                description: The registration description
+            protocol:
+              http:
+                in: body
+            schema: *ref_7
+            implementation: Method
+            required: true
+        signatureParameters:
+          - *ref_45
+          - *ref_46
+          - *ref_47
+        responses:
+          - language:
+              default:
+                name: ''
+                description: >-
+                  The request has succeeded and a new resource has been created
+                  as a result.
+            protocol:
+              http:
+                statusCodes:
+                  - '201'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_7
+      - language:
+          default:
+            name: delete
+            description: Delete an Azure Notification Hubs registration description
+        protocol: {}
+        operationId: Registrations_delete
+        apiVersions:
+          - version: 2020-06
+        extensions:
+          convenienceMethod: false
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /registrations/{registrationId}
+                method: delete
+                uri: https://{namespaceName}.servicebus.windows.net/{hubName}
+        parameters:
+          - *ref_35
+          - *ref_36
+          - &ref_48
+            language:
+              default:
+                name: registrationId
+                description: The registration ID
+                serializedName: registrationId
+            protocol:
+              http:
+                in: path
+            schema: *ref_1
+            implementation: Method
+            required: true
+            nullable: false
+          - &ref_49
+            language:
+              default:
+                name: If-Match
+                description: The If-Match HTTP header
+                serializedName: If-Match
+            protocol:
+              http:
+                in: header
+            schema: *ref_1
+            implementation: Method
+            required: false
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: Accept header
+                serializedName: accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_33
+            implementation: Method
+            origin: modelerfour:synthesized/accept
+            required: true
+        signatureParameters:
+          - *ref_48
+          - *ref_49
+        responses:
+          - language:
+              default:
+                name: ''
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers:
+                  - header: tracking-id
+                    schema: *ref_1
+                  - header: x-ms-correlation-request-id
+                    schema: *ref_1
+      - language:
+          default:
+            name: get
+            description: Get an Azure Notification Hubs registration description
+        protocol: {}
+        operationId: Registrations_get
+        apiVersions:
+          - version: 2020-06
+        extensions:
+          convenienceMethod: false
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /registrations/{registrationId}
+                method: get
+                uri: https://{namespaceName}.servicebus.windows.net/{hubName}
+        parameters:
+          - *ref_35
+          - *ref_36
+          - &ref_50
+            language:
+              default:
+                name: registrationId
+                description: The registration ID
+                serializedName: registrationId
+            protocol:
+              http:
+                in: path
+            schema: *ref_1
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: Accept header
+                serializedName: accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_33
+            implementation: Method
+            origin: modelerfour:synthesized/accept
+            required: true
+        signatureParameters:
+          - *ref_50
+        responses:
+          - language:
+              default:
+                name: ''
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_7
+      - language:
+          default:
+            name: list
+            description: List Azure Notification Hubs registration descriptions
+        protocol: {}
+        operationId: Registrations_list
+        apiVersions:
+          - version: 2020-06
+        extensions:
+          convenienceMethod: false
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /registrations
+                method: get
+                uri: https://{namespaceName}.servicebus.windows.net/{hubName}
+        parameters:
+          - *ref_35
+          - *ref_36
+          - &ref_51
+            language:
+              default:
+                name: $top
+                description: The limit to the number of records to retrieve
+                serializedName: $top
+            protocol:
+              http:
+                in: query
+            schema: *ref_1
+            implementation: Method
+            required: false
+            nullable: false
+          - &ref_52
+            language:
+              default:
+                name: $fitler
+                description: The filter query to find registrations
+                serializedName: $fitler
+            protocol:
+              http:
+                in: query
+            schema: *ref_1
+            implementation: Method
+            required: false
+            nullable: false
+          - &ref_53
+            language:
+              default:
+                name: continuationToken
+                description: The continuation token for more results
+                serializedName: continuationToken
+            protocol:
+              http:
+                in: query
+            schema: *ref_1
+            implementation: Method
+            required: false
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: Accept header
+                serializedName: accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_33
+            implementation: Method
+            origin: modelerfour:synthesized/accept
+            required: true
+        signatureParameters:
+          - *ref_51
+          - *ref_52
+          - *ref_53
+        responses:
+          - language:
+              default:
+                name: ''
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers:
+                  - header: X-MS-ContinuationToken
+                    schema: *ref_1
+                mediaTypes:
+                  - application/json
+            schema: *ref_54
+  - language:
+      default:
+        name: ListRegistrationsByTag
+        description: ''
+    protocol: {}
+    $key: ListRegistrationsByTag
+    operations:
+      - language:
+          default:
+            name: list
+            description: >-
+              List all Azure Notification Hubs registrations description
+              matching the given tag
+        protocol: {}
+        operationId: ListRegistrationsByTag_list
+        apiVersions:
+          - version: 2020-06
+        extensions:
+          convenienceMethod: false
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /tags/{tag}/registrations
+                method: get
+                uri: https://{namespaceName}.servicebus.windows.net/{hubName}
+        parameters:
+          - *ref_35
+          - *ref_36
+          - &ref_55
+            language:
+              default:
+                name: tag
+                description: The tag name to search
+                serializedName: tag
+            protocol:
+              http:
+                in: path
+            schema: *ref_1
+            implementation: Method
+            required: true
+            nullable: false
+          - &ref_56
+            language:
+              default:
+                name: $top
+                description: The limit to the number of records to retrieve
+                serializedName: $top
+            protocol:
+              http:
+                in: query
+            schema: *ref_1
+            implementation: Method
+            required: false
+            nullable: false
+          - &ref_57
+            language:
+              default:
+                name: continuationToken
+                description: The continuation token for more results
+                serializedName: continuationToken
+            protocol:
+              http:
+                in: query
+            schema: *ref_1
+            implementation: Method
+            required: false
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: Accept header
+                serializedName: accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_33
+            implementation: Method
+            origin: modelerfour:synthesized/accept
+            required: true
+        signatureParameters:
+          - *ref_55
+          - *ref_56
+          - *ref_57
+        responses:
+          - language:
+              default:
+                name: ''
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers:
+                  - header: X-MS-ContinuationToken
+                    schema: *ref_1
+                mediaTypes:
+                  - application/json
+            schema: *ref_54
+  - language:
+      default:
+        name: Notifications
+        description: ''
+    protocol: {}
+    $key: Notifications
+    operations:
+      - language:
+          default:
+            name: sendNotification
+            description: Send a notification using Azure Notification Hubs
+        protocol: {}
+        operationId: Notifications_sendNotification
+        apiVersions:
+          - version: 2020-06
+        extensions:
+          convenienceMethod: false
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /messages
+                method: post
+                uri: https://{namespaceName}.servicebus.windows.net/{hubName}
+        parameters:
+          - *ref_35
+          - *ref_36
+          - &ref_59
+            language:
+              default:
+                name: direct
+                description: Direct send operation
+                serializedName: direct
+            protocol:
+              http:
+                in: query
+            schema: *ref_58
+            implementation: Method
+            required: false
+            nullable: false
+          - &ref_60
+            language:
+              default:
+                name: test
+                description: Enables test send for debug purposes
+                serializedName: test
+            protocol:
+              http:
+                in: query
+            schema: *ref_58
+            implementation: Method
+            required: true
+            nullable: false
+          - &ref_61
+            language:
+              default:
+                name: ServiceBusNotification-Format
+                description: The notification target platform
+                serializedName: ServiceBusNotification-Format
+            protocol:
+              http:
+                in: header
+            schema: *ref_1
+            implementation: Method
+            required: true
+            nullable: false
+          - &ref_62
+            language:
+              default:
+                name: ServiceBusNotification-DeviceHandle
+                description: The notification target device handle
+                serializedName: ServiceBusNotification-DeviceHandle
+            protocol:
+              http:
+                in: header
+            schema: *ref_1
+            implementation: Method
+            required: false
+            nullable: false
+          - &ref_63
+            language:
+              default:
+                name: ServiceBusNotification-Tags
+                description: The notification target tag expression
+                serializedName: ServiceBusNotification-Tags
+            protocol:
+              http:
+                in: header
+            schema: *ref_1
+            implementation: Method
+            required: false
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: Accept header
+                serializedName: accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_33
+            implementation: Method
+            origin: modelerfour:synthesized/accept
+            required: true
+          - &ref_64
+            language:
+              default:
+                name: notification
+                description: The notification to send
+            protocol:
+              http:
+                in: body
+            schema: *ref_1
+            implementation: Method
+            required: true
+        signatureParameters:
+          - *ref_59
+          - *ref_60
+          - *ref_61
+          - *ref_62
+          - *ref_63
+          - *ref_64
+        responses:
+          - language:
+              default:
+                name: ''
+                description: >-
+                  The request has succeeded and a new resource has been created
+                  as a result.
+            protocol:
+              http:
+                statusCodes:
+                  - '201'
+                headers:
+                  - header: location
+                    schema: *ref_1
+                  - header: tracking-id
+                    schema: *ref_1
+                  - header: x-ms-correlation-request-id
+                    schema: *ref_1
+                mediaTypes:
+                  - application/json
+            schema: *ref_65
+  - language:
+      default:
+        name: ScheduledNotifications
+        description: ''
+    protocol: {}
+    $key: ScheduledNotifications
+    operations:
+      - language:
+          default:
+            name: cancelNotification
+            description: Cancel a scheduled notification
+        protocol: {}
+        operationId: ScheduledNotifications_cancelNotification
+        apiVersions:
+          - version: 2020-06
+        extensions:
+          convenienceMethod: false
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /schedulednotifications/{notificationId}
+                method: delete
+                uri: https://{namespaceName}.servicebus.windows.net/{hubName}
+        parameters:
+          - *ref_35
+          - *ref_36
+          - &ref_66
+            language:
+              default:
+                name: notificationId
+                description: The ID of the notification to cancel
+                serializedName: notificationId
+            protocol:
+              http:
+                in: path
+            schema: *ref_1
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: Accept header
+                serializedName: accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_33
+            implementation: Method
+            origin: modelerfour:synthesized/accept
+            required: true
+        signatureParameters:
+          - *ref_66
+        responses:
+          - language:
+              default:
+                name: ''
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers:
+                  - header: tracking-id
+                    schema: *ref_1
+                  - header: x-ms-correlation-request-id
+                    schema: *ref_1
+      - language:
+          default:
+            name: scheduleNotification
+            description: Schedule a notification
+        protocol: {}
+        operationId: ScheduledNotifications_scheduleNotification
+        apiVersions:
+          - version: 2020-06
+        extensions:
+          convenienceMethod: false
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /schedulednotifications
+                method: post
+                uri: https://{namespaceName}.servicebus.windows.net/{hubName}
+        parameters:
+          - *ref_35
+          - *ref_36
+          - &ref_67
+            language:
+              default:
+                name: ServiceBusNotification-ScheduleTime
+                description: The notification scheduled time
+                serializedName: ServiceBusNotification-ScheduleTime
+            protocol:
+              http:
+                in: header
+            schema: *ref_1
+            implementation: Method
+            required: true
+            nullable: false
+          - &ref_68
+            language:
+              default:
+                name: ServiceBusNotification-Format
+                description: The notification target platform
+                serializedName: ServiceBusNotification-Format
+            protocol:
+              http:
+                in: header
+            schema: *ref_1
+            implementation: Method
+            required: true
+            nullable: false
+          - &ref_69
+            language:
+              default:
+                name: ServiceBusNotification-Tags
+                description: The notification target tag expression
+                serializedName: ServiceBusNotification-Tags
+            protocol:
+              http:
+                in: header
+            schema: *ref_1
+            implementation: Method
+            required: false
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: Accept header
+                serializedName: accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_33
+            implementation: Method
+            origin: modelerfour:synthesized/accept
+            required: true
+          - &ref_70
+            language:
+              default:
+                name: notification
+                description: The notification to schedule
+            protocol:
+              http:
+                in: body
+            schema: *ref_1
+            implementation: Method
+            required: true
+        signatureParameters:
+          - *ref_67
+          - *ref_68
+          - *ref_69
+          - *ref_70
+        responses:
+          - language:
+              default:
+                name: ''
+                description: >-
+                  The request has succeeded and a new resource has been created
+                  as a result.
+            protocol:
+              http:
+                statusCodes:
+                  - '201'
+                headers:
+                  - header: location
+                    schema: *ref_1
+                  - header: tracking-id
+                    schema: *ref_1
+                  - header: x-ms-correlation-request-id
+                    schema: *ref_1
+  - language:
+      default:
+        name: NotificationHubJobs
+        description: ''
+    protocol: {}
+    $key: NotificationHubJobs
+    operations:
+      - language:
+          default:
+            name: create
+            description: Create an import/export Azure Notification Hubs job
+        protocol: {}
+        operationId: NotificationHubJobs_create
+        apiVersions:
+          - version: 2020-06
+        extensions:
+          convenienceMethod: false
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /jobs
+                method: post
+                uri: https://{namespaceName}.servicebus.windows.net/{hubName}
+                mediaTypes:
+                  - application/atom+xml;type=entry;charset=utf-8
+        parameters:
+          - *ref_35
+          - *ref_36
+          - language:
+              default:
+                name: Content-Type
+                description: The HTTP Content-Type header
+                serializedName: Content-Type
+            protocol:
+              http:
+                in: header
+            schema: *ref_43
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: Accept header
+                serializedName: accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_33
+            implementation: Method
+            origin: modelerfour:synthesized/accept
+            required: true
+          - &ref_71
+            language:
+              default:
+                name: notificationHubJob
+                description: The Azure Notification Hub import/export job to create
+            protocol:
+              http:
+                in: body
+            schema: *ref_28
+            implementation: Method
+            required: true
+        signatureParameters:
+          - *ref_71
+        responses:
+          - language:
+              default:
+                name: ''
+                description: >-
+                  The request has succeeded and a new resource has been created
+                  as a result.
+            protocol:
+              http:
+                statusCodes:
+                  - '201'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_28
+      - language:
+          default:
+            name: get
+            description: Get an import/export Azure Notification Hubs job
+        protocol: {}
+        operationId: NotificationHubJobs_get
+        apiVersions:
+          - version: 2020-06
+        extensions:
+          convenienceMethod: false
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /jobs/{jobId}
+                method: get
+                uri: https://{namespaceName}.servicebus.windows.net/{hubName}
+        parameters:
+          - *ref_35
+          - *ref_36
+          - &ref_72
+            language:
+              default:
+                name: jobId
+                description: The job ID
+                serializedName: jobId
+            protocol:
+              http:
+                in: path
+            schema: *ref_1
+            implementation: Method
+            required: true
+            nullable: false
+          - language:
+              default:
+                name: accept
+                description: Accept header
+                serializedName: accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_33
+            implementation: Method
+            origin: modelerfour:synthesized/accept
+            required: true
+        signatureParameters:
+          - *ref_72
+        responses:
+          - language:
+              default:
+                name: ''
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_28
+      - language:
+          default:
+            name: list
+            description: List all import/export Azure Notification Hubs jobs
+        protocol: {}
+        operationId: NotificationHubJobs_list
+        apiVersions:
+          - version: 2020-06
+        extensions:
+          convenienceMethod: false
+        requests:
+          - language:
+              default:
+                name: ''
+                description: ''
+            protocol:
+              http:
+                path: /jobs
+                method: get
+                uri: https://{namespaceName}.servicebus.windows.net/{hubName}
+        parameters:
+          - *ref_35
+          - *ref_36
+          - language:
+              default:
+                name: accept
+                description: Accept header
+                serializedName: accept
+            protocol:
+              http:
+                in: header
+            schema: *ref_33
+            implementation: Method
+            origin: modelerfour:synthesized/accept
+            required: true
+        signatureParameters: []
+        responses:
+          - language:
+              default:
+                name: ''
+                description: The request has succeeded.
+            protocol:
+              http:
+                statusCodes:
+                  - '200'
+                headers: []
+                mediaTypes:
+                  - application/json
+            schema: *ref_73
+security:
+  authenticationRequired: false
+  schemes: []
+globalParameters:
+  - *ref_35
+  - *ref_36

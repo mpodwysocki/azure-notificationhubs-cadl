@@ -1,0 +1,3509 @@
+{
+ "$id": "1",
+ "Name": "notificationhubs",
+ "Description": "The Azure Notification Hubs service",
+ "ApiVersions": [
+  "2020-06"
+ ],
+ "Enums": [
+  {
+   "$id": "2",
+   "Name": "JsonPatchOperation",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents a JSON Patch operation type",
+   "EnumValueType": "String",
+   "AllowedValues": [
+    {
+     "$id": "3",
+     "Name": "Add",
+     "Value": "add",
+     "Description": "The add JSON patch operation type"
+    },
+    {
+     "$id": "4",
+     "Name": "Remove",
+     "Value": "remove",
+     "Description": "The remove JSON patch operation type"
+    },
+    {
+     "$id": "5",
+     "Name": "Replace",
+     "Value": "replace",
+     "Description": "The replace JSON patch operation type"
+    }
+   ],
+   "IsExtensible": false,
+   "IsNullable": false
+  },
+  {
+   "$id": "6",
+   "Name": "NotificationHubJobType",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents the Azure Notification Hubs job types",
+   "EnumValueType": "String",
+   "AllowedValues": [
+    {
+     "$id": "7",
+     "Name": "ExportRegistrations",
+     "Value": "ExportRegistrations",
+     "Description": "Export registrations job type"
+    },
+    {
+     "$id": "8",
+     "Name": "ImportCreateRegistrations",
+     "Value": "ImportCreateRegistrations",
+     "Description": "Import create registrations job type"
+    },
+    {
+     "$id": "9",
+     "Name": "ImportUpdateRegistrations",
+     "Value": "ImportUpdateRegistrations",
+     "Description": "Import update registrations job type"
+    },
+    {
+     "$id": "10",
+     "Name": "ImportDeleteRegistrations",
+     "Value": "ImportDeleteRegistrations",
+     "Description": "Import delete registrations job type"
+    },
+    {
+     "$id": "11",
+     "Name": "ImportUpsertRegistrations",
+     "Value": "ImportUpsertRegistrations",
+     "Description": "Import create or update registrations job type"
+    }
+   ],
+   "IsExtensible": false,
+   "IsNullable": false
+  },
+  {
+   "$id": "12",
+   "Name": "NotificationHubJobStatus",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents the Azure Notification Hubs job status",
+   "EnumValueType": "String",
+   "AllowedValues": [
+    {
+     "$id": "13",
+     "Name": "Started",
+     "Value": "Started",
+     "Description": "Job started"
+    },
+    {
+     "$id": "14",
+     "Name": "Running",
+     "Value": "Running",
+     "Description": "Job running"
+    },
+    {
+     "$id": "15",
+     "Name": "Completed",
+     "Value": "Completed",
+     "Description": "Job completed"
+    },
+    {
+     "$id": "16",
+     "Name": "Failed",
+     "Value": "Failed",
+     "Description": "Job failed"
+    }
+   ],
+   "IsExtensible": false,
+   "IsNullable": false
+  }
+ ],
+ "Models": [
+  {
+   "$id": "17",
+   "Name": "Installation",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents an Azure Notification Hubs Installation",
+   "IsNullable": false,
+   "DiscriminatorPropertyName": "platform",
+   "Properties": [
+    {
+     "$id": "18",
+     "Name": "installationId",
+     "SerializedName": "installationId",
+     "Description": "",
+     "Type": {
+      "$id": "19",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "20",
+     "Name": "userId",
+     "SerializedName": "userId",
+     "Description": "",
+     "Type": {
+      "$id": "21",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "22",
+     "Name": "expirationTime",
+     "SerializedName": "expirationTime",
+     "Description": "",
+     "Type": {
+      "$id": "23",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": true,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "24",
+     "Name": "lastUpdate",
+     "SerializedName": "lastUpdate",
+     "Description": "",
+     "Type": {
+      "$id": "25",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": true,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "26",
+     "Name": "tags",
+     "SerializedName": "tags",
+     "Description": "",
+     "Type": {
+      "$id": "27",
+      "Name": "Array",
+      "ElementType": {
+       "$id": "28",
+       "Name": "string",
+       "Kind": "String",
+       "IsNullable": false
+      },
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "29",
+     "Name": "templates",
+     "SerializedName": "templates",
+     "Description": "",
+     "Type": {
+      "$id": "30",
+      "Name": "Dictionary",
+      "KeyType": {
+       "$id": "31",
+       "Name": "string",
+       "Kind": "String",
+       "IsNullable": false
+      },
+      "ValueType": {
+       "$id": "32",
+       "Name": "string",
+       "Kind": "String",
+       "IsNullable": false
+      },
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$id": "33",
+   "Name": "BrowserInstallation",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents an Web Push based Azure Notification Hubs Installation",
+   "IsNullable": false,
+   "DiscriminatorValue": "browser",
+   "BaseModel": {
+    "$ref": "17"
+   },
+   "Properties": [
+    {
+     "$id": "34",
+     "Name": "pushHandle",
+     "SerializedName": "pushHandle",
+     "Description": "",
+     "Type": {
+      "$id": "35",
+      "Name": "BrowserPushHandle",
+      "Namespace": "NotificationHubs.Models",
+      "Description": "Represents a Web Push push handle",
+      "IsNullable": false,
+      "Properties": [
+       {
+        "$id": "36",
+        "Name": "endpoint",
+        "SerializedName": "endpoint",
+        "Description": "",
+        "Type": {
+         "$id": "37",
+         "Name": "string",
+         "Kind": "String",
+         "IsNullable": false
+        },
+        "IsRequired": true,
+        "IsReadOnly": false,
+        "IsDiscriminator": false
+       },
+       {
+        "$id": "38",
+        "Name": "p256dh",
+        "SerializedName": "p256dh",
+        "Description": "",
+        "Type": {
+         "$id": "39",
+         "Name": "string",
+         "Kind": "String",
+         "IsNullable": false
+        },
+        "IsRequired": true,
+        "IsReadOnly": false,
+        "IsDiscriminator": false
+       },
+       {
+        "$id": "40",
+        "Name": "auth",
+        "SerializedName": "auth",
+        "Description": "",
+        "Type": {
+         "$id": "41",
+         "Name": "string",
+         "Kind": "String",
+         "IsNullable": false
+        },
+        "IsRequired": true,
+        "IsReadOnly": false,
+        "IsDiscriminator": false
+       }
+      ]
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$ref": "35"
+  },
+  {
+   "$id": "42",
+   "Name": "FcmLegacyInstallation",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents an FCM Legacy based Azure Notification Hubs Installation",
+   "IsNullable": false,
+   "DiscriminatorValue": "gcm",
+   "BaseModel": {
+    "$ref": "17"
+   },
+   "Properties": []
+  },
+  {
+   "$id": "43",
+   "Name": "JsonPatch",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents a JSON Patch operation",
+   "IsNullable": false,
+   "Properties": [
+    {
+     "$id": "44",
+     "Name": "op",
+     "SerializedName": "op",
+     "Description": "",
+     "Type": {
+      "$ref": "2"
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "45",
+     "Name": "path",
+     "SerializedName": "path",
+     "Description": "",
+     "Type": {
+      "$id": "46",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "47",
+     "Name": "value",
+     "SerializedName": "value",
+     "Description": "",
+     "Type": {
+      "$id": "48",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$id": "49",
+   "Name": "RegistrationDescription",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents an Azure Notification Hubs registration description",
+   "IsNullable": false,
+   "DiscriminatorPropertyName": "platform",
+   "Properties": [
+    {
+     "$id": "50",
+     "Name": "registrationId",
+     "SerializedName": "registrationId",
+     "Description": "",
+     "Type": {
+      "$id": "51",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "52",
+     "Name": "tags",
+     "SerializedName": "tags",
+     "Description": "",
+     "Type": {
+      "$id": "53",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "54",
+     "Name": "etag",
+     "SerializedName": "etag",
+     "Description": "",
+     "Type": {
+      "$id": "55",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "56",
+     "Name": "pushVariables",
+     "SerializedName": "pushVariables",
+     "Description": "",
+     "Type": {
+      "$id": "57",
+      "Name": "Dictionary",
+      "KeyType": {
+       "$id": "58",
+       "Name": "string",
+       "Kind": "String",
+       "IsNullable": false
+      },
+      "ValueType": {
+       "$id": "59",
+       "Name": "string",
+       "Kind": "String",
+       "IsNullable": false
+      },
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "60",
+     "Name": "expirationTime",
+     "SerializedName": "expirationTime",
+     "Description": "",
+     "Type": {
+      "$id": "61",
+      "Name": "DateTime",
+      "Kind": "DateTime",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$id": "62",
+   "Name": "AdmRegistrationDescription",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents an ADM based Azure Notification Hubs registration description",
+   "IsNullable": false,
+   "DiscriminatorValue": "adm",
+   "BaseModel": {
+    "$ref": "49"
+   },
+   "Properties": [
+    {
+     "$id": "63",
+     "Name": "admRegistrationId",
+     "SerializedName": "admRegistrationId",
+     "Description": "",
+     "Type": {
+      "$id": "64",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$id": "65",
+   "Name": "AdmTemplateRegistrationDescription",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents an ADM template based Azure Notification Hubs registration description",
+   "IsNullable": false,
+   "DiscriminatorValue": "admTemplate",
+   "BaseModel": {
+    "$ref": "49"
+   },
+   "Properties": [
+    {
+     "$id": "66",
+     "Name": "admRegistrationId",
+     "SerializedName": "admRegistrationId",
+     "Description": "",
+     "Type": {
+      "$id": "67",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "68",
+     "Name": "bodyTemplate",
+     "SerializedName": "bodyTemplate",
+     "Description": "",
+     "Type": {
+      "$id": "69",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "70",
+     "Name": "templateName",
+     "SerializedName": "templateName",
+     "Description": "",
+     "Type": {
+      "$id": "71",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$id": "72",
+   "Name": "AppleRegistrationDescription",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents an Apple based Azure Notification Hubs registration description",
+   "IsNullable": false,
+   "DiscriminatorValue": "apple",
+   "BaseModel": {
+    "$ref": "49"
+   },
+   "Properties": [
+    {
+     "$id": "73",
+     "Name": "deviceToken",
+     "SerializedName": "deviceToken",
+     "Description": "",
+     "Type": {
+      "$id": "74",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$id": "75",
+   "Name": "AppleTemplateRegistrationDescription",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents an Apple template based Azure Notification Hubs registration description",
+   "IsNullable": false,
+   "DiscriminatorValue": "appleTemplate",
+   "BaseModel": {
+    "$ref": "49"
+   },
+   "Properties": [
+    {
+     "$id": "76",
+     "Name": "deviceToken",
+     "SerializedName": "deviceToken",
+     "Description": "",
+     "Type": {
+      "$id": "77",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "78",
+     "Name": "bodyTemplate",
+     "SerializedName": "bodyTemplate",
+     "Description": "",
+     "Type": {
+      "$id": "79",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "80",
+     "Name": "templateName",
+     "SerializedName": "templateName",
+     "Description": "",
+     "Type": {
+      "$id": "81",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "82",
+     "Name": "apnsHeaders",
+     "SerializedName": "apnsHeaders",
+     "Description": "",
+     "Type": {
+      "$id": "83",
+      "Name": "Dictionary",
+      "KeyType": {
+       "$id": "84",
+       "Name": "string",
+       "Kind": "String",
+       "IsNullable": false
+      },
+      "ValueType": {
+       "$id": "85",
+       "Name": "string",
+       "Kind": "String",
+       "IsNullable": false
+      },
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "86",
+     "Name": "priority",
+     "SerializedName": "priority",
+     "Description": "",
+     "Type": {
+      "$id": "87",
+      "Name": "Int32",
+      "Kind": "Int32",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$id": "88",
+   "Name": "BaiduRegistrationDescription",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents a Baidu based Azure Notification Hubs registration description",
+   "IsNullable": false,
+   "DiscriminatorValue": "baidu",
+   "BaseModel": {
+    "$ref": "49"
+   },
+   "Properties": [
+    {
+     "$id": "89",
+     "Name": "baiduChannelId",
+     "SerializedName": "baiduChannelId",
+     "Description": "",
+     "Type": {
+      "$id": "90",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "91",
+     "Name": "baiduUserId",
+     "SerializedName": "baiduUserId",
+     "Description": "",
+     "Type": {
+      "$id": "92",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$id": "93",
+   "Name": "BaiduTemplateRegistrationDescription",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents a Baidu template based Azure Notification Hubs registration description",
+   "IsNullable": false,
+   "DiscriminatorValue": "baiduTemplate",
+   "BaseModel": {
+    "$ref": "49"
+   },
+   "Properties": [
+    {
+     "$id": "94",
+     "Name": "baiduChannelId",
+     "SerializedName": "baiduChannelId",
+     "Description": "",
+     "Type": {
+      "$id": "95",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "96",
+     "Name": "baiduUserId",
+     "SerializedName": "baiduUserId",
+     "Description": "",
+     "Type": {
+      "$id": "97",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "98",
+     "Name": "bodyTemplate",
+     "SerializedName": "bodyTemplate",
+     "Description": "",
+     "Type": {
+      "$id": "99",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "100",
+     "Name": "templateName",
+     "SerializedName": "templateName",
+     "Description": "",
+     "Type": {
+      "$id": "101",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$id": "102",
+   "Name": "BrowserRegistrationDescription",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents a Web Push based Azure Notification Hubs registration description",
+   "IsNullable": false,
+   "DiscriminatorValue": "browser",
+   "BaseModel": {
+    "$ref": "49"
+   },
+   "Properties": [
+    {
+     "$id": "103",
+     "Name": "endpoint",
+     "SerializedName": "endpoint",
+     "Description": "",
+     "Type": {
+      "$id": "104",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "105",
+     "Name": "auth",
+     "SerializedName": "auth",
+     "Description": "",
+     "Type": {
+      "$id": "106",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "107",
+     "Name": "p256dh",
+     "SerializedName": "p256dh",
+     "Description": "",
+     "Type": {
+      "$id": "108",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$id": "109",
+   "Name": "BrowserTemplateRegistrationDescription",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents a Web Push template based Azure Notification Hubs registration description",
+   "IsNullable": false,
+   "DiscriminatorValue": "browserTemplate",
+   "BaseModel": {
+    "$ref": "49"
+   },
+   "Properties": [
+    {
+     "$id": "110",
+     "Name": "endpoint",
+     "SerializedName": "endpoint",
+     "Description": "",
+     "Type": {
+      "$id": "111",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "112",
+     "Name": "auth",
+     "SerializedName": "auth",
+     "Description": "",
+     "Type": {
+      "$id": "113",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "114",
+     "Name": "p256dh",
+     "SerializedName": "p256dh",
+     "Description": "",
+     "Type": {
+      "$id": "115",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "116",
+     "Name": "bodyTemplate",
+     "SerializedName": "bodyTemplate",
+     "Description": "",
+     "Type": {
+      "$id": "117",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "118",
+     "Name": "templateName",
+     "SerializedName": "templateName",
+     "Description": "",
+     "Type": {
+      "$id": "119",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$id": "120",
+   "Name": "GcmRegistrationDescription",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents a Firebase Legacy based Azure Notification Hubs registration description",
+   "IsNullable": false,
+   "DiscriminatorValue": "gcm",
+   "BaseModel": {
+    "$ref": "49"
+   },
+   "Properties": [
+    {
+     "$id": "121",
+     "Name": "gcmRegistrationId",
+     "SerializedName": "gcmRegistrationId",
+     "Description": "",
+     "Type": {
+      "$id": "122",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$id": "123",
+   "Name": "GcmTemplateRegistrationDescription",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents a Firebase Legacy template based Azure Notification Hubs registration description",
+   "IsNullable": false,
+   "DiscriminatorValue": "gcmTemplate",
+   "BaseModel": {
+    "$ref": "49"
+   },
+   "Properties": [
+    {
+     "$id": "124",
+     "Name": "gcmRegistrationId",
+     "SerializedName": "gcmRegistrationId",
+     "Description": "",
+     "Type": {
+      "$id": "125",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "126",
+     "Name": "bodyTemplate",
+     "SerializedName": "bodyTemplate",
+     "Description": "",
+     "Type": {
+      "$id": "127",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "128",
+     "Name": "templateName",
+     "SerializedName": "templateName",
+     "Description": "",
+     "Type": {
+      "$id": "129",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$id": "130",
+   "Name": "MpnsRegistrationDescription",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents a Windows Phone based Azure Notification Hubs registration description",
+   "IsNullable": false,
+   "DiscriminatorValue": "mpns",
+   "BaseModel": {
+    "$ref": "49"
+   },
+   "Properties": [
+    {
+     "$id": "131",
+     "Name": "channelUri",
+     "SerializedName": "channelUri",
+     "Description": "",
+     "Type": {
+      "$id": "132",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$id": "133",
+   "Name": "MpnsTemplateRegistrationDescription",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents a Windows Phone template based Azure Notification Hubs registration description",
+   "IsNullable": false,
+   "DiscriminatorValue": "mpnsTemplate",
+   "BaseModel": {
+    "$ref": "49"
+   },
+   "Properties": [
+    {
+     "$id": "134",
+     "Name": "channelUri",
+     "SerializedName": "channelUri",
+     "Description": "",
+     "Type": {
+      "$id": "135",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "136",
+     "Name": "bodyTemplate",
+     "SerializedName": "bodyTemplate",
+     "Description": "",
+     "Type": {
+      "$id": "137",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "138",
+     "Name": "templateName",
+     "SerializedName": "templateName",
+     "Description": "",
+     "Type": {
+      "$id": "139",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "140",
+     "Name": "mpnsHeaders",
+     "SerializedName": "mpnsHeaders",
+     "Description": "",
+     "Type": {
+      "$id": "141",
+      "Name": "Dictionary",
+      "KeyType": {
+       "$id": "142",
+       "Name": "string",
+       "Kind": "String",
+       "IsNullable": false
+      },
+      "ValueType": {
+       "$id": "143",
+       "Name": "string",
+       "Kind": "String",
+       "IsNullable": false
+      },
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$id": "144",
+   "Name": "WindowsRegistrationDescription",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents a Windows based Azure Notification Hubs registration description",
+   "IsNullable": false,
+   "DiscriminatorValue": "windows",
+   "BaseModel": {
+    "$ref": "49"
+   },
+   "Properties": [
+    {
+     "$id": "145",
+     "Name": "channelUri",
+     "SerializedName": "channelUri",
+     "Description": "",
+     "Type": {
+      "$id": "146",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$id": "147",
+   "Name": "WindowsTemplateRegistrationDescription",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents a Windows template based Azure Notification Hubs registration description",
+   "IsNullable": false,
+   "DiscriminatorValue": "windowsTemplate",
+   "BaseModel": {
+    "$ref": "49"
+   },
+   "Properties": [
+    {
+     "$id": "148",
+     "Name": "channelUri",
+     "SerializedName": "channelUri",
+     "Description": "",
+     "Type": {
+      "$id": "149",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "150",
+     "Name": "bodyTemplate",
+     "SerializedName": "bodyTemplate",
+     "Description": "",
+     "Type": {
+      "$id": "151",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "152",
+     "Name": "templateName",
+     "SerializedName": "templateName",
+     "Description": "",
+     "Type": {
+      "$id": "153",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "154",
+     "Name": "wnsHeaders",
+     "SerializedName": "wnsHeaders",
+     "Description": "",
+     "Type": {
+      "$id": "155",
+      "Name": "Dictionary",
+      "KeyType": {
+       "$id": "156",
+       "Name": "string",
+       "Kind": "String",
+       "IsNullable": false
+      },
+      "ValueType": {
+       "$id": "157",
+       "Name": "string",
+       "Kind": "String",
+       "IsNullable": false
+      },
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$id": "158",
+   "Name": "NotificationOutcome",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents the notification outcome",
+   "IsNullable": false,
+   "Properties": [
+    {
+     "$id": "159",
+     "Name": "success",
+     "SerializedName": "success",
+     "Description": "",
+     "Type": {
+      "$id": "160",
+      "Name": "Int32",
+      "Kind": "Int32",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "161",
+     "Name": "failure",
+     "SerializedName": "failure",
+     "Description": "",
+     "Type": {
+      "$id": "162",
+      "Name": "Int32",
+      "Kind": "Int32",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "163",
+     "Name": "results",
+     "SerializedName": "results",
+     "Description": "",
+     "Type": {
+      "$id": "164",
+      "Name": "Array",
+      "ElementType": {
+       "$id": "165",
+       "Name": "RegistrationResult",
+       "Namespace": "NotificationHubs.Models",
+       "Description": "Represents the registration results for the notification outcome",
+       "IsNullable": false,
+       "Properties": [
+        {
+         "$id": "166",
+         "Name": "applicationPlatform",
+         "SerializedName": "applicationPlatform",
+         "Description": "",
+         "Type": {
+          "$id": "167",
+          "Name": "string",
+          "Kind": "String",
+          "IsNullable": false
+         },
+         "IsRequired": true,
+         "IsReadOnly": false,
+         "IsDiscriminator": false
+        },
+        {
+         "$id": "168",
+         "Name": "pnsHandle",
+         "SerializedName": "pnsHandle",
+         "Description": "",
+         "Type": {
+          "$id": "169",
+          "Name": "string",
+          "Kind": "String",
+          "IsNullable": false
+         },
+         "IsRequired": true,
+         "IsReadOnly": false,
+         "IsDiscriminator": false
+        },
+        {
+         "$id": "170",
+         "Name": "registrationId",
+         "SerializedName": "registrationId",
+         "Description": "",
+         "Type": {
+          "$id": "171",
+          "Name": "string",
+          "Kind": "String",
+          "IsNullable": false
+         },
+         "IsRequired": true,
+         "IsReadOnly": false,
+         "IsDiscriminator": false
+        },
+        {
+         "$id": "172",
+         "Name": "outcome",
+         "SerializedName": "outcome",
+         "Description": "",
+         "Type": {
+          "$id": "173",
+          "Name": "string",
+          "Kind": "String",
+          "IsNullable": false
+         },
+         "IsRequired": true,
+         "IsReadOnly": false,
+         "IsDiscriminator": false
+        }
+       ]
+      },
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  },
+  {
+   "$ref": "165"
+  },
+  {
+   "$id": "174",
+   "Name": "NotificationHubJob",
+   "Namespace": "NotificationHubs.Models",
+   "Description": "Represents the Azure Notification Hubs job",
+   "IsNullable": false,
+   "Properties": [
+    {
+     "$id": "175",
+     "Name": "jobId",
+     "SerializedName": "jobId",
+     "Description": "",
+     "Type": {
+      "$id": "176",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "177",
+     "Name": "outputFileName",
+     "SerializedName": "outputFileName",
+     "Description": "",
+     "Type": {
+      "$id": "178",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "179",
+     "Name": "failuresFileName",
+     "SerializedName": "failuresFileName",
+     "Description": "",
+     "Type": {
+      "$id": "180",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "181",
+     "Name": "progress",
+     "SerializedName": "progress",
+     "Description": "",
+     "Type": {
+      "$id": "182",
+      "Name": "double",
+      "Kind": "Float64",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "183",
+     "Name": "type",
+     "SerializedName": "type",
+     "Description": "",
+     "Type": {
+      "$ref": "6"
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "184",
+     "Name": "status",
+     "SerializedName": "status",
+     "Description": "",
+     "Type": {
+      "$ref": "12"
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "185",
+     "Name": "outputContainerUrl",
+     "SerializedName": "outputContainerUrl",
+     "Description": "",
+     "Type": {
+      "$id": "186",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": true,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "187",
+     "Name": "importFileUrl",
+     "SerializedName": "importFileUrl",
+     "Description": "",
+     "Type": {
+      "$id": "188",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "189",
+     "Name": "inputProperties",
+     "SerializedName": "inputProperties",
+     "Description": "",
+     "Type": {
+      "$id": "190",
+      "Name": "Dictionary",
+      "KeyType": {
+       "$id": "191",
+       "Name": "string",
+       "Kind": "String",
+       "IsNullable": false
+      },
+      "ValueType": {
+       "$id": "192",
+       "Name": "string",
+       "Kind": "String",
+       "IsNullable": false
+      },
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "193",
+     "Name": "failure",
+     "SerializedName": "failure",
+     "Description": "",
+     "Type": {
+      "$id": "194",
+      "Name": "string",
+      "Kind": "String",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "195",
+     "Name": "outputProperties",
+     "SerializedName": "outputProperties",
+     "Description": "",
+     "Type": {
+      "$id": "196",
+      "Name": "Dictionary",
+      "KeyType": {
+       "$id": "197",
+       "Name": "string",
+       "Kind": "String",
+       "IsNullable": false
+      },
+      "ValueType": {
+       "$id": "198",
+       "Name": "string",
+       "Kind": "String",
+       "IsNullable": false
+      },
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "199",
+     "Name": "createdAt",
+     "SerializedName": "createdAt",
+     "Description": "",
+     "Type": {
+      "$id": "200",
+      "Name": "DateTime",
+      "Kind": "DateTime",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    },
+    {
+     "$id": "201",
+     "Name": "updatedAt",
+     "SerializedName": "updatedAt",
+     "Description": "",
+     "Type": {
+      "$id": "202",
+      "Name": "DateTime",
+      "Kind": "DateTime",
+      "IsNullable": false
+     },
+     "IsRequired": false,
+     "IsReadOnly": false,
+     "IsDiscriminator": false
+    }
+   ]
+  }
+ ],
+ "Clients": [
+  {
+   "$id": "203",
+   "Name": "Installations",
+   "Description": "Azure Notification Hubs registration installation operations",
+   "Operations": [
+    {
+     "$id": "204",
+     "Name": "get",
+     "Description": "Get an Azure Notification Hubs installation",
+     "Parameters": [
+      {
+       "$id": "205",
+       "Name": "namespaceName",
+       "NameInRequest": "namespaceName",
+       "Description": "Notification Hubs Namespace",
+       "Type": {
+        "$id": "206",
+        "Name": "Uri",
+        "Kind": "Uri",
+        "IsNullable": false
+       },
+       "Location": "Uri",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": true,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Client"
+      },
+      {
+       "$id": "207",
+       "Name": "installationId",
+       "NameInRequest": "installationId",
+       "Description": "The installation ID",
+       "Type": {
+        "$id": "208",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Path",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "209",
+       "Name": "accept",
+       "NameInRequest": "Accept",
+       "Type": {
+        "$id": "210",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "211",
+        "Type": {
+         "$ref": "210"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$id": "212",
+       "Name": "apiVersion",
+       "NameInRequest": "api-version",
+       "Description": "",
+       "Type": {
+        "$id": "213",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Query",
+       "IsRequired": true,
+       "IsApiVersion": true,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "IsResourceParameter": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Client",
+       "DefaultValue": {
+        "$id": "214",
+        "Type": {
+         "$id": "215",
+         "Name": "String",
+         "Kind": "String",
+         "IsNullable": false
+        },
+        "Value": "2020-06"
+       }
+      }
+     ],
+     "Responses": [
+      {
+       "$id": "216",
+       "StatusCodes": [
+        200
+       ],
+       "BodyType": {
+        "$ref": "17"
+       },
+       "BodyMediaType": "Json"
+      }
+     ],
+     "HttpMethod": "GET",
+     "RequestBodyMediaType": "Json",
+     "Uri": "https://{namespaceName}.servicebus.windows.net/{hubName}",
+     "Path": "/installations/{installationId}",
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": false
+    },
+    {
+     "$id": "217",
+     "Name": "delete",
+     "Description": "Delete an Azure Notification Hubs installation",
+     "Parameters": [
+      {
+       "$ref": "205"
+      },
+      {
+       "$id": "218",
+       "Name": "installationId",
+       "NameInRequest": "installationId",
+       "Description": "The installation ID",
+       "Type": {
+        "$id": "219",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Path",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "220",
+       "Name": "accept",
+       "NameInRequest": "Accept",
+       "Type": {
+        "$id": "221",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "222",
+        "Type": {
+         "$ref": "221"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$ref": "212"
+      }
+     ],
+     "Responses": [
+      {
+       "$id": "223",
+       "StatusCodes": [
+        204
+       ],
+       "BodyMediaType": "Json"
+      }
+     ],
+     "HttpMethod": "DELETE",
+     "RequestBodyMediaType": "Json",
+     "Uri": "https://{namespaceName}.servicebus.windows.net/{hubName}",
+     "Path": "/installations/{installationId}",
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": false
+    },
+    {
+     "$id": "224",
+     "Name": "createOrUpdate",
+     "Description": "Create or update an Azure Notification Hubs installation",
+     "Parameters": [
+      {
+       "$ref": "205"
+      },
+      {
+       "$id": "225",
+       "Name": "installationId",
+       "NameInRequest": "installationId",
+       "Description": "The installation ID",
+       "Type": {
+        "$id": "226",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Path",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "227",
+       "Name": "installation",
+       "NameInRequest": "installation",
+       "Description": "The installation object",
+       "Type": {
+        "$ref": "17"
+       },
+       "Location": "Body",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "228",
+       "Name": "contentType",
+       "NameInRequest": "Content-Type",
+       "Type": {
+        "$id": "229",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": true,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "230",
+        "Type": {
+         "$ref": "229"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$id": "231",
+       "Name": "accept",
+       "NameInRequest": "Accept",
+       "Type": {
+        "$id": "232",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "233",
+        "Type": {
+         "$ref": "232"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$ref": "212"
+      }
+     ],
+     "Responses": [
+      {
+       "$id": "234",
+       "StatusCodes": [
+        200
+       ],
+       "BodyMediaType": "Json"
+      }
+     ],
+     "HttpMethod": "PUT",
+     "RequestBodyMediaType": "Json",
+     "Uri": "https://{namespaceName}.servicebus.windows.net/{hubName}",
+     "Path": "/installations/{installationId}",
+     "RequestMediaTypes": [
+      "application/json"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": false
+    },
+    {
+     "$id": "235",
+     "Name": "update",
+     "Description": "Update an Azure Notification Hubs installation using JSON Patch semantics",
+     "Parameters": [
+      {
+       "$ref": "205"
+      },
+      {
+       "$id": "236",
+       "Name": "installationId",
+       "NameInRequest": "installationId",
+       "Description": "The installation ID",
+       "Type": {
+        "$id": "237",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Path",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "238",
+       "Name": "updates",
+       "NameInRequest": "updates",
+       "Description": "The installation patches",
+       "Type": {
+        "$id": "239",
+        "Name": "Array",
+        "ElementType": {
+         "$ref": "43"
+        },
+        "IsNullable": false
+       },
+       "Location": "Body",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "240",
+       "Name": "contentType",
+       "NameInRequest": "Content-Type",
+       "Type": {
+        "$id": "241",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": true,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "242",
+        "Type": {
+         "$ref": "241"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$id": "243",
+       "Name": "accept",
+       "NameInRequest": "Accept",
+       "Type": {
+        "$id": "244",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "245",
+        "Type": {
+         "$ref": "244"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$ref": "212"
+      }
+     ],
+     "Responses": [
+      {
+       "$id": "246",
+       "StatusCodes": [
+        200
+       ],
+       "BodyMediaType": "Json"
+      }
+     ],
+     "HttpMethod": "PATCH",
+     "RequestBodyMediaType": "Json",
+     "Uri": "https://{namespaceName}.servicebus.windows.net/{hubName}",
+     "Path": "/installations/{installationId}",
+     "RequestMediaTypes": [
+      "application/json"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": false
+    }
+   ],
+   "Protocol": {
+    "$id": "247"
+   }
+  },
+  {
+   "$id": "248",
+   "Name": "Registrations",
+   "Description": "Azure Notification Hubs registration description operations",
+   "Operations": [
+    {
+     "$id": "249",
+     "Name": "create",
+     "Description": "Create an Azure Notification Hubs registration description",
+     "Parameters": [
+      {
+       "$ref": "205"
+      },
+      {
+       "$id": "250",
+       "Name": "contentType",
+       "NameInRequest": "Content-Type",
+       "Description": "The HTTP content-type",
+       "Type": {
+        "$id": "251",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "DefaultValue": {
+        "$id": "252",
+        "Type": {
+         "$ref": "251"
+        },
+        "Value": "application/atom+xml;type=entry;charset=utf-8"
+       },
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant"
+      },
+      {
+       "$id": "253",
+       "Name": "body",
+       "NameInRequest": "body",
+       "Description": "The registration description",
+       "Type": {
+        "$ref": "49"
+       },
+       "Location": "Body",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "254",
+       "Name": "accept",
+       "NameInRequest": "Accept",
+       "Type": {
+        "$id": "255",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "256",
+        "Type": {
+         "$ref": "255"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$ref": "212"
+      }
+     ],
+     "Responses": [
+      {
+       "$id": "257",
+       "StatusCodes": [
+        201
+       ],
+       "BodyType": {
+        "$ref": "49"
+       },
+       "BodyMediaType": "Json"
+      }
+     ],
+     "HttpMethod": "POST",
+     "RequestBodyMediaType": "Json",
+     "Uri": "https://{namespaceName}.servicebus.windows.net/{hubName}",
+     "Path": "/registrations",
+     "RequestMediaTypes": [
+      "application/atom+xml;type=entry;charset=utf-8"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": false
+    },
+    {
+     "$id": "258",
+     "Name": "createOrUpdate",
+     "Description": "Create or update an Azure Notification Hubs registration description",
+     "Parameters": [
+      {
+       "$ref": "205"
+      },
+      {
+       "$id": "259",
+       "Name": "registrationId",
+       "NameInRequest": "registrationId",
+       "Description": "The registration ID",
+       "Type": {
+        "$id": "260",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Path",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "261",
+       "Name": "contentType",
+       "NameInRequest": "Content-Type",
+       "Description": "The Content-Type HTTP header",
+       "Type": {
+        "$id": "262",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "DefaultValue": {
+        "$id": "263",
+        "Type": {
+         "$ref": "262"
+        },
+        "Value": "application/atom+xml;type=entry;charset=utf-8"
+       },
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant"
+      },
+      {
+       "$id": "264",
+       "Name": "eTag",
+       "NameInRequest": "If-Match",
+       "Description": "The If-Match HTTP header",
+       "Type": {
+        "$id": "265",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsRequired": false,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "266",
+       "Name": "body",
+       "NameInRequest": "body",
+       "Description": "The registration description",
+       "Type": {
+        "$ref": "49"
+       },
+       "Location": "Body",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "267",
+       "Name": "accept",
+       "NameInRequest": "Accept",
+       "Type": {
+        "$id": "268",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "269",
+        "Type": {
+         "$ref": "268"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$ref": "212"
+      }
+     ],
+     "Responses": [
+      {
+       "$id": "270",
+       "StatusCodes": [
+        201
+       ],
+       "BodyType": {
+        "$ref": "49"
+       },
+       "BodyMediaType": "Json"
+      }
+     ],
+     "HttpMethod": "PUT",
+     "RequestBodyMediaType": "Json",
+     "Uri": "https://{namespaceName}.servicebus.windows.net/{hubName}",
+     "Path": "/registrations/{registrationId}",
+     "RequestMediaTypes": [
+      "application/atom+xml;type=entry;charset=utf-8"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": false
+    },
+    {
+     "$id": "271",
+     "Name": "delete",
+     "Description": "Delete an Azure Notification Hubs registration description",
+     "Parameters": [
+      {
+       "$ref": "205"
+      },
+      {
+       "$id": "272",
+       "Name": "registrationId",
+       "NameInRequest": "registrationId",
+       "Description": "The registration ID",
+       "Type": {
+        "$id": "273",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Path",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "274",
+       "Name": "eTag",
+       "NameInRequest": "If-Match",
+       "Description": "The If-Match HTTP header",
+       "Type": {
+        "$id": "275",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsRequired": false,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "276",
+       "Name": "accept",
+       "NameInRequest": "Accept",
+       "Type": {
+        "$id": "277",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "278",
+        "Type": {
+         "$ref": "277"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$ref": "212"
+      }
+     ],
+     "Responses": [
+      {
+       "$id": "279",
+       "StatusCodes": [
+        200
+       ],
+       "BodyMediaType": "Json"
+      }
+     ],
+     "HttpMethod": "DELETE",
+     "RequestBodyMediaType": "Json",
+     "Uri": "https://{namespaceName}.servicebus.windows.net/{hubName}",
+     "Path": "/registrations/{registrationId}",
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": false
+    },
+    {
+     "$id": "280",
+     "Name": "get",
+     "Description": "Get an Azure Notification Hubs registration description",
+     "Parameters": [
+      {
+       "$ref": "205"
+      },
+      {
+       "$id": "281",
+       "Name": "registrationId",
+       "NameInRequest": "registrationId",
+       "Description": "The registration ID",
+       "Type": {
+        "$id": "282",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Path",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "283",
+       "Name": "accept",
+       "NameInRequest": "Accept",
+       "Type": {
+        "$id": "284",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "285",
+        "Type": {
+         "$ref": "284"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$ref": "212"
+      }
+     ],
+     "Responses": [
+      {
+       "$id": "286",
+       "StatusCodes": [
+        200
+       ],
+       "BodyType": {
+        "$ref": "49"
+       },
+       "BodyMediaType": "Json"
+      }
+     ],
+     "HttpMethod": "GET",
+     "RequestBodyMediaType": "Json",
+     "Uri": "https://{namespaceName}.servicebus.windows.net/{hubName}",
+     "Path": "/registrations/{registrationId}",
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": false
+    },
+    {
+     "$id": "287",
+     "Name": "list",
+     "Description": "List Azure Notification Hubs registration descriptions",
+     "Parameters": [
+      {
+       "$ref": "205"
+      },
+      {
+       "$id": "288",
+       "Name": "top",
+       "NameInRequest": "$top",
+       "Description": "The limit to the number of records to retrieve",
+       "Type": {
+        "$id": "289",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Query",
+       "IsRequired": false,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "290",
+       "Name": "filter",
+       "NameInRequest": "$fitler",
+       "Description": "The filter query to find registrations",
+       "Type": {
+        "$id": "291",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Query",
+       "IsRequired": false,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "292",
+       "Name": "continuationToken",
+       "NameInRequest": "continuationToken",
+       "Description": "The continuation token for more results",
+       "Type": {
+        "$id": "293",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Query",
+       "IsRequired": false,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "294",
+       "Name": "accept",
+       "NameInRequest": "Accept",
+       "Type": {
+        "$id": "295",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "296",
+        "Type": {
+         "$ref": "295"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$ref": "212"
+      }
+     ],
+     "Responses": [
+      {
+       "$id": "297",
+       "StatusCodes": [
+        200
+       ],
+       "BodyType": {
+        "$id": "298",
+        "Name": "Array",
+        "ElementType": {
+         "$ref": "49"
+        },
+        "IsNullable": false
+       },
+       "BodyMediaType": "Json"
+      }
+     ],
+     "HttpMethod": "GET",
+     "RequestBodyMediaType": "Json",
+     "Uri": "https://{namespaceName}.servicebus.windows.net/{hubName}",
+     "Path": "/registrations",
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": false
+    }
+   ],
+   "Protocol": {
+    "$id": "299"
+   }
+  },
+  {
+   "$id": "300",
+   "Name": "ListRegistrationsByTag",
+   "Description": "Azure Notification Hubs tags search operations",
+   "Operations": [
+    {
+     "$id": "301",
+     "Name": "list",
+     "Description": "List all Azure Notification Hubs registrations description matching the given tag",
+     "Parameters": [
+      {
+       "$ref": "205"
+      },
+      {
+       "$id": "302",
+       "Name": "tag",
+       "NameInRequest": "tag",
+       "Description": "The tag name to search",
+       "Type": {
+        "$id": "303",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Path",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "304",
+       "Name": "top",
+       "NameInRequest": "$top",
+       "Description": "The limit to the number of records to retrieve",
+       "Type": {
+        "$id": "305",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Query",
+       "IsRequired": false,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "306",
+       "Name": "continuationToken",
+       "NameInRequest": "continuationToken",
+       "Description": "The continuation token for more results",
+       "Type": {
+        "$id": "307",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Query",
+       "IsRequired": false,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "308",
+       "Name": "accept",
+       "NameInRequest": "Accept",
+       "Type": {
+        "$id": "309",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "310",
+        "Type": {
+         "$ref": "309"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$ref": "212"
+      }
+     ],
+     "Responses": [
+      {
+       "$id": "311",
+       "StatusCodes": [
+        200
+       ],
+       "BodyType": {
+        "$id": "312",
+        "Name": "Array",
+        "ElementType": {
+         "$ref": "49"
+        },
+        "IsNullable": false
+       },
+       "BodyMediaType": "Json"
+      }
+     ],
+     "HttpMethod": "GET",
+     "RequestBodyMediaType": "Json",
+     "Uri": "https://{namespaceName}.servicebus.windows.net/{hubName}",
+     "Path": "/tags/{tag}/registrations",
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": false
+    }
+   ],
+   "Protocol": {
+    "$id": "313"
+   }
+  },
+  {
+   "$id": "314",
+   "Name": "Notifications",
+   "Description": "Azure Notification Hubs message operations",
+   "Operations": [
+    {
+     "$id": "315",
+     "Name": "sendNotification",
+     "Description": "Send a notification using Azure Notification Hubs",
+     "Parameters": [
+      {
+       "$ref": "205"
+      },
+      {
+       "$id": "316",
+       "Name": "direct",
+       "NameInRequest": "direct",
+       "Description": "Direct send operation",
+       "Type": {
+        "$id": "317",
+        "Name": "bool",
+        "Kind": "Boolean",
+        "IsNullable": false
+       },
+       "Location": "Query",
+       "IsRequired": false,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "318",
+       "Name": "test",
+       "NameInRequest": "test",
+       "Description": "Enables test send for debug purposes",
+       "Type": {
+        "$id": "319",
+        "Name": "bool",
+        "Kind": "Boolean",
+        "IsNullable": false
+       },
+       "Location": "Query",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "320",
+       "Name": "platform",
+       "NameInRequest": "ServiceBusNotification-Format",
+       "Description": "The notification target platform",
+       "Type": {
+        "$id": "321",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "322",
+       "Name": "deviceHandle",
+       "NameInRequest": "ServiceBusNotification-DeviceHandle",
+       "Description": "The notification target device handle",
+       "Type": {
+        "$id": "323",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsRequired": false,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "324",
+       "Name": "tags",
+       "NameInRequest": "ServiceBusNotification-Tags",
+       "Description": "The notification target tag expression",
+       "Type": {
+        "$id": "325",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsRequired": false,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "326",
+       "Name": "notification",
+       "NameInRequest": "notification",
+       "Description": "The notification to send",
+       "Type": {
+        "$id": "327",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Body",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "328",
+       "Name": "contentType",
+       "NameInRequest": "Content-Type",
+       "Type": {
+        "$id": "329",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": true,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "330",
+        "Type": {
+         "$ref": "329"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$id": "331",
+       "Name": "accept",
+       "NameInRequest": "Accept",
+       "Type": {
+        "$id": "332",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "333",
+        "Type": {
+         "$ref": "332"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$ref": "212"
+      }
+     ],
+     "Responses": [
+      {
+       "$id": "334",
+       "StatusCodes": [
+        201
+       ],
+       "BodyType": {
+        "$ref": "158"
+       },
+       "BodyMediaType": "Json"
+      }
+     ],
+     "HttpMethod": "POST",
+     "RequestBodyMediaType": "Json",
+     "Uri": "https://{namespaceName}.servicebus.windows.net/{hubName}",
+     "Path": "/messages",
+     "RequestMediaTypes": [
+      "application/json"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": false
+    }
+   ],
+   "Protocol": {
+    "$id": "335"
+   }
+  },
+  {
+   "$id": "336",
+   "Name": "ScheduledNotifications",
+   "Description": "Azure Notification Hubs scheduled send operations",
+   "Operations": [
+    {
+     "$id": "337",
+     "Name": "cancelNotification",
+     "Description": "Cancel a scheduled notification",
+     "Parameters": [
+      {
+       "$ref": "205"
+      },
+      {
+       "$id": "338",
+       "Name": "notificationId",
+       "NameInRequest": "notificationId",
+       "Description": "The ID of the notification to cancel",
+       "Type": {
+        "$id": "339",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Path",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "340",
+       "Name": "accept",
+       "NameInRequest": "Accept",
+       "Type": {
+        "$id": "341",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "342",
+        "Type": {
+         "$ref": "341"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$ref": "212"
+      }
+     ],
+     "Responses": [
+      {
+       "$id": "343",
+       "StatusCodes": [
+        200
+       ],
+       "BodyMediaType": "Json"
+      }
+     ],
+     "HttpMethod": "DELETE",
+     "RequestBodyMediaType": "Json",
+     "Uri": "https://{namespaceName}.servicebus.windows.net/{hubName}",
+     "Path": "/schedulednotifications/{notificationId}",
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": false
+    },
+    {
+     "$id": "344",
+     "Name": "scheduleNotification",
+     "Description": "Schedule a notification",
+     "Parameters": [
+      {
+       "$ref": "205"
+      },
+      {
+       "$id": "345",
+       "Name": "scheduleTime",
+       "NameInRequest": "ServiceBusNotification-ScheduleTime",
+       "Description": "The notification scheduled time",
+       "Type": {
+        "$id": "346",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "347",
+       "Name": "platform",
+       "NameInRequest": "ServiceBusNotification-Format",
+       "Description": "The notification target platform",
+       "Type": {
+        "$id": "348",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "349",
+       "Name": "tags",
+       "NameInRequest": "ServiceBusNotification-Tags",
+       "Description": "The notification target tag expression",
+       "Type": {
+        "$id": "350",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsRequired": false,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "351",
+       "Name": "notification",
+       "NameInRequest": "notification",
+       "Description": "The notification to schedule",
+       "Type": {
+        "$id": "352",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Body",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "353",
+       "Name": "contentType",
+       "NameInRequest": "Content-Type",
+       "Type": {
+        "$id": "354",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": true,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "355",
+        "Type": {
+         "$ref": "354"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$id": "356",
+       "Name": "accept",
+       "NameInRequest": "Accept",
+       "Type": {
+        "$id": "357",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "358",
+        "Type": {
+         "$ref": "357"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$ref": "212"
+      }
+     ],
+     "Responses": [
+      {
+       "$id": "359",
+       "StatusCodes": [
+        201
+       ],
+       "BodyMediaType": "Json"
+      }
+     ],
+     "HttpMethod": "POST",
+     "RequestBodyMediaType": "Json",
+     "Uri": "https://{namespaceName}.servicebus.windows.net/{hubName}",
+     "Path": "/schedulednotifications",
+     "RequestMediaTypes": [
+      "application/json"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": false
+    }
+   ],
+   "Protocol": {
+    "$id": "360"
+   }
+  },
+  {
+   "$id": "361",
+   "Name": "NotificationHubJobs",
+   "Description": "Azure Notification Hubs import and export job operations",
+   "Operations": [
+    {
+     "$id": "362",
+     "Name": "create",
+     "Description": "Create an import/export Azure Notification Hubs job",
+     "Parameters": [
+      {
+       "$ref": "205"
+      },
+      {
+       "$id": "363",
+       "Name": "contentType",
+       "NameInRequest": "Content-Type",
+       "Description": "The HTTP Content-Type header",
+       "Type": {
+        "$id": "364",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "DefaultValue": {
+        "$id": "365",
+        "Type": {
+         "$ref": "364"
+        },
+        "Value": "application/atom+xml;type=entry;charset=utf-8"
+       },
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant"
+      },
+      {
+       "$id": "366",
+       "Name": "notificationHubJob",
+       "NameInRequest": "notificationHubJob",
+       "Description": "The Azure Notification Hub import/export job to create",
+       "Type": {
+        "$ref": "174"
+       },
+       "Location": "Body",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "367",
+       "Name": "accept",
+       "NameInRequest": "Accept",
+       "Type": {
+        "$id": "368",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "369",
+        "Type": {
+         "$ref": "368"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$ref": "212"
+      }
+     ],
+     "Responses": [
+      {
+       "$id": "370",
+       "StatusCodes": [
+        201
+       ],
+       "BodyType": {
+        "$ref": "174"
+       },
+       "BodyMediaType": "Json"
+      }
+     ],
+     "HttpMethod": "POST",
+     "RequestBodyMediaType": "Json",
+     "Uri": "https://{namespaceName}.servicebus.windows.net/{hubName}",
+     "Path": "/jobs",
+     "RequestMediaTypes": [
+      "application/atom+xml;type=entry;charset=utf-8"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": false
+    },
+    {
+     "$id": "371",
+     "Name": "get",
+     "Description": "Get an import/export Azure Notification Hubs job",
+     "Parameters": [
+      {
+       "$ref": "205"
+      },
+      {
+       "$id": "372",
+       "Name": "jobId",
+       "NameInRequest": "jobId",
+       "Description": "The job ID",
+       "Type": {
+        "$id": "373",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Path",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "374",
+       "Name": "accept",
+       "NameInRequest": "Accept",
+       "Type": {
+        "$id": "375",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "376",
+        "Type": {
+         "$ref": "375"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$ref": "212"
+      }
+     ],
+     "Responses": [
+      {
+       "$id": "377",
+       "StatusCodes": [
+        200
+       ],
+       "BodyType": {
+        "$ref": "174"
+       },
+       "BodyMediaType": "Json"
+      }
+     ],
+     "HttpMethod": "GET",
+     "RequestBodyMediaType": "Json",
+     "Uri": "https://{namespaceName}.servicebus.windows.net/{hubName}",
+     "Path": "/jobs/{jobId}",
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": false
+    },
+    {
+     "$id": "378",
+     "Name": "list",
+     "Description": "List all import/export Azure Notification Hubs jobs",
+     "Parameters": [
+      {
+       "$ref": "205"
+      },
+      {
+       "$id": "379",
+       "Name": "accept",
+       "NameInRequest": "Accept",
+       "Type": {
+        "$id": "380",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "381",
+        "Type": {
+         "$ref": "380"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$ref": "212"
+      }
+     ],
+     "Responses": [
+      {
+       "$id": "382",
+       "StatusCodes": [
+        200
+       ],
+       "BodyType": {
+        "$id": "383",
+        "Name": "Array",
+        "ElementType": {
+         "$ref": "174"
+        },
+        "IsNullable": false
+       },
+       "BodyMediaType": "Json"
+      }
+     ],
+     "HttpMethod": "GET",
+     "RequestBodyMediaType": "Json",
+     "Uri": "https://{namespaceName}.servicebus.windows.net/{hubName}",
+     "Path": "/jobs",
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": false
+    }
+   ],
+   "Protocol": {
+    "$id": "384"
+   }
+  }
+ ]
+}
