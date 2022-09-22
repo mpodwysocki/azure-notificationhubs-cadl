@@ -257,6 +257,7 @@ def build_notifications_send_notification_request(
     *,
     test: bool,
     platform: str,
+    content: str,
     direct: Optional[bool] = None,
     device_handle: Optional[str] = None,
     tags: Optional[str] = None,
@@ -286,7 +287,7 @@ def build_notifications_send_notification_request(
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, content=content, **kwargs)
 
 
 def build_scheduled_notifications_cancel_notification_request(notification_id: str, **kwargs: Any) -> HttpRequest:
@@ -302,7 +303,7 @@ def build_scheduled_notifications_cancel_notification_request(notification_id: s
 
 
 def build_scheduled_notifications_schedule_notification_request(
-    *, schedule_time: str, platform: str, tags: Optional[str] = None, **kwargs: Any
+    *, schedule_time: str, platform: str, content: str, tags: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -318,7 +319,7 @@ def build_scheduled_notifications_schedule_notification_request(
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_notification_hub_jobs_create_request(**kwargs: Any) -> HttpRequest:
@@ -1245,80 +1246,10 @@ class NotificationsOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    @overload
-    def send_notification(
-        self,
-        notification: Union[_models.Notification, JSON],
-        *,
-        test: bool,
-        platform: str,
-        direct: Optional[bool] = None,
-        device_handle: Optional[str] = None,
-        tags: Optional[str] = None,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.NotificationOutcome:
-        """Send a notification using Azure Notification Hubs.
-
-        :param notification: The notification to send. Required.
-        :type notification: ~notificationhubs.models.Notification or JSON
-        :keyword test: Enables test send for debug purposes. Required.
-        :paramtype test: bool
-        :keyword platform: The notification target platform. Required.
-        :paramtype platform: str
-        :keyword direct: Direct send operation. Default value is None.
-        :paramtype direct: bool
-        :keyword device_handle: The notification target device handle. Default value is None.
-        :paramtype device_handle: str
-        :keyword tags: The notification target tag expression. Default value is None.
-        :paramtype tags: str
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: NotificationOutcome. The NotificationOutcome is compatible with MutableMapping
-        :rtype: ~notificationhubs.models.NotificationOutcome
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def send_notification(
-        self,
-        notification: IO,
-        *,
-        test: bool,
-        platform: str,
-        direct: Optional[bool] = None,
-        device_handle: Optional[str] = None,
-        tags: Optional[str] = None,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.NotificationOutcome:
-        """Send a notification using Azure Notification Hubs.
-
-        :param notification: The notification to send. Required.
-        :type notification: IO
-        :keyword test: Enables test send for debug purposes. Required.
-        :paramtype test: bool
-        :keyword platform: The notification target platform. Required.
-        :paramtype platform: str
-        :keyword direct: Direct send operation. Default value is None.
-        :paramtype direct: bool
-        :keyword device_handle: The notification target device handle. Default value is None.
-        :paramtype device_handle: str
-        :keyword tags: The notification target tag expression. Default value is None.
-        :paramtype tags: str
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: NotificationOutcome. The NotificationOutcome is compatible with MutableMapping
-        :rtype: ~notificationhubs.models.NotificationOutcome
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
     @distributed_trace
     def send_notification(
         self,
-        notification: Union[_models.Notification, JSON, IO],
+        notification: str,
         *,
         test: bool,
         platform: str,
@@ -1329,8 +1260,8 @@ class NotificationsOperations:
     ) -> _models.NotificationOutcome:
         """Send a notification using Azure Notification Hubs.
 
-        :param notification: The notification to send. Is either a model type or a IO type. Required.
-        :type notification: ~notificationhubs.models.Notification or JSON or IO
+        :param notification: The notification to send. Required.
+        :type notification: str
         :keyword test: Enables test send for debug purposes. Required.
         :paramtype test: bool
         :keyword platform: The notification target platform. Required.
@@ -1342,7 +1273,7 @@ class NotificationsOperations:
         :keyword tags: The notification target tag expression. Default value is None.
         :paramtype tags: str
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :return: NotificationOutcome. The NotificationOutcome is compatible with MutableMapping
         :rtype: ~notificationhubs.models.NotificationOutcome
@@ -1359,15 +1290,10 @@ class NotificationsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[_models.NotificationOutcome]
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(notification, (IO, bytes)):
-            _content = notification
-        else:
-            _content = json.dumps(notification, cls=AzureJSONEncoder)
+        _content = json.dumps(notification, cls=AzureJSONEncoder)
 
         request = build_notifications_send_notification_request(
             test=test,
@@ -1483,79 +1409,14 @@ class ScheduledNotificationsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @overload
-    def schedule_notification(  # pylint: disable=inconsistent-return-statements
-        self,
-        notification: Union[_models.Notification, JSON],
-        *,
-        schedule_time: str,
-        platform: str,
-        tags: Optional[str] = None,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> None:
-        """Schedule a notification.
-
-        :param notification: The notification to schedule. Required.
-        :type notification: ~notificationhubs.models.Notification or JSON
-        :keyword schedule_time: The notification scheduled time. Required.
-        :paramtype schedule_time: str
-        :keyword platform: The notification target platform. Required.
-        :paramtype platform: str
-        :keyword tags: The notification target tag expression. Default value is None.
-        :paramtype tags: str
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def schedule_notification(  # pylint: disable=inconsistent-return-statements
-        self,
-        notification: IO,
-        *,
-        schedule_time: str,
-        platform: str,
-        tags: Optional[str] = None,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> None:
-        """Schedule a notification.
-
-        :param notification: The notification to schedule. Required.
-        :type notification: IO
-        :keyword schedule_time: The notification scheduled time. Required.
-        :paramtype schedule_time: str
-        :keyword platform: The notification target platform. Required.
-        :paramtype platform: str
-        :keyword tags: The notification target tag expression. Default value is None.
-        :paramtype tags: str
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
     @distributed_trace
     def schedule_notification(  # pylint: disable=inconsistent-return-statements
-        self,
-        notification: Union[_models.Notification, JSON, IO],
-        *,
-        schedule_time: str,
-        platform: str,
-        tags: Optional[str] = None,
-        **kwargs: Any
+        self, notification: str, *, schedule_time: str, platform: str, tags: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Schedule a notification.
 
-        :param notification: The notification to schedule. Is either a model type or a IO type.
-         Required.
-        :type notification: ~notificationhubs.models.Notification or JSON or IO
+        :param notification: The notification to schedule. Required.
+        :type notification: str
         :keyword schedule_time: The notification scheduled time. Required.
         :paramtype schedule_time: str
         :keyword platform: The notification target platform. Required.
@@ -1563,7 +1424,7 @@ class ScheduledNotificationsOperations:
         :keyword tags: The notification target tag expression. Default value is None.
         :paramtype tags: str
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
@@ -1580,15 +1441,10 @@ class ScheduledNotificationsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", None))  # type: Optional[str]
+        content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))  # type: str
         cls = kwargs.pop("cls", None)  # type: ClsType[None]
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(notification, (IO, bytes)):
-            _content = notification
-        else:
-            _content = json.dumps(notification, cls=AzureJSONEncoder)
+        _content = json.dumps(notification, cls=AzureJSONEncoder)
 
         request = build_scheduled_notifications_schedule_notification_request(
             schedule_time=schedule_time,

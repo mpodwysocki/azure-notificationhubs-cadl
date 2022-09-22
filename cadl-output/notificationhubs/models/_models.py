@@ -24,95 +24,6 @@ else:
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
-class Notification(_model_base.Model):
-    """Represents an Azure Notification Hubs notification.
-
-    You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    AdmNotification, AppleNotification, BaiduNotification, BrowserNotification,
-    FirebaseLegacyNotification, WindowsNotification
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar body: The notification body. Required.
-    :vartype body: str
-    :ivar headers: The HTTP headers for the notification.
-    :vartype headers: dict[str, str]
-    :ivar platform: Required. Default value is "wns".
-    :vartype platform: str
-    """
-
-    __mapping__ = {}
-    body: str = rest_field()
-    """The notification body. Required. """
-    headers: Optional[Dict[str, str]] = rest_field()
-    """The HTTP headers for the notification. """
-    platform: str = rest_discriminator()
-    """Required. Default value is \"wns\"."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        body: str,
-        headers: Optional[Dict[str, str]] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class AdmNotification(Notification, discriminator="adm"):
-    """Represents an ADM based Azure Notification Hubs notification.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar body: The notification body. Required.
-    :vartype body: str
-    :ivar headers: The HTTP headers for the notification.
-    :vartype headers: dict[str, str]
-    :ivar content_type: The notification content type. Required. Default value is
-     "application/json;charset=utf-8".
-    :vartype content_type: str
-    :ivar platform: The notification platform type. Required. Default value is "adm".
-    :vartype platform: str
-    """
-
-    content_type: str = rest_field(name="contentType")
-    """The notification content type. Required. Default value is \"application/json;charset=utf-8\"."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        body: str,
-        headers: Optional[Dict[str, str]] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.platform = "adm"  # type: str
-
-
 class RegistrationDescription(_model_base.Model):
     """Represents an Azure Notification Hubs registration description.
 
@@ -290,49 +201,6 @@ class AdmTemplateRegistrationDescription(RegistrationDescription, discriminator=
         self.platform = "admTemplate"  # type: str
 
 
-class AppleNotification(Notification, discriminator="apple"):
-    """Represents an Apple based Azure Notification Hubs notification.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar body: The notification body. Required.
-    :vartype body: str
-    :ivar headers: The HTTP headers for the notification.
-    :vartype headers: dict[str, str]
-    :ivar content_type: The notification content type. Required. Default value is
-     "application/json;charset=utf-8".
-    :vartype content_type: str
-    :ivar platform: The notification platform type. Required. Default value is "apple".
-    :vartype platform: str
-    """
-
-    content_type: str = rest_field(name="contentType")
-    """The notification content type. Required. Default value is \"application/json;charset=utf-8\"."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        body: str,
-        headers: Optional[Dict[str, str]] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.platform = "apple"  # type: str
-
-
 class AppleRegistrationDescription(RegistrationDescription, discriminator="apple"):
     """Represents an Apple based Azure Notification Hubs registration description.
 
@@ -454,49 +322,6 @@ class AppleTemplateRegistrationDescription(
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.platform = "appleTemplate"  # type: str
-
-
-class BaiduNotification(Notification, discriminator="baidu"):
-    """Represents a Baidu based Azure Notification Hubs notification.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar body: The notification body. Required.
-    :vartype body: str
-    :ivar headers: The HTTP headers for the notification.
-    :vartype headers: dict[str, str]
-    :ivar content_type: The notification content type. Required. Default value is
-     "application/json;charset=utf-8".
-    :vartype content_type: str
-    :ivar platform: The notification platform type. Required. Default value is "baidu".
-    :vartype platform: str
-    """
-
-    content_type: str = rest_field(name="contentType")
-    """The notification content type. Required. Default value is \"application/json;charset=utf-8\"."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        body: str,
-        headers: Optional[Dict[str, str]] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.platform = "baidu"  # type: str
 
 
 class BaiduRegistrationDescription(RegistrationDescription, discriminator="baidu"):
@@ -738,49 +563,6 @@ class BrowserInstallation(Installation, discriminator="browser"):
         self.platform = "browser"  # type: str
 
 
-class BrowserNotification(Notification, discriminator="browser"):
-    """Represents a Web Push based Azure Notification Hubs notification.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar body: The notification body. Required.
-    :vartype body: str
-    :ivar headers: The HTTP headers for the notification.
-    :vartype headers: dict[str, str]
-    :ivar content_type: The notification content type. Required. Default value is
-     "application/json;charset=utf-8".
-    :vartype content_type: str
-    :ivar platform: The notification platform type. Required. Default value is "browser".
-    :vartype platform: str
-    """
-
-    content_type: str = rest_field(name="contentType")
-    """The notification content type. Required. Default value is \"application/json;charset=utf-8\"."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        body: str,
-        headers: Optional[Dict[str, str]] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.platform = "browser"  # type: str
-
-
 class BrowserPushHandle(_model_base.Model):
     """Represents a Web Push push handle.
 
@@ -987,49 +769,6 @@ class FcmLegacyInstallation(Installation, discriminator="gcm"):
         tags: List[str],
         templates: Dict[str, str],
         user_id: Optional[str] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.platform = "gcm"  # type: str
-
-
-class FirebaseLegacyNotification(Notification, discriminator="gcm"):
-    """Represents an Firebase Legacy based Azure Notification Hubs notification.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar body: The notification body. Required.
-    :vartype body: str
-    :ivar headers: The HTTP headers for the notification.
-    :vartype headers: dict[str, str]
-    :ivar content_type: The notification content type. Required. Default value is
-     "application/json;charset=utf-8".
-    :vartype content_type: str
-    :ivar platform: The notification platform type. Required. Default value is "gcm".
-    :vartype platform: str
-    """
-
-    content_type: str = rest_field(name="contentType")
-    """The notification content type. Required. Default value is \"application/json;charset=utf-8\"."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        body: str,
-        headers: Optional[Dict[str, str]] = None,
     ):
         ...
 
@@ -1497,41 +1236,6 @@ class RegistrationResult(_model_base.Model):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
-
-class WindowsNotification(Notification, discriminator="wns"):
-    """Represents a Windows based Azure Notification Hubs notification.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar body: The notification body. Required.
-    :vartype body: str
-    :ivar headers: The HTTP headers for the notification.
-    :vartype headers: dict[str, str]
-    :ivar platform: The notification content type. Required. Default value is "wns".
-    :vartype platform: str
-    """
-
-    @overload
-    def __init__(
-        self,
-        *,
-        body: str,
-        headers: Optional[Dict[str, str]] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-        ...
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.platform = "wns"  # type: str
 
 
 class WindowsRegistrationDescription(RegistrationDescription, discriminator="windows"):

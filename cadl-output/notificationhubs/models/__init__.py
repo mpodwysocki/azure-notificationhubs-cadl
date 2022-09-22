@@ -6,34 +6,27 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._models import AdmNotification
 from ._models import AdmRegistrationDescription
 from ._models import AdmTemplateRegistrationDescription
-from ._models import AppleNotification
 from ._models import AppleRegistrationDescription
 from ._models import AppleTemplateRegistrationDescription
-from ._models import BaiduNotification
 from ._models import BaiduRegistrationDescription
 from ._models import BaiduTemplateRegistrationDescription
 from ._models import BrowserInstallation
-from ._models import BrowserNotification
 from ._models import BrowserPushHandle
 from ._models import BrowserRegistrationDescription
 from ._models import BrowserTemplateRegistrationDescription
 from ._models import FcmLegacyInstallation
-from ._models import FirebaseLegacyNotification
 from ._models import GcmRegistrationDescription
 from ._models import GcmTemplateRegistrationDescription
 from ._models import Installation
 from ._models import JsonPatch
 from ._models import MpnsRegistrationDescription
 from ._models import MpnsTemplateRegistrationDescription
-from ._models import Notification
 from ._models import NotificationHubJob
 from ._models import NotificationOutcome
 from ._models import RegistrationDescription
 from ._models import RegistrationResult
-from ._models import WindowsNotification
 from ._models import WindowsRegistrationDescription
 from ._models import WindowsTemplateRegistrationDescription
 
@@ -45,34 +38,27 @@ from ._patch import *  # type: ignore # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "AdmNotification",
     "AdmRegistrationDescription",
     "AdmTemplateRegistrationDescription",
-    "AppleNotification",
     "AppleRegistrationDescription",
     "AppleTemplateRegistrationDescription",
-    "BaiduNotification",
     "BaiduRegistrationDescription",
     "BaiduTemplateRegistrationDescription",
     "BrowserInstallation",
-    "BrowserNotification",
     "BrowserPushHandle",
     "BrowserRegistrationDescription",
     "BrowserTemplateRegistrationDescription",
     "FcmLegacyInstallation",
-    "FirebaseLegacyNotification",
     "GcmRegistrationDescription",
     "GcmTemplateRegistrationDescription",
     "Installation",
     "JsonPatch",
     "MpnsRegistrationDescription",
     "MpnsTemplateRegistrationDescription",
-    "Notification",
     "NotificationHubJob",
     "NotificationOutcome",
     "RegistrationDescription",
     "RegistrationResult",
-    "WindowsNotification",
     "WindowsRegistrationDescription",
     "WindowsTemplateRegistrationDescription",
     "JsonPatchOperation",

@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npm run build:openapi3 && npm run build:python",
     "build:openapi3": "cadl compile main.cadl --emit @cadl-lang/openapi3",
-    "build:python": "cadl compile main.cadl --emit=$HOME/git/autorest.python/packages/cadl-python/dist/src/index.js"
+    "build:python": "cadl compile main.cadl --emit=@azure-tools/cadl-python"
   },
   "keywords": [],
   "author": "Matthew Podwysocki",
@@ -16,6 +16,6 @@
     "@cadl-lang/compiler": "^0.35.0",
     "@cadl-lang/openapi3": "^0.15.0",
     "@cadl-lang/rest": "^0.17.0",
-    "@azure-tools/cadl-python": "^0.1.0"
+    "@azure-tools/cadl-python": "^0.2.1"
   }
 }

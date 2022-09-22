@@ -196,7 +196,7 @@ namespace Notifications {
     @doc("Enables test send for debug purposes")
     @query test: boolean,
     @doc("The notification to send")
-    @body notification: Notification,
+    @body notification: string,
     @doc("The notification target platform")
     @header("ServiceBusNotification-Format") platform: string,
     @doc("The notification target device handle")
@@ -236,7 +236,7 @@ namespace ScheduledNotifications {
   @post
   op scheduleNotification(
     @doc("The notification to schedule")
-    @body notification: Notification,
+    @body notification: string,
     @doc("The notification scheduled time")
     @header("ServiceBusNotification-ScheduleTime") scheduleTime: string,
     @doc("The notification target platform")

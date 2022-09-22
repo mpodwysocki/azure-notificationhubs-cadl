@@ -537,7 +537,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Models.Notification"
+                "type": "string"
               }
             }
           }
@@ -643,7 +643,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Models.Notification"
+                "type": "string"
               }
             }
           }
@@ -880,42 +880,6 @@
             "windowsTemplate": "#/components/schemas/Models.WindowsTemplateRegistrationDescription"
           }
         }
-      },
-      "Models.Notification": {
-        "type": "object",
-        "properties": {
-          "platform": {
-            "type": "string",
-            "description": "Discriminator property for Notification."
-          },
-          "body": {
-            "type": "string",
-            "description": "The notification body"
-          },
-          "headers": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "x-cadl-name": "Record<string>",
-            "description": "The HTTP headers for the notification"
-          }
-        },
-        "description": "Represents an Azure Notification Hubs notification",
-        "discriminator": {
-          "propertyName": "platform",
-          "mapping": {
-            "adm": "#/components/schemas/Models.AdmNotification",
-            "apple": "#/components/schemas/Models.AppleNotification",
-            "baidu": "#/components/schemas/Models.BaiduNotification",
-            "browser": "#/components/schemas/Models.BrowserNotification",
-            "gcm": "#/components/schemas/Models.FirebaseLegacyNotification",
-            "wns": "#/components/schemas/Models.WindowsNotification"
-          }
-        },
-        "required": [
-          "body"
-        ]
       },
       "Models.NotificationOutcome": {
         "type": "object",
@@ -1573,172 +1537,6 @@
           }
         ]
       },
-      "Models.AdmNotification": {
-        "type": "object",
-        "properties": {
-          "contentType": {
-            "type": "string",
-            "enum": [
-              "application/json;charset=utf-8"
-            ],
-            "description": "The notification content type"
-          },
-          "platform": {
-            "type": "string",
-            "enum": [
-              "adm"
-            ],
-            "description": "The notification platform type"
-          }
-        },
-        "description": "Represents an ADM based Azure Notification Hubs notification",
-        "required": [
-          "contentType",
-          "platform"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.Notification"
-          }
-        ]
-      },
-      "Models.AppleNotification": {
-        "type": "object",
-        "properties": {
-          "contentType": {
-            "type": "string",
-            "enum": [
-              "application/json;charset=utf-8"
-            ],
-            "description": "The notification content type"
-          },
-          "platform": {
-            "type": "string",
-            "enum": [
-              "apple"
-            ],
-            "description": "The notification platform type"
-          }
-        },
-        "description": "Represents an Apple based Azure Notification Hubs notification",
-        "required": [
-          "contentType",
-          "platform"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.Notification"
-          }
-        ]
-      },
-      "Models.BaiduNotification": {
-        "type": "object",
-        "properties": {
-          "contentType": {
-            "type": "string",
-            "enum": [
-              "application/json;charset=utf-8"
-            ],
-            "description": "The notification content type"
-          },
-          "platform": {
-            "type": "string",
-            "enum": [
-              "baidu"
-            ],
-            "description": "The notification platform type"
-          }
-        },
-        "description": "Represents a Baidu based Azure Notification Hubs notification",
-        "required": [
-          "contentType",
-          "platform"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.Notification"
-          }
-        ]
-      },
-      "Models.BrowserNotification": {
-        "type": "object",
-        "properties": {
-          "contentType": {
-            "type": "string",
-            "enum": [
-              "application/json;charset=utf-8"
-            ],
-            "description": "The notification content type"
-          },
-          "platform": {
-            "type": "string",
-            "enum": [
-              "browser"
-            ],
-            "description": "The notification platform type"
-          }
-        },
-        "description": "Represents a Web Push based Azure Notification Hubs notification",
-        "required": [
-          "contentType",
-          "platform"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.Notification"
-          }
-        ]
-      },
-      "Models.FirebaseLegacyNotification": {
-        "type": "object",
-        "properties": {
-          "contentType": {
-            "type": "string",
-            "enum": [
-              "application/json;charset=utf-8"
-            ],
-            "description": "The notification content type"
-          },
-          "platform": {
-            "type": "string",
-            "enum": [
-              "gcm"
-            ],
-            "description": "The notification platform type"
-          }
-        },
-        "description": "Represents an Firebase Legacy based Azure Notification Hubs notification",
-        "required": [
-          "contentType",
-          "platform"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.Notification"
-          }
-        ]
-      },
-      "Models.WindowsNotification": {
-        "type": "object",
-        "properties": {
-          "platform": {
-            "type": "string",
-            "enum": [
-              "wns"
-            ],
-            "description": "The notification content type"
-          }
-        },
-        "description": "Represents a Windows based Azure Notification Hubs notification",
-        "required": [
-          "platform"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.Notification"
-          }
-        ]
-      },
       "Models.RegistrationResult": {
         "type": "object",
         "properties": {
@@ -1809,48 +1607,6 @@
           "endpoint",
           "p256dh",
           "auth"
-        ]
-      },
-      "Models.WindowsXmlNotification": {
-        "type": "object",
-        "properties": {
-          "contentType": {
-            "type": "string",
-            "enum": [
-              "application/xml;charset=utf-8"
-            ],
-            "description": "The notification content type"
-          }
-        },
-        "description": "Represents a Windows XML based Azure Notification Hubs notification",
-        "required": [
-          "contentType"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.WindowsNotification"
-          }
-        ]
-      },
-      "Models.WindowsRawNotification": {
-        "type": "object",
-        "properties": {
-          "contentType": {
-            "type": "string",
-            "enum": [
-              "application/octet-stream"
-            ],
-            "description": "The notification content type"
-          }
-        },
-        "description": "Represents a Windows raw based Azure Notification Hubs notification",
-        "required": [
-          "contentType"
-        ],
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Models.WindowsNotification"
-          }
         ]
       }
     }
