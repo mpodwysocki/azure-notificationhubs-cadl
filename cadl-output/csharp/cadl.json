@@ -1616,8 +1616,8 @@
        "Description": "Notification Hubs Namespace",
        "Type": {
         "$id": "206",
-        "Name": "Uri",
-        "Kind": "Uri",
+        "Name": "String",
+        "Kind": "String",
         "IsNullable": false
        },
        "Location": "Uri",
@@ -1625,18 +1625,39 @@
        "IsResourceParameter": false,
        "IsContentType": false,
        "IsRequired": true,
-       "IsEndpoint": true,
+       "IsEndpoint": false,
        "SkipUrlEncoding": false,
        "Explode": false,
        "Kind": "Client"
       },
       {
        "$id": "207",
+       "Name": "hubName",
+       "NameInRequest": "hubName",
+       "Description": "Notification Hub Name",
+       "Type": {
+        "$id": "208",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Uri",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Client"
+      },
+      {
+       "$id": "209",
        "Name": "installationId",
        "NameInRequest": "installationId",
        "Description": "The installation ID",
        "Type": {
-        "$id": "208",
+        "$id": "210",
         "Name": "string",
         "Kind": "String",
         "IsNullable": false
@@ -1652,11 +1673,11 @@
        "Kind": "Method"
       },
       {
-       "$id": "209",
+       "$id": "211",
        "Name": "accept",
        "NameInRequest": "Accept",
        "Type": {
-        "$id": "210",
+        "$id": "212",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -1671,20 +1692,20 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "211",
+        "$id": "213",
         "Type": {
-         "$ref": "210"
+         "$ref": "212"
         },
         "Value": "application/json"
        }
       },
       {
-       "$id": "212",
+       "$id": "214",
        "Name": "apiVersion",
        "NameInRequest": "api-version",
        "Description": "",
        "Type": {
-        "$id": "213",
+        "$id": "215",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -1699,9 +1720,9 @@
        "Explode": false,
        "Kind": "Client",
        "DefaultValue": {
-        "$id": "214",
+        "$id": "216",
         "Type": {
-         "$id": "215",
+         "$id": "217",
          "Name": "String",
          "Kind": "String",
          "IsNullable": false
@@ -1712,7 +1733,7 @@
      ],
      "Responses": [
       {
-       "$id": "216",
+       "$id": "218",
        "StatusCodes": [
         200
        ],
@@ -1730,7 +1751,7 @@
      "GenerateConvenienceMethod": false
     },
     {
-     "$id": "217",
+     "$id": "219",
      "Name": "delete",
      "Description": "Delete an Azure Notification Hubs installation",
      "Parameters": [
@@ -1738,12 +1759,15 @@
        "$ref": "205"
       },
       {
-       "$id": "218",
+       "$ref": "207"
+      },
+      {
+       "$id": "220",
        "Name": "installationId",
        "NameInRequest": "installationId",
        "Description": "The installation ID",
        "Type": {
-        "$id": "219",
+        "$id": "221",
         "Name": "string",
         "Kind": "String",
         "IsNullable": false
@@ -1759,11 +1783,11 @@
        "Kind": "Method"
       },
       {
-       "$id": "220",
+       "$id": "222",
        "Name": "accept",
        "NameInRequest": "Accept",
        "Type": {
-        "$id": "221",
+        "$id": "223",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -1778,20 +1802,20 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "222",
+        "$id": "224",
         "Type": {
-         "$ref": "221"
+         "$ref": "223"
         },
         "Value": "application/json"
        }
       },
       {
-       "$ref": "212"
+       "$ref": "214"
       }
      ],
      "Responses": [
       {
-       "$id": "223",
+       "$id": "225",
        "StatusCodes": [
         204
        ],
@@ -1806,7 +1830,7 @@
      "GenerateConvenienceMethod": false
     },
     {
-     "$id": "224",
+     "$id": "226",
      "Name": "createOrUpdate",
      "Description": "Create or update an Azure Notification Hubs installation",
      "Parameters": [
@@ -1814,12 +1838,15 @@
        "$ref": "205"
       },
       {
-       "$id": "225",
+       "$ref": "207"
+      },
+      {
+       "$id": "227",
        "Name": "installationId",
        "NameInRequest": "installationId",
        "Description": "The installation ID",
        "Type": {
-        "$id": "226",
+        "$id": "228",
         "Name": "string",
         "Kind": "String",
         "IsNullable": false
@@ -1835,7 +1862,7 @@
        "Kind": "Method"
       },
       {
-       "$id": "227",
+       "$id": "229",
        "Name": "installation",
        "NameInRequest": "installation",
        "Description": "The installation object",
@@ -1853,11 +1880,11 @@
        "Kind": "Method"
       },
       {
-       "$id": "228",
+       "$id": "230",
        "Name": "contentType",
        "NameInRequest": "Content-Type",
        "Type": {
-        "$id": "229",
+        "$id": "231",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -1872,19 +1899,19 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "230",
+        "$id": "232",
         "Type": {
-         "$ref": "229"
+         "$ref": "231"
         },
         "Value": "application/json"
        }
       },
       {
-       "$id": "231",
+       "$id": "233",
        "Name": "accept",
        "NameInRequest": "Accept",
        "Type": {
-        "$id": "232",
+        "$id": "234",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -1899,20 +1926,20 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "233",
+        "$id": "235",
         "Type": {
-         "$ref": "232"
+         "$ref": "234"
         },
         "Value": "application/json"
        }
       },
       {
-       "$ref": "212"
+       "$ref": "214"
       }
      ],
      "Responses": [
       {
-       "$id": "234",
+       "$id": "236",
        "StatusCodes": [
         200
        ],
@@ -1930,7 +1957,7 @@
      "GenerateConvenienceMethod": false
     },
     {
-     "$id": "235",
+     "$id": "237",
      "Name": "update",
      "Description": "Update an Azure Notification Hubs installation using JSON Patch semantics",
      "Parameters": [
@@ -1938,12 +1965,15 @@
        "$ref": "205"
       },
       {
-       "$id": "236",
+       "$ref": "207"
+      },
+      {
+       "$id": "238",
        "Name": "installationId",
        "NameInRequest": "installationId",
        "Description": "The installation ID",
        "Type": {
-        "$id": "237",
+        "$id": "239",
         "Name": "string",
         "Kind": "String",
         "IsNullable": false
@@ -1959,12 +1989,12 @@
        "Kind": "Method"
       },
       {
-       "$id": "238",
+       "$id": "240",
        "Name": "updates",
        "NameInRequest": "updates",
        "Description": "The installation patches",
        "Type": {
-        "$id": "239",
+        "$id": "241",
         "Name": "Array",
         "ElementType": {
          "$ref": "43"
@@ -1982,11 +2012,11 @@
        "Kind": "Method"
       },
       {
-       "$id": "240",
+       "$id": "242",
        "Name": "contentType",
        "NameInRequest": "Content-Type",
        "Type": {
-        "$id": "241",
+        "$id": "243",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -2001,19 +2031,19 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "242",
+        "$id": "244",
         "Type": {
-         "$ref": "241"
+         "$ref": "243"
         },
         "Value": "application/json"
        }
       },
       {
-       "$id": "243",
+       "$id": "245",
        "Name": "accept",
        "NameInRequest": "Accept",
        "Type": {
-        "$id": "244",
+        "$id": "246",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -2028,20 +2058,20 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "245",
+        "$id": "247",
         "Type": {
-         "$ref": "244"
+         "$ref": "246"
         },
         "Value": "application/json"
        }
       },
       {
-       "$ref": "212"
+       "$ref": "214"
       }
      ],
      "Responses": [
       {
-       "$id": "246",
+       "$id": "248",
        "StatusCodes": [
         200
        ],
@@ -2060,16 +2090,16 @@
     }
    ],
    "Protocol": {
-    "$id": "247"
+    "$id": "249"
    }
   },
   {
-   "$id": "248",
+   "$id": "250",
    "Name": "Registrations",
    "Description": "Azure Notification Hubs registration description operations",
    "Operations": [
     {
-     "$id": "249",
+     "$id": "251",
      "Name": "create",
      "Description": "Create an Azure Notification Hubs registration description",
      "Parameters": [
@@ -2077,21 +2107,24 @@
        "$ref": "205"
       },
       {
-       "$id": "250",
+       "$ref": "207"
+      },
+      {
+       "$id": "252",
        "Name": "contentType",
        "NameInRequest": "Content-Type",
        "Description": "The HTTP content-type",
        "Type": {
-        "$id": "251",
+        "$id": "253",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
        },
        "Location": "Header",
        "DefaultValue": {
-        "$id": "252",
+        "$id": "254",
         "Type": {
-         "$ref": "251"
+         "$ref": "253"
         },
         "Value": "application/atom+xml;type=entry;charset=utf-8"
        },
@@ -2105,7 +2138,7 @@
        "Kind": "Constant"
       },
       {
-       "$id": "253",
+       "$id": "255",
        "Name": "body",
        "NameInRequest": "body",
        "Description": "The registration description",
@@ -2123,11 +2156,11 @@
        "Kind": "Method"
       },
       {
-       "$id": "254",
+       "$id": "256",
        "Name": "accept",
        "NameInRequest": "Accept",
        "Type": {
-        "$id": "255",
+        "$id": "257",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -2142,20 +2175,20 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "256",
+        "$id": "258",
         "Type": {
-         "$ref": "255"
+         "$ref": "257"
         },
         "Value": "application/json"
        }
       },
       {
-       "$ref": "212"
+       "$ref": "214"
       }
      ],
      "Responses": [
       {
-       "$id": "257",
+       "$id": "259",
        "StatusCodes": [
         201
        ],
@@ -2176,7 +2209,7 @@
      "GenerateConvenienceMethod": false
     },
     {
-     "$id": "258",
+     "$id": "260",
      "Name": "createOrUpdate",
      "Description": "Create or update an Azure Notification Hubs registration description",
      "Parameters": [
@@ -2184,12 +2217,15 @@
        "$ref": "205"
       },
       {
-       "$id": "259",
+       "$ref": "207"
+      },
+      {
+       "$id": "261",
        "Name": "registrationId",
        "NameInRequest": "registrationId",
        "Description": "The registration ID",
        "Type": {
-        "$id": "260",
+        "$id": "262",
         "Name": "string",
         "Kind": "String",
         "IsNullable": false
@@ -2205,21 +2241,21 @@
        "Kind": "Method"
       },
       {
-       "$id": "261",
+       "$id": "263",
        "Name": "contentType",
        "NameInRequest": "Content-Type",
        "Description": "The Content-Type HTTP header",
        "Type": {
-        "$id": "262",
+        "$id": "264",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
        },
        "Location": "Header",
        "DefaultValue": {
-        "$id": "263",
+        "$id": "265",
         "Type": {
-         "$ref": "262"
+         "$ref": "264"
         },
         "Value": "application/atom+xml;type=entry;charset=utf-8"
        },
@@ -2233,12 +2269,12 @@
        "Kind": "Constant"
       },
       {
-       "$id": "264",
+       "$id": "266",
        "Name": "eTag",
        "NameInRequest": "If-Match",
        "Description": "The If-Match HTTP header",
        "Type": {
-        "$id": "265",
+        "$id": "267",
         "Name": "string",
         "Kind": "String",
         "IsNullable": false
@@ -2254,7 +2290,7 @@
        "Kind": "Method"
       },
       {
-       "$id": "266",
+       "$id": "268",
        "Name": "body",
        "NameInRequest": "body",
        "Description": "The registration description",
@@ -2272,11 +2308,11 @@
        "Kind": "Method"
       },
       {
-       "$id": "267",
+       "$id": "269",
        "Name": "accept",
        "NameInRequest": "Accept",
        "Type": {
-        "$id": "268",
+        "$id": "270",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -2291,20 +2327,20 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "269",
+        "$id": "271",
         "Type": {
-         "$ref": "268"
+         "$ref": "270"
         },
         "Value": "application/json"
        }
       },
       {
-       "$ref": "212"
+       "$ref": "214"
       }
      ],
      "Responses": [
       {
-       "$id": "270",
+       "$id": "272",
        "StatusCodes": [
         201
        ],
@@ -2325,7 +2361,7 @@
      "GenerateConvenienceMethod": false
     },
     {
-     "$id": "271",
+     "$id": "273",
      "Name": "delete",
      "Description": "Delete an Azure Notification Hubs registration description",
      "Parameters": [
@@ -2333,12 +2369,15 @@
        "$ref": "205"
       },
       {
-       "$id": "272",
+       "$ref": "207"
+      },
+      {
+       "$id": "274",
        "Name": "registrationId",
        "NameInRequest": "registrationId",
        "Description": "The registration ID",
        "Type": {
-        "$id": "273",
+        "$id": "275",
         "Name": "string",
         "Kind": "String",
         "IsNullable": false
@@ -2354,12 +2393,12 @@
        "Kind": "Method"
       },
       {
-       "$id": "274",
+       "$id": "276",
        "Name": "eTag",
        "NameInRequest": "If-Match",
        "Description": "The If-Match HTTP header",
        "Type": {
-        "$id": "275",
+        "$id": "277",
         "Name": "string",
         "Kind": "String",
         "IsNullable": false
@@ -2375,11 +2414,11 @@
        "Kind": "Method"
       },
       {
-       "$id": "276",
+       "$id": "278",
        "Name": "accept",
        "NameInRequest": "Accept",
        "Type": {
-        "$id": "277",
+        "$id": "279",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -2394,20 +2433,20 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "278",
+        "$id": "280",
         "Type": {
-         "$ref": "277"
+         "$ref": "279"
         },
         "Value": "application/json"
        }
       },
       {
-       "$ref": "212"
+       "$ref": "214"
       }
      ],
      "Responses": [
       {
-       "$id": "279",
+       "$id": "281",
        "StatusCodes": [
         200
        ],
@@ -2422,7 +2461,7 @@
      "GenerateConvenienceMethod": false
     },
     {
-     "$id": "280",
+     "$id": "282",
      "Name": "get",
      "Description": "Get an Azure Notification Hubs registration description",
      "Parameters": [
@@ -2430,12 +2469,15 @@
        "$ref": "205"
       },
       {
-       "$id": "281",
+       "$ref": "207"
+      },
+      {
+       "$id": "283",
        "Name": "registrationId",
        "NameInRequest": "registrationId",
        "Description": "The registration ID",
        "Type": {
-        "$id": "282",
+        "$id": "284",
         "Name": "string",
         "Kind": "String",
         "IsNullable": false
@@ -2451,11 +2493,11 @@
        "Kind": "Method"
       },
       {
-       "$id": "283",
+       "$id": "285",
        "Name": "accept",
        "NameInRequest": "Accept",
        "Type": {
-        "$id": "284",
+        "$id": "286",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -2470,20 +2512,20 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "285",
+        "$id": "287",
         "Type": {
-         "$ref": "284"
+         "$ref": "286"
         },
         "Value": "application/json"
        }
       },
       {
-       "$ref": "212"
+       "$ref": "214"
       }
      ],
      "Responses": [
       {
-       "$id": "286",
+       "$id": "288",
        "StatusCodes": [
         200
        ],
@@ -2501,7 +2543,7 @@
      "GenerateConvenienceMethod": false
     },
     {
-     "$id": "287",
+     "$id": "289",
      "Name": "list",
      "Description": "List Azure Notification Hubs registration descriptions",
      "Parameters": [
@@ -2509,31 +2551,13 @@
        "$ref": "205"
       },
       {
-       "$id": "288",
-       "Name": "top",
-       "NameInRequest": "$top",
-       "Description": "The limit to the number of records to retrieve",
-       "Type": {
-        "$id": "289",
-        "Name": "string",
-        "Kind": "String",
-        "IsNullable": false
-       },
-       "Location": "Query",
-       "IsRequired": false,
-       "IsApiVersion": false,
-       "IsResourceParameter": false,
-       "IsContentType": false,
-       "IsEndpoint": false,
-       "SkipUrlEncoding": false,
-       "Explode": false,
-       "Kind": "Method"
+       "$ref": "207"
       },
       {
        "$id": "290",
-       "Name": "filter",
-       "NameInRequest": "$fitler",
-       "Description": "The filter query to find registrations",
+       "Name": "top",
+       "NameInRequest": "$top",
+       "Description": "The limit to the number of records to retrieve",
        "Type": {
         "$id": "291",
         "Name": "string",
@@ -2552,9 +2576,9 @@
       },
       {
        "$id": "292",
-       "Name": "continuationToken",
-       "NameInRequest": "continuationToken",
-       "Description": "The continuation token for more results",
+       "Name": "filter",
+       "NameInRequest": "$fitler",
+       "Description": "The filter query to find registrations",
        "Type": {
         "$id": "293",
         "Name": "string",
@@ -2573,10 +2597,31 @@
       },
       {
        "$id": "294",
+       "Name": "continuationToken",
+       "NameInRequest": "continuationToken",
+       "Description": "The continuation token for more results",
+       "Type": {
+        "$id": "295",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Query",
+       "IsRequired": false,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "296",
        "Name": "accept",
        "NameInRequest": "Accept",
        "Type": {
-        "$id": "295",
+        "$id": "297",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -2591,25 +2636,25 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "296",
+        "$id": "298",
         "Type": {
-         "$ref": "295"
+         "$ref": "297"
         },
         "Value": "application/json"
        }
       },
       {
-       "$ref": "212"
+       "$ref": "214"
       }
      ],
      "Responses": [
       {
-       "$id": "297",
+       "$id": "299",
        "StatusCodes": [
         200
        ],
        "BodyType": {
-        "$id": "298",
+        "$id": "300",
         "Name": "Array",
         "ElementType": {
          "$ref": "49"
@@ -2628,16 +2673,16 @@
     }
    ],
    "Protocol": {
-    "$id": "299"
+    "$id": "301"
    }
   },
   {
-   "$id": "300",
+   "$id": "302",
    "Name": "ListRegistrationsByTag",
    "Description": "Azure Notification Hubs tags search operations",
    "Operations": [
     {
-     "$id": "301",
+     "$id": "303",
      "Name": "list",
      "Description": "List all Azure Notification Hubs registrations description matching the given tag",
      "Parameters": [
@@ -2645,12 +2690,15 @@
        "$ref": "205"
       },
       {
-       "$id": "302",
+       "$ref": "207"
+      },
+      {
+       "$id": "304",
        "Name": "tag",
        "NameInRequest": "tag",
        "Description": "The tag name to search",
        "Type": {
-        "$id": "303",
+        "$id": "305",
         "Name": "string",
         "Kind": "String",
         "IsNullable": false
@@ -2666,31 +2714,10 @@
        "Kind": "Method"
       },
       {
-       "$id": "304",
+       "$id": "306",
        "Name": "top",
        "NameInRequest": "$top",
        "Description": "The limit to the number of records to retrieve",
-       "Type": {
-        "$id": "305",
-        "Name": "string",
-        "Kind": "String",
-        "IsNullable": false
-       },
-       "Location": "Query",
-       "IsRequired": false,
-       "IsApiVersion": false,
-       "IsResourceParameter": false,
-       "IsContentType": false,
-       "IsEndpoint": false,
-       "SkipUrlEncoding": false,
-       "Explode": false,
-       "Kind": "Method"
-      },
-      {
-       "$id": "306",
-       "Name": "continuationToken",
-       "NameInRequest": "continuationToken",
-       "Description": "The continuation token for more results",
        "Type": {
         "$id": "307",
         "Name": "string",
@@ -2709,10 +2736,31 @@
       },
       {
        "$id": "308",
+       "Name": "continuationToken",
+       "NameInRequest": "continuationToken",
+       "Description": "The continuation token for more results",
+       "Type": {
+        "$id": "309",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Query",
+       "IsRequired": false,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "310",
        "Name": "accept",
        "NameInRequest": "Accept",
        "Type": {
-        "$id": "309",
+        "$id": "311",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -2727,25 +2775,25 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "310",
+        "$id": "312",
         "Type": {
-         "$ref": "309"
+         "$ref": "311"
         },
         "Value": "application/json"
        }
       },
       {
-       "$ref": "212"
+       "$ref": "214"
       }
      ],
      "Responses": [
       {
-       "$id": "311",
+       "$id": "313",
        "StatusCodes": [
         200
        ],
        "BodyType": {
-        "$id": "312",
+        "$id": "314",
         "Name": "Array",
         "ElementType": {
          "$ref": "49"
@@ -2764,16 +2812,16 @@
     }
    ],
    "Protocol": {
-    "$id": "313"
+    "$id": "315"
    }
   },
   {
-   "$id": "314",
+   "$id": "316",
    "Name": "Notifications",
    "Description": "Azure Notification Hubs message operations",
    "Operations": [
     {
-     "$id": "315",
+     "$id": "317",
      "Name": "sendNotification",
      "Description": "Send a notification using Azure Notification Hubs",
      "Parameters": [
@@ -2781,12 +2829,15 @@
        "$ref": "205"
       },
       {
-       "$id": "316",
+       "$ref": "207"
+      },
+      {
+       "$id": "318",
        "Name": "direct",
        "NameInRequest": "direct",
        "Description": "Direct send operation",
        "Type": {
-        "$id": "317",
+        "$id": "319",
         "Name": "bool",
         "Kind": "Boolean",
         "IsNullable": false
@@ -2802,38 +2853,17 @@
        "Kind": "Method"
       },
       {
-       "$id": "318",
+       "$id": "320",
        "Name": "test",
        "NameInRequest": "test",
        "Description": "Enables test send for debug purposes",
        "Type": {
-        "$id": "319",
+        "$id": "321",
         "Name": "bool",
         "Kind": "Boolean",
         "IsNullable": false
        },
        "Location": "Query",
-       "IsRequired": true,
-       "IsApiVersion": false,
-       "IsResourceParameter": false,
-       "IsContentType": false,
-       "IsEndpoint": false,
-       "SkipUrlEncoding": false,
-       "Explode": false,
-       "Kind": "Method"
-      },
-      {
-       "$id": "320",
-       "Name": "platform",
-       "NameInRequest": "ServiceBusNotification-Format",
-       "Description": "The notification target platform",
-       "Type": {
-        "$id": "321",
-        "Name": "string",
-        "Kind": "String",
-        "IsNullable": false
-       },
-       "Location": "Header",
        "IsRequired": true,
        "IsApiVersion": false,
        "IsResourceParameter": false,
@@ -2845,9 +2875,9 @@
       },
       {
        "$id": "322",
-       "Name": "deviceHandle",
-       "NameInRequest": "ServiceBusNotification-DeviceHandle",
-       "Description": "The notification target device handle",
+       "Name": "platform",
+       "NameInRequest": "ServiceBusNotification-Format",
+       "Description": "The notification target platform",
        "Type": {
         "$id": "323",
         "Name": "string",
@@ -2855,7 +2885,7 @@
         "IsNullable": false
        },
        "Location": "Header",
-       "IsRequired": false,
+       "IsRequired": true,
        "IsApiVersion": false,
        "IsResourceParameter": false,
        "IsContentType": false,
@@ -2866,9 +2896,9 @@
       },
       {
        "$id": "324",
-       "Name": "tags",
-       "NameInRequest": "ServiceBusNotification-Tags",
-       "Description": "The notification target tag expression",
+       "Name": "deviceHandle",
+       "NameInRequest": "ServiceBusNotification-DeviceHandle",
+       "Description": "The notification target device handle",
        "Type": {
         "$id": "325",
         "Name": "string",
@@ -2887,11 +2917,32 @@
       },
       {
        "$id": "326",
+       "Name": "tags",
+       "NameInRequest": "ServiceBusNotification-Tags",
+       "Description": "The notification target tag expression",
+       "Type": {
+        "$id": "327",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsRequired": false,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "328",
        "Name": "notification",
        "NameInRequest": "notification",
        "Description": "The notification to send",
        "Type": {
-        "$id": "327",
+        "$id": "329",
         "Name": "string",
         "Kind": "String",
         "IsNullable": false
@@ -2907,11 +2958,11 @@
        "Kind": "Method"
       },
       {
-       "$id": "328",
+       "$id": "330",
        "Name": "contentType",
        "NameInRequest": "Content-Type",
        "Type": {
-        "$id": "329",
+        "$id": "331",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -2926,19 +2977,19 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "330",
+        "$id": "332",
         "Type": {
-         "$ref": "329"
+         "$ref": "331"
         },
         "Value": "application/json"
        }
       },
       {
-       "$id": "331",
+       "$id": "333",
        "Name": "accept",
        "NameInRequest": "Accept",
        "Type": {
-        "$id": "332",
+        "$id": "334",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -2953,20 +3004,20 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "333",
+        "$id": "335",
         "Type": {
-         "$ref": "332"
+         "$ref": "334"
         },
         "Value": "application/json"
        }
       },
       {
-       "$ref": "212"
+       "$ref": "214"
       }
      ],
      "Responses": [
       {
-       "$id": "334",
+       "$id": "336",
        "StatusCodes": [
         201
        ],
@@ -2988,16 +3039,16 @@
     }
    ],
    "Protocol": {
-    "$id": "335"
+    "$id": "337"
    }
   },
   {
-   "$id": "336",
+   "$id": "338",
    "Name": "ScheduledNotifications",
    "Description": "Azure Notification Hubs scheduled send operations",
    "Operations": [
     {
-     "$id": "337",
+     "$id": "339",
      "Name": "cancelNotification",
      "Description": "Cancel a scheduled notification",
      "Parameters": [
@@ -3005,12 +3056,15 @@
        "$ref": "205"
       },
       {
-       "$id": "338",
+       "$ref": "207"
+      },
+      {
+       "$id": "340",
        "Name": "notificationId",
        "NameInRequest": "notificationId",
        "Description": "The ID of the notification to cancel",
        "Type": {
-        "$id": "339",
+        "$id": "341",
         "Name": "string",
         "Kind": "String",
         "IsNullable": false
@@ -3026,11 +3080,11 @@
        "Kind": "Method"
       },
       {
-       "$id": "340",
+       "$id": "342",
        "Name": "accept",
        "NameInRequest": "Accept",
        "Type": {
-        "$id": "341",
+        "$id": "343",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -3045,20 +3099,20 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "342",
+        "$id": "344",
         "Type": {
-         "$ref": "341"
+         "$ref": "343"
         },
         "Value": "application/json"
        }
       },
       {
-       "$ref": "212"
+       "$ref": "214"
       }
      ],
      "Responses": [
       {
-       "$id": "343",
+       "$id": "345",
        "StatusCodes": [
         200
        ],
@@ -3073,7 +3127,7 @@
      "GenerateConvenienceMethod": false
     },
     {
-     "$id": "344",
+     "$id": "346",
      "Name": "scheduleNotification",
      "Description": "Schedule a notification",
      "Parameters": [
@@ -3081,31 +3135,13 @@
        "$ref": "205"
       },
       {
-       "$id": "345",
-       "Name": "scheduleTime",
-       "NameInRequest": "ServiceBusNotification-ScheduleTime",
-       "Description": "The notification scheduled time",
-       "Type": {
-        "$id": "346",
-        "Name": "string",
-        "Kind": "String",
-        "IsNullable": false
-       },
-       "Location": "Header",
-       "IsRequired": true,
-       "IsApiVersion": false,
-       "IsResourceParameter": false,
-       "IsContentType": false,
-       "IsEndpoint": false,
-       "SkipUrlEncoding": false,
-       "Explode": false,
-       "Kind": "Method"
+       "$ref": "207"
       },
       {
        "$id": "347",
-       "Name": "platform",
-       "NameInRequest": "ServiceBusNotification-Format",
-       "Description": "The notification target platform",
+       "Name": "scheduleTime",
+       "NameInRequest": "ServiceBusNotification-ScheduleTime",
+       "Description": "The notification scheduled time",
        "Type": {
         "$id": "348",
         "Name": "string",
@@ -3124,11 +3160,32 @@
       },
       {
        "$id": "349",
+       "Name": "platform",
+       "NameInRequest": "ServiceBusNotification-Format",
+       "Description": "The notification target platform",
+       "Type": {
+        "$id": "350",
+        "Name": "string",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "351",
        "Name": "tags",
        "NameInRequest": "ServiceBusNotification-Tags",
        "Description": "The notification target tag expression",
        "Type": {
-        "$id": "350",
+        "$id": "352",
         "Name": "string",
         "Kind": "String",
         "IsNullable": false
@@ -3144,12 +3201,12 @@
        "Kind": "Method"
       },
       {
-       "$id": "351",
+       "$id": "353",
        "Name": "notification",
        "NameInRequest": "notification",
        "Description": "The notification to schedule",
        "Type": {
-        "$id": "352",
+        "$id": "354",
         "Name": "string",
         "Kind": "String",
         "IsNullable": false
@@ -3165,11 +3222,11 @@
        "Kind": "Method"
       },
       {
-       "$id": "353",
+       "$id": "355",
        "Name": "contentType",
        "NameInRequest": "Content-Type",
        "Type": {
-        "$id": "354",
+        "$id": "356",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -3184,19 +3241,19 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "355",
+        "$id": "357",
         "Type": {
-         "$ref": "354"
+         "$ref": "356"
         },
         "Value": "application/json"
        }
       },
       {
-       "$id": "356",
+       "$id": "358",
        "Name": "accept",
        "NameInRequest": "Accept",
        "Type": {
-        "$id": "357",
+        "$id": "359",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -3211,20 +3268,20 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "358",
+        "$id": "360",
         "Type": {
-         "$ref": "357"
+         "$ref": "359"
         },
         "Value": "application/json"
        }
       },
       {
-       "$ref": "212"
+       "$ref": "214"
       }
      ],
      "Responses": [
       {
-       "$id": "359",
+       "$id": "361",
        "StatusCodes": [
         201
        ],
@@ -3243,16 +3300,16 @@
     }
    ],
    "Protocol": {
-    "$id": "360"
+    "$id": "362"
    }
   },
   {
-   "$id": "361",
+   "$id": "363",
    "Name": "NotificationHubJobs",
    "Description": "Azure Notification Hubs import and export job operations",
    "Operations": [
     {
-     "$id": "362",
+     "$id": "364",
      "Name": "create",
      "Description": "Create an import/export Azure Notification Hubs job",
      "Parameters": [
@@ -3260,21 +3317,24 @@
        "$ref": "205"
       },
       {
-       "$id": "363",
+       "$ref": "207"
+      },
+      {
+       "$id": "365",
        "Name": "contentType",
        "NameInRequest": "Content-Type",
        "Description": "The HTTP Content-Type header",
        "Type": {
-        "$id": "364",
+        "$id": "366",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
        },
        "Location": "Header",
        "DefaultValue": {
-        "$id": "365",
+        "$id": "367",
         "Type": {
-         "$ref": "364"
+         "$ref": "366"
         },
         "Value": "application/atom+xml;type=entry;charset=utf-8"
        },
@@ -3288,7 +3348,7 @@
        "Kind": "Constant"
       },
       {
-       "$id": "366",
+       "$id": "368",
        "Name": "notificationHubJob",
        "NameInRequest": "notificationHubJob",
        "Description": "The Azure Notification Hub import/export job to create",
@@ -3306,11 +3366,11 @@
        "Kind": "Method"
       },
       {
-       "$id": "367",
+       "$id": "369",
        "Name": "accept",
        "NameInRequest": "Accept",
        "Type": {
-        "$id": "368",
+        "$id": "370",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -3325,20 +3385,20 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "369",
+        "$id": "371",
         "Type": {
-         "$ref": "368"
+         "$ref": "370"
         },
         "Value": "application/json"
        }
       },
       {
-       "$ref": "212"
+       "$ref": "214"
       }
      ],
      "Responses": [
       {
-       "$id": "370",
+       "$id": "372",
        "StatusCodes": [
         201
        ],
@@ -3359,7 +3419,7 @@
      "GenerateConvenienceMethod": false
     },
     {
-     "$id": "371",
+     "$id": "373",
      "Name": "get",
      "Description": "Get an import/export Azure Notification Hubs job",
      "Parameters": [
@@ -3367,12 +3427,15 @@
        "$ref": "205"
       },
       {
-       "$id": "372",
+       "$ref": "207"
+      },
+      {
+       "$id": "374",
        "Name": "jobId",
        "NameInRequest": "jobId",
        "Description": "The job ID",
        "Type": {
-        "$id": "373",
+        "$id": "375",
         "Name": "string",
         "Kind": "String",
         "IsNullable": false
@@ -3388,11 +3451,11 @@
        "Kind": "Method"
       },
       {
-       "$id": "374",
+       "$id": "376",
        "Name": "accept",
        "NameInRequest": "Accept",
        "Type": {
-        "$id": "375",
+        "$id": "377",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -3407,20 +3470,20 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "376",
+        "$id": "378",
         "Type": {
-         "$ref": "375"
+         "$ref": "377"
         },
         "Value": "application/json"
        }
       },
       {
-       "$ref": "212"
+       "$ref": "214"
       }
      ],
      "Responses": [
       {
-       "$id": "377",
+       "$id": "379",
        "StatusCodes": [
         200
        ],
@@ -3438,7 +3501,7 @@
      "GenerateConvenienceMethod": false
     },
     {
-     "$id": "378",
+     "$id": "380",
      "Name": "list",
      "Description": "List all import/export Azure Notification Hubs jobs",
      "Parameters": [
@@ -3446,11 +3509,14 @@
        "$ref": "205"
       },
       {
-       "$id": "379",
+       "$ref": "207"
+      },
+      {
+       "$id": "381",
        "Name": "accept",
        "NameInRequest": "Accept",
        "Type": {
-        "$id": "380",
+        "$id": "382",
         "Name": "String",
         "Kind": "String",
         "IsNullable": false
@@ -3465,25 +3531,25 @@
        "Explode": false,
        "Kind": "Constant",
        "DefaultValue": {
-        "$id": "381",
+        "$id": "383",
         "Type": {
-         "$ref": "380"
+         "$ref": "382"
         },
         "Value": "application/json"
        }
       },
       {
-       "$ref": "212"
+       "$ref": "214"
       }
      ],
      "Responses": [
       {
-       "$id": "382",
+       "$id": "384",
        "StatusCodes": [
         200
        ],
        "BodyType": {
-        "$id": "383",
+        "$id": "385",
         "Name": "Array",
         "ElementType": {
          "$ref": "174"
@@ -3502,7 +3568,7 @@
     }
    ],
    "Protocol": {
-    "$id": "384"
+    "$id": "386"
    }
   }
  ]

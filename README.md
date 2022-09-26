@@ -22,6 +22,12 @@ This will build the `cadl-output/csharp/cadl.json` file, which used with the `Co
 
 **NOTE** This uses the [autorest.csharp](https://github.com/Azure/autorest.csharp/) CADL extension directly instead from npm.  See instructions in the [C# CADL Extension](https://github.com/Azure/autorest.csharp/tree/feature/v3/src/CADL.Extension) project.
 
+Building the C# SDK using `AutoRest.CSharp` looks like the following:
+
+```bash
+~/git/autorest.csharp/artifacts/bin/AutoRest.CSharp/Debug/netcoreapp3.1/AutoRest.CSharp --standalone cadl-output/csharp/
+```
+
 ## Java Support
 
 To build the Java library, run the following command:

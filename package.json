@@ -6,7 +6,7 @@
   "cadlMain": "main.cadl",
   "scripts": {
     "build": "npm run build:openapi3 && npm run build:python",
-    "build:csharp": "cadl compile main.cadl --emit ../autorest.csharp/src/CADL.Extension/Emitter.Csharp/dist/src/index.js --output-path cadl-output/csharp",
+    "build:csharp": "cadl compile main.cadl --emit ../autorest.csharp.fork/src/CADL.Extension/Emitter.Csharp/dist/src/index.js --output-path cadl-output/csharp",
     "build:java": "cadl compile main.cadl --emit ../autorest.java/cadl-extension/dist/src/index.js --output-path cadl-output/java",
     "build:openapi3": "cadl compile main.cadl --emit @cadl-lang/openapi3 --output-path cadl-output/openapi3",
     "build:python": "cadl compile main.cadl --emit @azure-tools/cadl-python --output-path cadl-output/python",
