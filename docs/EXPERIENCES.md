@@ -12,7 +12,7 @@ Installation is straight forward with the new documentation with needing the glo
 
 ### Creating a CADL Definition
 
-CADL has a few guides to getting started including [Writing CADL libraries](https://https://microsoft.github.io/docs/extending-cadl/basics/), and although this is useful, there are no documents on how to get started to document a service which is now missing in the [Language Basics](https://microsoft.github.io/cadl/docs/language-basics/overview/).
+CADL has a few guides to getting started including [Writing CADL libraries](https://microsoft.github.io/docs/extending-cadl/basics/).  What is more important is creating a service which seems hidden under the [HTTP and REST](https://cadlwebsite.z1.web.core.windows.net/docs/standard-library/http/) which should be more prominent.
 
 It took a bit of hand holding to create the service definition as there was very little documentation on the service itself.  In order to be a more complete service, more concrete examples are required, such as operations that return a status code, body, and not just a simple model.  I fear that customers may run into this issue if there are not more examples given in terms of a quickstart.
 
