@@ -1,0 +1,3 @@
+emitters:
+  '@cadl-lang/openapi3': false
+  '@azure-tools/cadl-python': false

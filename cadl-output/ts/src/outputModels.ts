@@ -80,11 +80,11 @@ export interface AdmTemplateRegistrationDescriptionOutput
   extends RegistrationDescriptionOutputParent {
   /** The ADM registration ID */
   admRegistrationId: string;
+  platform: "admTemplate";
   /** The registration body template */
   bodyTemplate: string;
   /** The registration template name */
   templateName?: string;
-  platform: "admTemplate";
 }
 
 /** Represents an Apple based Azure Notification Hubs registration description */
@@ -100,15 +100,15 @@ export interface AppleTemplateRegistrationDescriptionOutput
   extends RegistrationDescriptionOutputParent {
   /** The APNs device token */
   deviceToken: string;
-  /** The registration body template */
-  bodyTemplate: string;
-  /** The registration template name */
-  templateName?: string;
   /** The APNs headers for the template */
   apnsHeaders?: Record<string, string>;
   /** The APNs priority for any message */
   priority?: number;
   platform: "appleTemplate";
+  /** The registration body template */
+  bodyTemplate: string;
+  /** The registration template name */
+  templateName?: string;
 }
 
 /** Represents a Baidu based Azure Notification Hubs registration description */
@@ -128,11 +128,11 @@ export interface BaiduTemplateRegistrationDescriptionOutput
   baiduChannelId: string;
   /** The baidu user ID */
   baiduUserId: string;
+  platform: "baiduTemplate";
   /** The registration body template */
   bodyTemplate: string;
   /** The registration template name */
   templateName?: string;
-  platform: "baiduTemplate";
 }
 
 /** Represents a Web Push based Azure Notification Hubs registration description */
@@ -156,11 +156,11 @@ export interface BrowserTemplateRegistrationDescriptionOutput
   auth: string;
   /** The Web Push P256DH */
   p256dh: string;
+  platform: "browserTemplate";
   /** The registration body template */
   bodyTemplate: string;
   /** The registration template name */
   templateName?: string;
-  platform: "browserTemplate";
 }
 
 /** Represents a Firebase Legacy based Azure Notification Hubs registration description */
@@ -176,11 +176,11 @@ export interface GcmTemplateRegistrationDescriptionOutput
   extends RegistrationDescriptionOutputParent {
   /** The Firebase Legacy registration ID */
   gcmRegistrationId: string;
+  platform: "gcmTemplate";
   /** The registration body template */
   bodyTemplate: string;
   /** The registration template name */
   templateName?: string;
-  platform: "gcmTemplate";
 }
 
 /** Represents a Windows Phone based Azure Notification Hubs registration description */
@@ -196,13 +196,13 @@ export interface MpnsTemplateRegistrationDescriptionOutput
   extends RegistrationDescriptionOutputParent {
   /** The Windows Phone channel URL */
   channelUri: string;
+  /** The Windows Phone template headers */
+  mpnsHeaders?: Record<string, string>;
+  platform: "mpnsTemplate";
   /** The registration body template */
   bodyTemplate: string;
   /** The registration template name */
   templateName?: string;
-  /** The Windows Phone template headers */
-  mpnsHeaders?: Record<string, string>;
-  platform: "mpnsTemplate";
 }
 
 /** Represents a Windows based Azure Notification Hubs registration description */
@@ -218,13 +218,13 @@ export interface WindowsTemplateRegistrationDescriptionOutput
   extends RegistrationDescriptionOutputParent {
   /** The Windows channel URL */
   channelUri: string;
+  /** The Windows template headers */
+  wnsHeaders?: Record<string, string>;
+  platform: "windowsTemplate";
   /** The registration body template */
   bodyTemplate: string;
   /** The registration template name */
   templateName?: string;
-  /** The Windows template headers */
-  wnsHeaders?: Record<string, string>;
-  platform: "windowsTemplate";
 }
 
 /** Represents the notification outcome */

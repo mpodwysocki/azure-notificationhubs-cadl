@@ -4,22 +4,27 @@
   "description": "Azure Notification Hubs CADL Generator",
   "main": "index.js",
   "cadlMain": "main.cadl",
+  "type": "module",
   "scripts": {
-    "build": "npm run build:openapi3 && npm run build:python",
-    "build:csharp": "cadl compile main.cadl --emit ../autorest.csharp.fork/src/CADL.Extension/Emitter.Csharp/dist/src/index.js --output-path cadl-output/csharp",
-    "build:java": "cadl compile main.cadl --emit ../autorest.java/cadl-extension/dist/src/index.js --output-path cadl-output/java",
-    "build:openapi3": "cadl compile main.cadl --emit @cadl-lang/openapi3 --output-path cadl-output/openapi3",
-    "build:python": "cadl compile main.cadl --emit @azure-tools/cadl-python --output-path cadl-output/python",
-    "build:ts": "cadl compile main.cadl --emit ../autorest.typescript/packages/cadl-rlc-emitter/dist/src/index.js --output-path cadl-output/ts"
+    "build": "npm run build:openapi3 && npm run build:python && npm run build:java && npm run build:csharp && npm run build:ts",
+    "build:csharp": "cadl compile main.cadl --import @cadl-lang/library-linter --emit ../autorest.csharp.fork/src/CADL.Extension/Emitter.Csharp/dist/src/index.js --output-path cadl-output/csharp",
+    "build:java": "cadl compile main.cadl --import @cadl-lang/library-linter --emit ../autorest.java/cadl-extension/dist/src/index.js --output-path cadl-output/java",
+    "build:openapi3": "cadl compile main.cadl --import @cadl-lang/library-linter --emit @cadl-lang/openapi3 --output-path cadl-output/openapi3",
+    "build:python": "cadl compile main.cadl --import @cadl-lang/library-linter --emit @azure-tools/cadl-python --output-path cadl-output/python",
+    "build:ts": "cadl compile main.cadl --import @cadl-lang/library-linter --emit ../autorest.typescript/packages/cadl-rlc-emitter/dist/src/index.js --output-path cadl-output/ts"
   },
   "keywords": [],
   "author": "Matthew Podwysocki",
   "license": "MIT",
   "dependencies": {
+    "@azure-tools/cadl-csharp": "^0.1.4",
+    "@azure-tools/cadl-python": "^0.2.5",
     "@cadl-lang/compiler": "^0.35.0",
     "@cadl-lang/openapi3": "^0.15.0",
-    "@cadl-lang/rest": "^0.17.0",
-    "@azure-tools/cadl-csharp": "^0.1.4",
-    "@azure-tools/cadl-python": "^0.2.1"
+    "@cadl-lang/rest": "^0.17.0"
+  },
+  "devDependencies": {
+    "@cadl-lang/library-linter": "^0.2.0",
+    "typescript": "^4.8.4"
   }
 }

@@ -19,6 +19,14 @@ model RegistrationDescription {
   expirationTime?: plainDate;
 }
 
+@doc("Represents an Azure Notification Hubs template based registration description")
+model TemplateRegistrationDescription {
+  @doc("The registration body template")
+  bodyTemplate: string;
+  @doc("The registration template name")
+  templateName?: string;
+}
+
 @doc("Represents an ADM based Azure Notification Hubs registration description")
 model AdmRegistrationDescription extends RegistrationDescription {
   @doc("The ADM registration ID")
@@ -31,12 +39,9 @@ model AdmRegistrationDescription extends RegistrationDescription {
 model AdmTemplateRegistrationDescription extends RegistrationDescription {
   @doc("The ADM registration ID")
   admRegistrationId: string;
-  @doc("The registration body template")
-  bodyTemplate: string;
-  @doc("The registration template name")
-  templateName?: string;
   @doc("The platform of registration description")
   platform: "admTemplate";
+  ...TemplateRegistrationDescription;
 }
 
 @doc("Represents an Apple based Azure Notification Hubs registration description")
@@ -51,16 +56,13 @@ model AppleRegistrationDescription extends RegistrationDescription {
 model AppleTemplateRegistrationDescription extends RegistrationDescription {
   @doc("The APNs device token")
   deviceToken: string;
-  @doc("The registration body template")
-  bodyTemplate: string;
-  @doc("The registration template name")
-  templateName?: string;
   @doc("The APNs headers for the template")
   apnsHeaders?: Record<string>;
   @doc("The APNs priority for any message")
   priority?: int32;
   @doc("The platform of registration description")
   platform: "appleTemplate";
+  ...TemplateRegistrationDescription;
 }
 
 @doc("Represents a Baidu based Azure Notification Hubs registration description")
@@ -79,12 +81,9 @@ model BaiduTemplateRegistrationDescription extends RegistrationDescription {
   baiduChannelId: string;
   @doc("The baidu user ID")
   baiduUserId: string;
-  @doc("The registration body template")
-  bodyTemplate: string;
-  @doc("The registration template name")
-  templateName?: string;
   @doc("The platform of registration description")
   platform: "baiduTemplate";
+  ...TemplateRegistrationDescription;
 }
 
 @doc("Represents a Web Push based Azure Notification Hubs registration description")
@@ -107,12 +106,9 @@ model BrowserTemplateRegistrationDescription extends RegistrationDescription {
   auth: string;
   @doc("The Web Push P256DH")
   p256dh: string;
-  @doc("The registration body template")
-  bodyTemplate: string;
-  @doc("The registration template name")
-  templateName?: string;
   @doc("The platform of registration description")
   platform: "browserTemplate";
+  ...TemplateRegistrationDescription;
 }
 
 @doc("Represents a Firebase Legacy based Azure Notification Hubs registration description")
@@ -127,12 +123,9 @@ model GcmRegistrationDescription extends RegistrationDescription {
 model GcmTemplateRegistrationDescription extends RegistrationDescription {
   @doc("The Firebase Legacy registration ID")
   gcmRegistrationId: string;
-  @doc("The registration body template")
-  bodyTemplate: string;
-  @doc("The registration template name")
-  templateName?: string;
   @doc("The platform of registration description")
   platform: "gcmTemplate";
+  ...TemplateRegistrationDescription;
 }
 
 @doc("Represents a Windows Phone based Azure Notification Hubs registration description")
@@ -147,14 +140,11 @@ model MpnsRegistrationDescription extends RegistrationDescription {
 model MpnsTemplateRegistrationDescription extends RegistrationDescription {
   @doc("The Windows Phone channel URL")
   channelUri: string;
-  @doc("The registration body template")
-  bodyTemplate: string;
-  @doc("The registration template name")
-  templateName?: string;
   @doc("The Windows Phone template headers")
   mpnsHeaders?: Record<string>;
   @doc("The platform of registration description")
   platform: "mpnsTemplate";
+  ...TemplateRegistrationDescription;
 }
 
 @doc("Represents a Windows based Azure Notification Hubs registration description")
@@ -169,12 +159,9 @@ model WindowsRegistrationDescription extends RegistrationDescription {
 model WindowsTemplateRegistrationDescription extends RegistrationDescription {
   @doc("The Windows channel URL")
   channelUri: string;
-  @doc("The registration body template")
-  bodyTemplate: string;
-  @doc("The registration template name")
-  templateName?: string;
   @doc("The Windows template headers")
   wnsHeaders?: Record<string>;
   @doc("The platform of registration description")
-  platform: "windowsTemplate"
+  platform: "windowsTemplate";
+  ...TemplateRegistrationDescription;
 }

@@ -1,7 +1,7 @@
 {
   "OutputFolder": ".",
   "Namespace": "Microsoft.Azure.NotificationHubs",
-  "LibraryName": null,
+  "LibraryName": "Microsoft.Azure.NotificationHubs",
   "SharedSourceFolders": [
     "../../../autorest.csharp/artifacts/bin/AutoRest.CSharp/Debug/netcoreapp3.1/Generator.Shared",
     "../../../autorest.csharp/artifacts/bin/AutoRest.CSharp/Debug/netcoreapp3.1/Azure.Core.Shared"

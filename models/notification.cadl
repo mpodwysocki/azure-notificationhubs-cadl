@@ -53,6 +53,14 @@ model FirebaseLegacyNotification extends Notification {
   platform: "gcm";
 }
 
+@doc("Represents an Template based Azure Notification Hubs notification")
+model Templateotification extends Notification {
+  @doc("The notification content type")
+  contentType: "application/json;charset=utf-8";
+  @doc("The notification platform type")
+  platform: "template";
+}
+
 @doc("Represents a Windows based Azure Notification Hubs notification")
 model WindowsNotification extends Notification {
   @doc("The notification content type")
