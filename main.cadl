@@ -8,8 +8,7 @@ using Cadl.Http;
 using NotificationHubs.Models;
 
 @doc("The Azure Notification Hubs service")
-@serviceTitle("Azure Notification Hubs Service")
-@serviceVersion("2020-06")
+@service({title: "Azure Notification Hubs Service", version: "2020-06"})
 @server("https://{namespaceName}.servicebus.windows.net/{hubName}", "Notification Hubs Namespace", {
   @doc("Notification Hubs Namespace")
   namespaceName?: string,
