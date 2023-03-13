@@ -252,6 +252,14 @@ And in the case of `list` methods, should be wrapped in an Atom+XML feed such as
 </feed>
 ```
 
+This should support CDATA, namespaces, attributes and other pieces such as the following possible annotations:
+
+- `@xmlAttribute("name")`
+- `@xmlElement("name")`
+- `@xmlCdata("CDataElement")`
+- `@xmlNamespace("i", "http://www.w3.org/2001/XMLSchema-instance")`
+- `@xmlArrayItem("Results", "Result")`
+
 ## Language Emitters
 
 By default, the OpenAPI3 CADL Emitter is the first emitter that most developers will use.  There are, however, language support for the following:
@@ -316,7 +324,12 @@ Ideally this should be done as a single step instead of requiring two steps here
 
 ### Java CADL Emitter
 
-The Java CADL emitter as of this current post is not currently on npm.  Instead to get the CADL Emitter, you must clone the `autorest.java` repository and build the CADL emitter with Maven:
+The Java CADL emitter as of this current post is not currently on npm.  There are currently releases of the CADL emitter on GitHub that can be downloaded and referenced manually here:
+
+- [AutoRest Java CADL Preview Directions](https://github.com/Azure/autorest.java/wiki/Cadl-(preview))
+- [AutoRest Java CADL Releases](https://github.com/Azure/autorest.java/releases)
+
+You can also build locally using the `autorest.java` repository as well such as the following:
 
 ```bash
 mvn package -P local,cadl
@@ -349,6 +362,8 @@ The TypeScript RLC CADL Emitter creates a Rest Level Client (RLC) for your libra
   }
 }
 ```
+
+There are some code generation issues where issues will be filed around discriminators type aliases for strings.  Like with the C# and Java versions, this was pulled down manually and then built using `rush` with `rush update` and `rush build`.  Then it could be referenced in our npm build script.
 
 **Like with C#, if we could have these as options inside the project YAML file, that would be ideal.**
 
